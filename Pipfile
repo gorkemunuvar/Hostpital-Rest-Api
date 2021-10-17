@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 flask = "*"
 cx-oracle = "*"
+flask-restful = "*"
 
 [dev-packages]
 

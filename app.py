@@ -1,9 +1,11 @@
 import cx_Oracle
 from flask import Flask
+from flask_restful import Api
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'supersecretkey321'
 
+api = Api(app)
 
 def connect_db() -> None:
     connection = cx_Oracle.connect(
@@ -16,7 +18,7 @@ def connect_db() -> None:
     cursor = connection.cursor()
     cursor.execute(
         """ SELECT profs, isim 
-            FROM ng_his_kabuzman
+            FROM ng_his_kabuzman    
             WHERE kiosk='X'order by isim"""
     )
 
@@ -24,6 +26,12 @@ def connect_db() -> None:
         print("Values:", profs, name)
 
 
+def set_api():
+    pass
+    #api.add_resource(HelloWold, '/')
+
 if __name__ == '__main__':
     connect_db()
-    app.run()
+    set_api()
+
+    app.run(debug=True)
