@@ -2,6 +2,9 @@ import cx_Oracle
 from flask import Flask
 from flask_restful import Api
 
+from resources.news import News
+from resources.campaigns import Campaigns
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'supersecretkey321'
 
@@ -27,8 +30,8 @@ def connect_db() -> None:
 
 
 def set_api():
-    pass
-    #api.add_resource(HelloWold, '/')
+    api.add_resource(News, '/api/news/')
+    api.add_resource(Campaigns, '/api/campaigns/')
 
 if __name__ == '__main__':
     connect_db()
