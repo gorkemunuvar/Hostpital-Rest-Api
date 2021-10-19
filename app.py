@@ -4,6 +4,7 @@ from flask_restful import Api
 
 from resources.news import News
 from resources.campaigns import Campaigns
+from resources.polyclinics import Polyclinics
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'supersecretkey321'
@@ -32,6 +33,7 @@ def connect_db() -> None:
 def set_api():
     api.add_resource(News, '/api/news/')
     api.add_resource(Campaigns, '/api/campaigns/')
+    api.add_resource(Polyclinics, '/api/polyclinics/')
 
 if __name__ == '__main__':
     connect_db()
