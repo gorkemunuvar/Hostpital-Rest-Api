@@ -16,9 +16,23 @@ schema = NewsQuerySchema()
 class News(Resource):
     @classmethod
     def get(self):
-        errors = schema.validate(request.args)
+        # Defaults
+        page = 1
+        per_page = 5
+
+        query_params = request.args
+        errors = schema.validate(query_params)
 
         if errors:
             abort(400, str(errors))
 
-        return {'news': test_news_data}, 200
+        if query_params.__contains__('page'):
+            page = int(query_params['page'])
+
+        if query_params.__contains__('per_page'):
+            per_page = int(query_params['per_page'])
+
+        start = page * per_page - per_page
+        end = page * per_page
+
+        return {'news': test_news_data[start:end]}, 200
