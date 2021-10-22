@@ -1,14 +1,28 @@
 from flask import request, abort
 from flask_restful import Resource
 
-from test_data.news import test_news_data
+from test_data.doctors import test_doctors_data
 from schemas.pagination import PaginationSchema
 
 schema = PaginationSchema()
 
-class News(Resource):
+
+class DoctorById(Resource):
     @classmethod
-    def get(self):
+    def get(cls, id):
+        if int(id) > len(test_doctors_data) or int(id) < 1:
+            return {'message': 'The doctor not found.'}, 404
+
+        for doctor in test_doctors_data:
+            if doctor['id'] == id:
+                return {'doctor': doctor}, 200
+
+        return {'message': 'Wrong input.'}, 404
+
+
+class Doctors(Resource):
+    @classmethod
+    def get(cls):
         # Defaults
         page = 1
         per_page = 5
@@ -28,4 +42,4 @@ class News(Resource):
         start = page * per_page - per_page
         end = page * per_page
 
-        return {'news': test_news_data[start:end]}, 200
+        return {'doctors': test_doctors_data[start:end]}, 200

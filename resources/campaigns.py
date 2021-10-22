@@ -17,4 +17,4 @@ class Campaigns(Resource):
         if errors:
             abort(400, str(errors))
 
-        return {'todo_id': request.args}
+        return {'campaigns': request.args}
