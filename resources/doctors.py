@@ -48,13 +48,11 @@ class Doctors(Resource):
 class SearchDoctor(Resource):
     @classmethod
     def get(cls, search_text):
-        search_text = search_text.lower()
-
         result = []
         for doctor in test_doctors_data:
             doctor_fullname = doctor['name'] + ' ' + doctor['surname']
 
-            if search_text in doctor_fullname.lower():
+            if search_text.lower() in doctor_fullname.lower():
                 result.append(doctor)
 
         return {'search_result': result}, 200

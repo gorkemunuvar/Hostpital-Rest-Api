@@ -27,3 +27,14 @@ class PolyclinicById(Resource):
             return {'message': 'The given id not found.'}, 404
 
         return {'polyclinic_details': test_polyclinics_data[int(id) - 1]}, 200
+
+
+class SearchPolyclinic(Resource):
+    @classmethod
+    def get(cls, search_text):
+        result = []
+        for polyclinic in test_polyclinics_data:
+            if search_text.lower() in polyclinic['title'].lower():
+                result.append(polyclinic)
+
+        return {'search_result': result}, 200
