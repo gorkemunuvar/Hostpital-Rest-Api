@@ -4,7 +4,7 @@ from flask_restful import Api
 
 from resources.news import News
 from resources.campaigns import Campaigns
-from resources.doctors import Doctors, DoctorById
+from resources.doctors import Doctors, DoctorById, SearchDoctor
 from resources.polyclinics import Polyclinics, PolyclinicById
 
 app = Flask(__name__)
@@ -35,6 +35,7 @@ def set_api():
     api.add_resource(News, '/api/news/')
     api.add_resource(Doctors, '/api/doctors/')
     api.add_resource(DoctorById, '/api/doctors/<string:id>')
+    api.add_resource(SearchDoctor, '/api/doctors/search/<string:search_text>')
     api.add_resource(Campaigns, '/api/campaigns/')
     api.add_resource(Polyclinics, '/api/polyclinics/')
     api.add_resource(PolyclinicById, '/api/polyclinics/<string:id>')
