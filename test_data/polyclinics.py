@@ -3,6 +3,7 @@ from test_data.doctors import test_doctors_data
 test_polyclinics_data = [
     {
         'id': '1',
+        'hospital_id' : '1',
         'title': 'Kulak Burun Boğaz',
         'description': """"Aigerim" kliniğinin mikroendoskopik kulak burun boğaz bölümü, yetişkinlerin ve en küçük hastaların tedavisinde uzmanlaşmış, kulak, boğaz ve burun hastalıkları için yüksek kaliteli tıbbi bakım sağlar.
 Resepsiyon kulak burun boğaz uzmanları, uzun yıllara dayanan deneyime sahip doktorlar, birinci sınıf profesyoneller tarafından gerçekleştirilir. Burada sadece danışma ve teşhis hizmetleri sağlanmaz (endoskopik teknikler, işitme inceleme yöntemleri, burun solunum fonksiyonları), aynı zamanda gerekirse cerrahi müdahale de yapılır.
@@ -15,6 +16,7 @@ Kliniğimiz, doktorun hastasına karşı özenli, ilgili, samimi tutumuna, sorun
     },
     {
         'id': '2',
+        'hospital_id' : '1',
         'title': 'Dermatoloji',
         'description': """Dermatoloji, cilt ve eklerinin incelenmesine ve ayrıca hastalıklarının tedavisi ve önlenmesine adanmış bir klinik tıp dalıdır.
 
@@ -24,6 +26,7 @@ Aşağıdaki belirtiler bulunursa bir dermatolog ile konsültasyon gereklidir:""
     },
     {
         'id': '3',
+        'hospital_id' : '1',
         'title': 'Üroloji',
         'description': """Üroloji "Klinikler Agerim", üriner ve erkek üreme sistemlerinin hastalıklarını ve fonksiyonel bozukluklarını tedavi eder. Bir üroloğun mesleki yeterlilik yelpazesi, hem erkek hem de kadınlarda, hangi terapötik konservatif (ilaç) tedavi yöntemlerinin kullanıldığını ortadan kaldırmak için geniş bir patolojik durum listesi içerir.""",
         'image_path': '/static/images/polyclinics/uroloji.png',
@@ -31,6 +34,7 @@ Aşağıdaki belirtiler bulunursa bir dermatolog ile konsültasyon gereklidir:""
     },
     {
         'id': '4',
+        'hospital_id' : '1',
         'title': 'Endoskopi',
         'description': """Endoskopi, içi boş organların durumunu değerlendirmenin mümkün olduğu bir prosedürdür. Jinekoloji, gastroenteroloji ve cerrahide en büyük prevalansı aldı. Endoskopi sırasında doktorun koordineli eylemleri sayesinde, mide ülseri ve ülseratif kolitten kansere kadar birçok hastalığı tespit etmek mümkündür. Endoskopi yardımı ile iltihaplanma, kanama odaklarını tespit etmek mümkündür. Patolojik sürecin tam yerini belirlemek, doktorun hasta için daha etkili tedavi önermesine yardımcı olur.""",
         'image_path': '/static/images/polyclinics/endoskopi.png',
@@ -38,6 +42,7 @@ Aşağıdaki belirtiler bulunursa bir dermatolog ile konsültasyon gereklidir:""
     },
     {
         'id': '5',
+        'hospital_id' : '2',
         'title': 'Psikoloji',
         'description': """Bir psikoloğa başvurmak, herhangi bir kişinin yaşadığı kriz yaşam durumlarında bir çıkış yolu bulmanın en medeni yoludur.
 
@@ -52,6 +57,7 @@ artan bağımlılık davranışı.""",
     },
     {
         'id': '6',
+        'hospital_id' : '2',
         'title': 'Fizyoterapi',
         'description': """Hastalıkların alevlenmesini önlemek, vücudu güçlendirmek, tonu, çalışma kapasitesini ve iyi bir ruh halini korumak için rehabilitasyon, çeşitli hastalıklardan iyileşme döneminde fizyoterapi vazgeçilmezdir.
 
@@ -63,6 +69,7 @@ Kliniğimizde aşağıdaki fizyoterapi türleri kullanılmaktadır:""",
     },
     {
         'id': '7',
+        'hospital_id' : '2',
         'title': 'Kardiyoloji',
         'description': """Kalp hastalığı günümüzde en sık görülen hastalıklardan biridir.
 

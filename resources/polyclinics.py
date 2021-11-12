@@ -20,6 +20,25 @@ class Polyclinics(Resource):
         return {'polyclinics': result}, 200
 
 
+class PolyclinicsByHospitalId(Resource):
+    @classmethod
+    def get(cls, hospital_id):
+        result = []
+        for polyclinic in test_polyclinics_data:
+            if hospital_id == polyclinic['hospital_id']:
+                obj = {
+                    'id': polyclinic['id'],
+                    'hospital_id': polyclinic['hospital_id'],
+                    'title': polyclinic['title']
+                }
+
+                result.append(obj)
+        if len(result) == 0:
+            return {'message': 'hospital_id not found'}, 404
+
+        return {'polyclinics': result}, 200
+
+
 class PolyclinicById(Resource):
     @classmethod
     def get(cls, id):
