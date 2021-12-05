@@ -1,10 +1,14 @@
 from flask import request, abort
 from flask_restful import Resource
 
-from test_data.news import test_news_data
+from services.news import NewsService
+from schemas.news import NewsSchema
 from schemas.pagination import PaginationSchema
 
-schema = PaginationSchema()
+
+pagination_schema = PaginationSchema()
+all_news_schema = NewsSchema(many=True)
+
 
 class News(Resource):
     @classmethod
@@ -14,7 +18,7 @@ class News(Resource):
         per_page = 5
 
         query_params = request.args
-        errors = schema.validate(query_params)
+        errors = pagination_schema.validate(query_params)
 
         if errors:
             abort(400, str(errors))
@@ -25,7 +29,7 @@ class News(Resource):
         if query_params.__contains__('per_page'):
             per_page = int(query_params['per_page'])
 
-        start = page * per_page - per_page
-        end = page * per_page
-
-        return {'news': test_news_data[start:end]}, 200
+        news = NewsService.get_news(page=page, per_page=per_page)
+        news_dict = all_news_schema.dump(news)
+        
+        return {'news': news_dict}, 200

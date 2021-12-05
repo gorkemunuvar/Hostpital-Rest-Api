@@ -2,9 +2,13 @@ from flask import request, abort
 from flask_restful import Resource
 
 from test_data.doctors import test_doctors_data
+from services.doctor import DoctorService
+from schemas.doctor import DoctorSchema
 from schemas.pagination import PaginationSchema
 
-schema = PaginationSchema()
+pagination_schema = PaginationSchema()
+doctor_schema = DoctorSchema()
+doctors_schema = DoctorSchema(many=True)
 
 
 class DoctorById(Resource):
@@ -13,9 +17,11 @@ class DoctorById(Resource):
         if int(id) > len(test_doctors_data) or int(id) < 1:
             return {'message': 'The doctor not found.'}, 404
 
-        for doctor in test_doctors_data:
-            if doctor['id'] == id:
-                return {'doctor': doctor}, 200
+        doctor = DoctorService.get_doctor_by_id(id)
+        doctor_dict = doctor_schema.dump(doctor)
+
+        if doctor:
+            return {'doctor': doctor_dict}, 200
 
         return {'message': 'Wrong input.'}, 404
 
@@ -28,7 +34,7 @@ class Doctors(Resource):
         per_page = 5
 
         query_params = request.args
-        errors = schema.validate(query_params)
+        errors = pagination_schema.validate(query_params)
 
         if errors:
             abort(400, str(errors))
@@ -39,26 +45,22 @@ class Doctors(Resource):
         if query_params.__contains__('per_page'):
             per_page = int(query_params['per_page'])
 
-        start = page * per_page - per_page
-        end = page * per_page
+        doctors = DoctorService.get_doctors(page, per_page)
+        doctors_dict = doctors_schema.dump(doctors)
 
-        return {'doctors': test_doctors_data[start:end]}, 200
+        return {'doctors': doctors_dict}, 200
+
+
+class SearchDoctor(Resource):
+    @classmethod
+    def get(cls, search_text):
+        doctors = DoctorService.search_doctor(search_text)
+        doctors_dict = doctors_schema.dump(doctors)
+
+        return {'search_result': doctors_dict}, 200
 
 
 class DoctorsByPolyclinicId(Resource):
     @classmethod
     def get(cls):
         return
-
-
-class SearchDoctor(Resource):
-    @classmethod
-    def get(cls, search_text):
-        result = []
-        for doctor in test_doctors_data:
-            doctor_fullname = doctor['name'] + ' ' + doctor['surname']
-
-            if search_text.lower() in doctor_fullname.lower():
-                result.append(doctor)
-
-        return {'search_result': result}, 200

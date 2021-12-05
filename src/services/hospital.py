@@ -1,13 +1,11 @@
-import json
 import cx_Oracle
 
+from models.hospital import Hospital
 
-class Hospital():
-    def __init__(self) -> None:
-        self.id = ''
-        self.name = ''
 
-    def fetch_hospitals(cls):
+class HospitalService():
+    @staticmethod
+    def get_hospitals() -> list[Hospital]:
         connection = cx_Oracle.connect(
             user="sys",
             password="123",
@@ -19,9 +17,8 @@ class Hospital():
         cursor.execute("""select DBKOD,DBAD from NG_HIS_LNKDBS t""")
 
         hospitals = []
-
         for row in cursor:
-            hospitals.append({
-                'id': row[0],
-                'name': row[1]
-            })
+            hospital = Hospital(id=row[0], name=row[1])
+            hospitals.append(hospital)
+
+        return hospitals
