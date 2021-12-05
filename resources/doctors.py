@@ -45,6 +45,12 @@ class Doctors(Resource):
         return {'doctors': test_doctors_data[start:end]}, 200
 
 
+class DoctorsByPolyclinicId(Resource):
+    @classmethod
+    def get(cls):
+        return
+
+
 class SearchDoctor(Resource):
     @classmethod
     def get(cls, search_text):
