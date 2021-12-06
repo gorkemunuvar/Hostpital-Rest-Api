@@ -1,18 +1,12 @@
-import cx_Oracle
-
 from models.hospital import Hospital
+from .database import DbConnectionSingleton
+
+connection = DbConnectionSingleton.connect()
 
 
 class HospitalService():
     @staticmethod
     def get_hospitals() -> list[Hospital]:
-        connection = cx_Oracle.connect(
-            user="sys",
-            password="123",
-            dsn="localhost/orcl",
-            mode=cx_Oracle.SYSDBA
-        )
-
         cursor = connection.cursor()
         cursor.execute("""select DBKOD,DBAD from NG_HIS_LNKDBS t""")
 

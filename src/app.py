@@ -6,7 +6,6 @@ import routes
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'supersecretkey321'
 
-
 def init_bluprints():
     for blueprint in vars(routes).values():
         if isinstance(blueprint, Blueprint):
