@@ -1,19 +1,19 @@
-from .database import Database
+from .database import Connection
 from models.expertise import Expertise
 from schemas.expertise import ExpertiseSchema
 
-expertises_schema = ExpertiseSchema(many=True)
+connection = Connection.create()
 
-connection = Database.connect()
+expertises_schema = ExpertiseSchema(many=True)
 
 
 class ExpertiseService():
     @staticmethod
     def get_expertises_by_polyclinic_id(id: str) -> list[Expertise]:
-        cursor = connection.cursor()
-        cursor.execute(
-            f"select KABINET,ISIM,SINIFI from ng_his_glzr WHERE PROFS='{id}'"
-        )
+        query = "select KABINET,ISIM,SINIFI from ng_his_glzr WHERE PROFS = :PROFS"
+        parameters = {':PROFS', id} 
+
+        cursor = Connection.execute(connection, query, parameters)
 
         expertises = []
         for row in cursor:

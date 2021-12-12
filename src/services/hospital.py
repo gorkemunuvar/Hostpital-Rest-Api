@@ -1,13 +1,15 @@
 from models.hospital import Hospital
-from .database import Database
+from .database import Connection
 
-connection = Database.connect()
+connection = Connection.create()
+
 
 class HospitalService():
     @staticmethod
     def get_hospitals() -> list[Hospital]:
-        cursor = connection.cursor()
-        cursor.execute("select DBKOD,DBAD from NG_HIS_LNKDBS t")
+        query = 'select DBKOD,DBAD from NG_HIS_LNKDBS t'
+
+        cursor = Connection.execute(connection, query, {})
 
         hospitals = []
         for row in cursor:

@@ -1,19 +1,20 @@
-from .database import Database
+from .database import Connection
 from models.polyclinic import Polyclinic
 from schemas.polyclinic import PolyclinicSchema
 from test_data.polyclinics import test_polyclinics_data
 
+connection = Connection.create()
 
 polyclinic_schema = PolyclinicSchema()
 polyclinics_schema = PolyclinicSchema(many=True)
 
-connection = Database.connect()
 
 class PolyclinicService():
     @staticmethod
     def get_polyclinics() -> list[Polyclinic]:
-        cursor = connection.cursor()
-        cursor.execute("select profs,isim from ng_his_kabuzman where kiosk='X'order by isim")
+        query = "select profs,isim from ng_his_kabuzman where kiosk='X'order by isim"
+
+        cursor = Connection.execute(connection, query, {})
 
         polyclinics = []
         for row in cursor:

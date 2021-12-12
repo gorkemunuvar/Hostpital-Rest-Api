@@ -60,7 +60,10 @@ class SearchDoctor(Resource):
         return {'search_result': doctors_dict}, 200
 
 
-class DoctorsByPolyclinicId(Resource):
+class DoctorsByExpertiseId(Resource):
     @classmethod
-    def get(cls):
-        return
+    def get(cls, id):
+        doctors = DoctorService.get_doctors_by_expertise_id(id)
+        doctors_dict = doctors_schema.dump(doctors)
+
+        return {'doctors': doctors_dict}, 200
