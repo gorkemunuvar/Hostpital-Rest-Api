@@ -1,7 +1,8 @@
-from marshmallow import Schema, fields
+from marshmallow import fields
 
+from . import BaseSchema
 
-class DoctorSchema(Schema):
+class DoctorSchema(BaseSchema):
     id = fields.Str()
     name = fields.Str()
     surname = fields.Str()

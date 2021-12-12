@@ -1,8 +1,9 @@
-import datetime
-from marshmallow import Schema, fields
+from marshmallow import fields
+
+from . import BaseSchema
 
 
-class NewsSchema(Schema):
+class NewsSchema(BaseSchema):
     title = fields.Str()
     description = fields.Str()
     date = fields.Str()

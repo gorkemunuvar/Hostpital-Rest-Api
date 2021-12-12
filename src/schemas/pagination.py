@@ -1,5 +1,7 @@
-from marshmallow import Schema, fields
+from marshmallow import fields
 
-class PaginationSchema(Schema):
+from . import BaseSchema
+
+class PaginationSchema(BaseSchema):
     page = fields.Str()
     per_page = fields.Str()

@@ -1,5 +1,7 @@
-from marshmallow import Schema, fields
+from marshmallow import fields
 
-class HospitalSchema(Schema):
+from . import BaseSchema
+
+class HospitalSchema(BaseSchema):
     id = fields.Str()
     name = fields.Str()

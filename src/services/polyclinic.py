@@ -1,24 +1,31 @@
-import json
-
+from .database import Database
 from models.polyclinic import Polyclinic
 from schemas.polyclinic import PolyclinicSchema
 from test_data.polyclinics import test_polyclinics_data
 
-polyclinic_schmea = PolyclinicSchema()
-polyclinics_schmea = PolyclinicSchema(many=True)
 
+polyclinic_schema = PolyclinicSchema()
+polyclinics_schema = PolyclinicSchema(many=True)
+
+connection = Database.connect()
 
 class PolyclinicService():
     @staticmethod
     def get_polyclinics() -> list[Polyclinic]:
-        polyclinics = polyclinics_schmea.load(test_polyclinics_data)
+        cursor = connection.cursor()
+        cursor.execute("select profs,isim from ng_his_kabuzman where kiosk='X'order by isim")
+
+        polyclinics = []
+        for row in cursor:
+            polyclinic = Polyclinic(id=row[0], title=row[1])
+            polyclinics.append(polyclinic)
 
         return polyclinics
 
     @staticmethod
     def get_polyclinic_by_id(polyclinic_id: str) -> Polyclinic:
         polyclinic_dict = test_polyclinics_data[int(polyclinic_id) - 1]
-        polyclinic = polyclinic_schmea.load(polyclinic_dict)
+        polyclinic = polyclinic_schema.load(polyclinic_dict)
 
         return polyclinic
 
@@ -42,7 +49,7 @@ class PolyclinicService():
 
         for item in test_polyclinics_data:
             if search_text.lower() in item['title'].lower():
-                polyclinic = polyclinic_schmea.load(item)
+                polyclinic = polyclinic_schema.load(item)
                 polyclinics.append(polyclinic)
 
         return polyclinics

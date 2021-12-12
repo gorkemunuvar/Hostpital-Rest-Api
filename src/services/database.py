@@ -1,8 +1,7 @@
 import cx_Oracle as oracle
 
 
-class DbConnectionSingleton:
-
+class Database:
     __connection = None
 
     @classmethod

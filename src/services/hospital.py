@@ -1,14 +1,13 @@
 from models.hospital import Hospital
-from .database import DbConnectionSingleton
+from .database import Database
 
-connection = DbConnectionSingleton.connect()
-
+connection = Database.connect()
 
 class HospitalService():
     @staticmethod
     def get_hospitals() -> list[Hospital]:
         cursor = connection.cursor()
-        cursor.execute("""select DBKOD,DBAD from NG_HIS_LNKDBS t""")
+        cursor.execute("select DBKOD,DBAD from NG_HIS_LNKDBS t")
 
         hospitals = []
         for row in cursor:
