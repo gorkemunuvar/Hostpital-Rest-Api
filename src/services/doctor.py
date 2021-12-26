@@ -2,7 +2,7 @@ from .database import Connection
 from models.doctor import Doctor
 from test_data.doctors import test_doctors_data
 from schemas.doctor import DoctorSchema
-from utils.queries import GET_DOCTORS_BY_PROFESSION_ID
+from utils.queries import DOCTORS_BY_PROFESSION_ID
 
 connection = Connection.create()
 
@@ -33,7 +33,7 @@ class DoctorService():
 
     @staticmethod
     def get_doctors_by_profession_id(id: str):
-        query = GET_DOCTORS_BY_PROFESSION_ID.format(profession_id=id)
+        query = DOCTORS_BY_PROFESSION_ID.format(profession_id=id)
     
         cursor = Connection.execute(connection, query)
 

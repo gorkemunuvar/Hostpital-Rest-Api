@@ -1,5 +1,6 @@
 from models.hospital import Hospital
 from .database import Connection
+from utils.queries import HOSPITALS
 
 connection = Connection.create()
 
@@ -7,9 +8,7 @@ connection = Connection.create()
 class HospitalService():
     @staticmethod
     def get_hospitals() -> list[Hospital]:
-        query = 'select DBKOD,DBAD from NG_HIS_LNKDBS t'
-
-        cursor = Connection.execute(connection, query)
+        cursor = Connection.execute(connection, HOSPITALS)
 
         hospitals = []
         for row in cursor:
