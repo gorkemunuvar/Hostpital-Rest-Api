@@ -1,5 +1,4 @@
 from marshmallow import fields
-from routes import profession
 
 from . import BaseSchema
 

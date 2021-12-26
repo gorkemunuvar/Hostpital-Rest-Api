@@ -2,6 +2,7 @@ from .database import Connection
 from models.polyclinic import Polyclinic
 from schemas.polyclinic import PolyclinicSchema
 from test_data.polyclinics import test_polyclinics_data
+from utils.queries import GET_POLYCLINICS
 
 connection = Connection.create()
 
@@ -12,9 +13,7 @@ polyclinics_schema = PolyclinicSchema(many=True)
 class PolyclinicService():
     @staticmethod
     def get_polyclinics() -> list[Polyclinic]:
-        query = "select profs,isim from ng_his_kabuzman where kiosk='X'order by isim"
-
-        cursor = Connection.execute(connection, query, {})
+        cursor = Connection.execute(connection, GET_POLYCLINICS)
 
         polyclinics = []
         for row in cursor:

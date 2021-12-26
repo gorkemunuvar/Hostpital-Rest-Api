@@ -20,7 +20,7 @@ class Connection(oracle.Connection):
         return cls.__connection
 
     @staticmethod
-    def execute(connection: Connection, query: str, parameters: dict) -> oracle.Cursor:
+    def execute(connection: Connection, query: str) -> oracle.Cursor:
         cursor = connection.cursor()
 
-        return cursor.execute(query, parameters)
+        return cursor.execute(query)

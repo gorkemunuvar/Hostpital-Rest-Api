@@ -7,4 +7,4 @@ AVAILABLE_APPOINTMENT_TIME_BLUEPRINT = Blueprint(
     'available_appointment_time', __name__)
 
 Api(AVAILABLE_APPOINTMENT_TIME_BLUEPRINT).add_resource(
-    AvailableAppoinmentTime, '/available_appointment_times')
+    AvailableAppoinmentTime, '/doctors/<string:id>/available_dates/<string:date>/available_appointment_times')

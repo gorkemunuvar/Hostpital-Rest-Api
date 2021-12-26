@@ -9,7 +9,7 @@ class HospitalService():
     def get_hospitals() -> list[Hospital]:
         query = 'select DBKOD,DBAD from NG_HIS_LNKDBS t'
 
-        cursor = Connection.execute(connection, query, {})
+        cursor = Connection.execute(connection, query)
 
         hospitals = []
         for row in cursor:

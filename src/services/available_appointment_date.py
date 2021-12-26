@@ -1,7 +1,19 @@
+from .database import Connection
+from utils.queries import GET_AVAILABLE_APPOINTMENT_DATES
+
+connection = Connection.create()
+
+
 class AvailableAppoinmentDateService():
     @staticmethod
-    def get_avaiable_appoinment_dates() -> list[str]:
-        available_appointment_dates = [
-            'Şubat 10', 'Şubat 12', 'Şubat 15', 'Şubay 20', 'Mart 10', 'Mart 12', 'Mart 14']
+    def get_avaiable_appoinment_dates_by_doctor_id(id: str) -> list[str]:
+        query = GET_AVAILABLE_APPOINTMENT_DATES.format(doctor_id=id)
+        cursor = Connection.execute(connection, query)
 
-        return available_appointment_dates
+        dates = []
+        for row in cursor:
+            # 2021-11-14 00:00:00
+            date = str(row[0]).split()[0]
+            dates.append(date)
+
+        return dates

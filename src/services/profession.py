@@ -1,6 +1,8 @@
+from schemas import polyclinic
 from .database import Connection
 from models.profession import Profession
 from schemas.profession import ProfessionSchema
+from utils.queries import GET_PROFESSIONS_BY_POLYCLINIC_ID
 
 connection = Connection.create()
 
@@ -10,13 +12,9 @@ professions_schema = ProfessionSchema(many=True)
 class ProfessionService():
     @staticmethod
     def get_professions_by_polyclinic_id(id: str) -> list[Profession]:
-        query = "select KABINET,ISIM,SINIFI from ng_his_glzr WHERE PROFS = :PROFS"
-        parameters = {':PROFS': id}
+        query = GET_PROFESSIONS_BY_POLYCLINIC_ID.format(polyclinic_id=id)
 
-        print('BİR')
-        cursor = Connection.execute(connection, query, parameters)
-        print('İKİ')
-
+        cursor = Connection.execute(connection, query)
 
         professions = []
         for row in cursor:
