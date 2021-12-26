@@ -31,7 +31,7 @@ class DoctorService():
         return doctor
 
     @staticmethod
-    def get_doctors_by_expertise_id(id: str):
+    def get_doctors_by_profession_id(id: str):
         query = """SELECT doktor_id,soy,ad from ng_his_vrtkmad
                 where servis_id = :service_id and doktor_id IS not null 
                 GROUP BY soy,ad,baba,profs,doktor_id  order by soy,ad"""

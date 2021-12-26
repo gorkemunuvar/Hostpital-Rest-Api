@@ -1,4 +1,5 @@
 from marshmallow import fields
+from routes import profession
 
 from . import BaseSchema
 
@@ -8,7 +9,7 @@ class DoctorSchema(BaseSchema):
     surname = fields.Str()
     description = fields.Str()
     image_path = fields.Str()
-    expertise = fields.Str()
+    profession = fields.Str()
     education = fields.Str()
     experience = fields.Str()
     achievements = fields.Str()

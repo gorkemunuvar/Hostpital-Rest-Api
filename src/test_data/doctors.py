@@ -7,7 +7,7 @@ test_doctors_data = [
         'surname': 'Nelly Sandybaevna',
         'description': 'Kulak burun boğaz uzmanı (çocuklar ve yetişkinler)',
         'image_path': '/static/images/doctors/doctor1.png',
-        'expertise': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
+        'profession': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
 
 Geniş bir profilin ayaktan hasta
 kabulüne yol açar : - sinüzit tedavisi;
@@ -47,7 +47,7 @@ Uzmanlık sertifikası "Kulak Burun Boğaz (ana uzmanlık profiline göre odyolo
         'surname': 'Petrovich',
         'description': 'Kulak burun boğaz uzmanı yetişkin, çocuklar',
         'image_path': '/static/images/doctors/doctor2.png',
-        'expertise': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
+        'profession': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
 
 Geniş bir profilin ayaktan hasta
 kabulüne yol açar : - sinüzit tedavisi;
@@ -91,7 +91,7 @@ Uzmanlık sertifikası "Kulak burun boğaz (odyoloji, ana uzmanlık profiline g�
         'surname': 'Ernar Kokimzhanuly',
         'description': 'Kulak burun boğaz uzmanı (çocuklar ve yetişkinler)',
         'image_path': '/static/images/doctors/doctor3.png',
-        'expertise': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
+        'profession': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
 
 Geniş bir profilin ayaktan hasta
 kabulüne yol açar : - sinüzit tedavisi;
@@ -128,7 +128,7 @@ Uzmanlık sertifikası "Kulak Burun Boğaz (ana uzmanlık profilinde odyoloji, e
         'surname': 'Sharafatdinovna',
         'description': 'Kulak Burun Boğaz uzmanı, odyolog (çocuklar ve yetişkinler)',
         'image_path': '/static/images/doctors/doctor4.png',
-        'expertise': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
+        'profession': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
 
 Geniş bir profilin ayaktan hasta
 kabulüne yol açar : - sinüzit tedavisi;
@@ -168,7 +168,7 @@ Uzmanlık sertifikası "Kulak Burun Boğaz (odyoloji) (yetişkin, pediatrik)", y
         'surname': 'Nelly Sandybaevna',
         'description': 'Kulak burun boğaz uzmanı (çocuklar ve yetişkinler)',
         'image_path': '/static/images/doctors/doctor1.png',
-        'expertise': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
+        'profession': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
 
 Geniş bir profilin ayaktan hasta
 kabulüne yol açar : - sinüzit tedavisi;
@@ -208,7 +208,7 @@ Uzmanlık sertifikası "Kulak Burun Boğaz (ana uzmanlık profiline göre odyolo
         'surname': 'Petrovich',
         'description': 'Kulak burun boğaz uzmanı yetişkin, çocuklar',
         'image_path': '/static/images/doctors/doctor2.png',
-        'expertise': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
+        'profession': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
 
 Geniş bir profilin ayaktan hasta
 kabulüne yol açar : - sinüzit tedavisi;
@@ -252,7 +252,7 @@ Uzmanlık sertifikası "Kulak burun boğaz (odyoloji, ana uzmanlık profiline g�
         'surname': 'Ernar Kokimzhanuly',
         'description': 'Kulak burun boğaz uzmanı (çocuklar ve yetişkinler)',
         'image_path': '/static/images/doctors/doctor3.png',
-        'expertise': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
+        'profession': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
 
 Geniş bir profilin ayaktan hasta
 kabulüne yol açar : - sinüzit tedavisi;
@@ -289,7 +289,7 @@ Uzmanlık sertifikası "Kulak Burun Boğaz (ana uzmanlık profilinde odyoloji, e
         'surname': 'Sharafatdinovna',
         'description': 'Kulak Burun Boğaz uzmanı, odyolog (çocuklar ve yetişkinler)',
         'image_path': '/static/images/doctors/doctor4.png',
-        'expertise': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
+        'profession': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
 
 Geniş bir profilin ayaktan hasta
 kabulüne yol açar : - sinüzit tedavisi;
@@ -331,7 +331,7 @@ Uzmanlık sertifikası "Kulak Burun Boğaz (odyoloji) (yetişkin, pediatrik)", y
         'surname': 'Nelly Sandybaevna',
         'description': 'Kulak burun boğaz uzmanı (çocuklar ve yetişkinler)',
         'image_path': '/static/images/doctors/doctor1.png',
-        'expertise': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
+        'profession': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
 
 Geniş bir profilin ayaktan hasta
 kabulüne yol açar : - sinüzit tedavisi;
@@ -371,7 +371,7 @@ Uzmanlık sertifikası "Kulak Burun Boğaz (ana uzmanlık profiline göre odyolo
         'surname': 'Petrovich',
         'description': 'Kulak burun boğaz uzmanı yetişkin, çocuklar',
         'image_path': '/static/images/doctors/doctor2.png',
-        'expertise': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
+        'profession': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
 
 Geniş bir profilin ayaktan hasta
 kabulüne yol açar : - sinüzit tedavisi;
@@ -415,7 +415,7 @@ Uzmanlık sertifikası "Kulak burun boğaz (odyoloji, ana uzmanlık profiline g�
         'surname': 'Ernar Kokimzhanuly',
         'description': 'Kulak burun boğaz uzmanı (çocuklar ve yetişkinler)',
         'image_path': '/static/images/doctors/doctor3.png',
-        'expertise': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
+        'profession': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
 
 Geniş bir profilin ayaktan hasta
 kabulüne yol açar : - sinüzit tedavisi;
@@ -452,7 +452,7 @@ Uzmanlık sertifikası "Kulak Burun Boğaz (ana uzmanlık profilinde odyoloji, e
         'surname': 'Sharafatdinovna',
         'description': 'Kulak Burun Boğaz uzmanı, odyolog (çocuklar ve yetişkinler)',
         'image_path': '/static/images/doctors/doctor4.png',
-        'expertise': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
+        'profession': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
 
 Geniş bir profilin ayaktan hasta
 kabulüne yol açar : - sinüzit tedavisi;
@@ -491,7 +491,7 @@ Uzmanlık sertifikası "Kulak Burun Boğaz (odyoloji) (yetişkin, pediatrik)", y
         'surname': 'Nelly Sandybaevna',
         'description': 'Kulak burun boğaz uzmanı (çocuklar ve yetişkinler)',
         'image_path': '/static/images/doctors/doctor1.png',
-        'expertise': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
+        'profession': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
 
 Geniş bir profilin ayaktan hasta
 kabulüne yol açar : - sinüzit tedavisi;
@@ -531,7 +531,7 @@ Uzmanlık sertifikası "Kulak Burun Boğaz (ana uzmanlık profiline göre odyolo
         'surname': 'Petrovich',
         'description': 'Kulak burun boğaz uzmanı yetişkin, çocuklar',
         'image_path': '/static/images/doctors/doctor2.png',
-        'expertise': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
+        'profession': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
 
 Geniş bir profilin ayaktan hasta
 kabulüne yol açar : - sinüzit tedavisi;
@@ -575,7 +575,7 @@ Uzmanlık sertifikası "Kulak burun boğaz (odyoloji, ana uzmanlık profiline g�
         'surname': 'Ernar Kokimzhanuly',
         'description': 'Kulak burun boğaz uzmanı (çocuklar ve yetişkinler)',
         'image_path': '/static/images/doctors/doctor3.png',
-        'expertise': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
+        'profession': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
 
 Geniş bir profilin ayaktan hasta
 kabulüne yol açar : - sinüzit tedavisi;
@@ -612,7 +612,7 @@ Uzmanlık sertifikası "Kulak Burun Boğaz (ana uzmanlık profilinde odyoloji, e
         'surname': 'Sharafatdinovna',
         'description': 'Kulak Burun Boğaz uzmanı, odyolog (çocuklar ve yetişkinler)',
         'image_path': '/static/images/doctors/doctor4.png',
-        'expertise': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
+        'profession': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
 
 Geniş bir profilin ayaktan hasta
 kabulüne yol açar : - sinüzit tedavisi;
@@ -651,7 +651,7 @@ Uzmanlık sertifikası "Kulak Burun Boğaz (odyoloji) (yetişkin, pediatrik)", y
         'surname': 'Nelly Sandybaevna',
         'description': 'Kulak burun boğaz uzmanı (çocuklar ve yetişkinler)',
         'image_path': '/static/images/doctors/doctor1.png',
-        'expertise': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
+        'profession': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
 
 Geniş bir profilin ayaktan hasta
 kabulüne yol açar : - sinüzit tedavisi;
@@ -691,7 +691,7 @@ Uzmanlık sertifikası "Kulak Burun Boğaz (ana uzmanlık profiline göre odyolo
         'surname': 'Petrovich',
         'description': 'Kulak burun boğaz uzmanı yetişkin, çocuklar',
         'image_path': '/static/images/doctors/doctor2.png',
-        'expertise': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
+        'profession': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
 
 Geniş bir profilin ayaktan hasta
 kabulüne yol açar : - sinüzit tedavisi;
@@ -735,7 +735,7 @@ Uzmanlık sertifikası "Kulak burun boğaz (odyoloji, ana uzmanlık profiline g�
         'surname': 'Ernar Kokimzhanuly',
         'description': 'Kulak burun boğaz uzmanı (çocuklar ve yetişkinler)',
         'image_path': '/static/images/doctors/doctor3.png',
-        'expertise': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
+        'profession': """Tıbbi uygulamada kullanılmasına izin verilen modern önleme, teşhis, tedavi ve rehabilitasyon yöntemlerini kullanarak uzmanlık alanında nitelikli tıbbi bakım sağlar.
 
 Geniş bir profilin ayaktan hasta
 kabulüne yol açar : - sinüzit tedavisi;

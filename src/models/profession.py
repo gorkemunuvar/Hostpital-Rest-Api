@@ -1,5 +1,5 @@
 
-class Expertise():
+class Profession():
     def __init__(self, id: str = None, polyclinic_id: str = None,
                  name: str = None) -> None:
         self.id = id

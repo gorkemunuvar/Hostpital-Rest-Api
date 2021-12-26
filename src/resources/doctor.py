@@ -60,10 +60,13 @@ class SearchDoctor(Resource):
         return {'search_result': doctors_dict}, 200
 
 
-class DoctorsByExpertiseId(Resource):
+class DoctorsByProfessionId(Resource):
     @classmethod
     def get(cls, id):
-        doctors = DoctorService.get_doctors_by_expertise_id(id)
-        doctors_dict = doctors_schema.dump(doctors)
+        doctors = DoctorService.get_doctors_by_profession_id(id)
 
-        return {'doctors': doctors_dict}, 200
+        if doctors:
+            doctors_dict = doctors_schema.dump(doctors)
+            return {'doctors': doctors_dict}, 200
+
+        return {'message': 'Doctors not found!'}, 404
