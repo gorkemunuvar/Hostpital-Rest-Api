@@ -19,14 +19,18 @@ class Polyclinics(Resource):
 
 class PolyclinicById(Resource):
     @classmethod
-    def get(cls, id):
-        if int(id) > len(test_polyclinics_data) or int(id) < 1:
-            return {'message': 'The given id not found.'}, 404
+    def get(cls):
+    #def get(cls, id):
+        # if int(id) > len(test_polyclinics_data) or int(id) < 1:
+        #     return {'message': 'The given id not found.'}, 404
 
-        polyclinic = PolyclinicService.get_polyclinic_by_id(id)
-        polyclinic_dict = polyclinic_schmea.dump(polyclinic)
+        polyclinic_doctors = PolyclinicService.get_polyclinic_by_id()
+        #polyclinic_doctors = PolyclinicService.get_polyclinic_by_id(id)
+        return {'polyclinic_doctors': polyclinic_doctors}, 200
 
-        return {'polyclinic_details': test_polyclinics_data[int(id) - 1]}, 200
+        
+        #polyclinic_dict = polyclinic_schmea.dump(polyclinic)
+        #return {'polyclinic_details': test_polyclinics_data[int(id) - 1]}, 200
 
 
 class PolyclinicsByHospitalId(Resource):

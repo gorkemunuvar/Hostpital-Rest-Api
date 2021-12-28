@@ -2,7 +2,7 @@ from .database import Connection
 from models.doctor import Doctor
 from test_data.doctors import test_doctors_data
 from schemas.doctor import DoctorSchema
-from utils.queries import DOCTORS_BY_PROFESSION_ID
+from utils.queries import DOCTORS_BY_PROFESSION_ID, ALL_DOCTORS, DOCTOR_DETAIL
 
 connection = Connection.create()
 
@@ -11,6 +11,49 @@ doctors_schema = DoctorSchema(many=True)
 
 
 class DoctorService():
+    # new
+    @staticmethod
+    def get_all_doctors():
+        cursor = Connection.execute(connection, ALL_DOCTORS)
+
+        doctors = []
+        for row in cursor:
+            doctor_dict = {
+                'doctor_id': row[0],
+                'soyad': row[1],
+                'ad': row[2],
+                'doctor_id': row[4],
+                'pol_id': row[5],
+                'kisa_aciklama': row[0],
+                # resim gelecek
+            }
+
+            doctors.append(doctor_dict)
+
+        return doctors
+
+    # new
+    def get_doctor_detail():
+        cursor = Connection.execute(connection, DOCTOR_DETAIL)
+
+        doctor_info = {}
+        for row in cursor:
+            doctor_info = {
+                'doctor_id': row[0],
+                'soyad': row[1],
+                'ad': row[2],
+                'polyclinic': row[4],
+                'kisa_aciklama': row[5],
+                'uzmanlik': row[7],
+                'egitim': row[8],
+                'deneyim': row[9],
+                'sertifika': row[10],
+
+                # resim gelecek
+            }
+
+        return doctor_info
+
     @staticmethod
     def get_doctors(page: int, per_page: int) -> list[Doctor]:
         start = page * per_page - per_page
@@ -34,7 +77,7 @@ class DoctorService():
     @staticmethod
     def get_doctors_by_profession_id(id: str):
         query = DOCTORS_BY_PROFESSION_ID.format(profession_id=id)
-    
+
         cursor = Connection.execute(connection, query)
 
         doctors = []

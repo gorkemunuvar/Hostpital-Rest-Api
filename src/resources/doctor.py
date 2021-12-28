@@ -70,3 +70,23 @@ class DoctorsByProfessionId(Resource):
             return {'doctors': doctors_dict}, 200
 
         return {'message': 'Doctors not found!'}, 404
+
+#################################
+# new resources
+#################################
+
+class AllDoctors(Resource):
+    @classmethod
+    def get(cls):
+        doctors = DoctorService.get_all_doctors()
+
+        return {'doctors': doctors}, 200
+
+
+
+class DoctorDetail(Resource):
+    @classmethod
+    def get(cls):
+        doctors = DoctorService.get_doctor_detail()
+
+        return {'doctor_detail': doctors}, 200
