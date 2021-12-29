@@ -1,5 +1,4 @@
-from schemas import polyclinic
-from .database import Connection
+from ..utils.database import Connection
 from models.profession import Profession
 from schemas.profession import ProfessionSchema
 from utils.queries import PROFESSIONS_BY_POLYCLINIC_ID
@@ -13,7 +12,6 @@ class ProfessionService():
     @staticmethod
     def get_professions_by_polyclinic_id(id: str) -> list[Profession]:
         query = PROFESSIONS_BY_POLYCLINIC_ID.format(polyclinic_id=id)
-
         cursor = Connection.execute(connection, query)
 
         professions = []

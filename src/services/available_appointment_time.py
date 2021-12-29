@@ -1,8 +1,8 @@
 import datetime
 
-from .database import Connection
-from utils.queries import (AVAILABLE_APPOINTMENT_TIME_REQUIREMENTS,
-                           AVAILABLE_APPOINTMENT_TIMES)
+from ..utils.database import Connection
+from utils.queries import (AVAILABLE_APPOINTMENT_TIMES,
+                           AVAILABLE_APPOINTMENT_TIME_REQUIREMENTS)
 
 connection = Connection.create()
 
@@ -24,7 +24,6 @@ class AvailableAppoinmentTimeService():
             profession_id=query_requirements['profession_id'],
             time_interval=query_requirements['time_interval']
         )
-
         cursor = Connection.execute(connection, query)
 
         available_times = []
@@ -32,11 +31,6 @@ class AvailableAppoinmentTimeService():
             available_times.append(str(row[1]))
 
         return available_times
-
-
-def format_date(date: str) -> str:
-    """Returns <yyyy-mm-dd> for given <yyyy/mm/dd> format."""
-    return datetime.datetime.strptime(date, "%Y/%m/%d").strftime("%Y-%m-%d")
 
 
 def get_query_requirements(doctor_id: str, selected_date: str) -> dict:
@@ -71,3 +65,8 @@ def get_query_requirements(doctor_id: str, selected_date: str) -> dict:
             break
 
     return query_requirements
+
+
+def format_date(date: str) -> str:
+    """Returns <yyyy-mm-dd> for given <yyyy/mm/dd> format."""
+    return datetime.datetime.strptime(date, "%Y/%m/%d").strftime("%Y-%m-%d")

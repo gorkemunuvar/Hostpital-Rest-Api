@@ -1,4 +1,4 @@
-from .database import Connection
+from ..utils.database import Connection
 from utils.queries import AVAILABLE_APPOINTMENT_DATES
 
 connection = Connection.create()
