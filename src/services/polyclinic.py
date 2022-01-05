@@ -1,4 +1,4 @@
-from ..utils.database import Connection
+from .database import Connection
 from models.polyclinic import Polyclinic
 from schemas.polyclinic import PolyclinicSchema
 from utils.queries import POLYCLINICS

@@ -1,5 +1,5 @@
 from models.hospital import Hospital
-from ..utils.database import Connection
+from .database import Connection
 from utils.queries import HOSPITALS
 
 connection = Connection.create()

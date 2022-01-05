@@ -26,44 +26,36 @@ PROFESSIONS_BY_POLYCLINIC_ID = "SELECT kabinet, isim, sinifi FROM ng_his_glzr WH
 # | DOKTOR_ID | SOY    | AD   | BABA | PERBILGI          | RESIM |
 # | DR582     | Yildiz | Ayse | null | Kulak Burun Boğaz | Blob  |
 
-ALL_DOCTORS = """SELECT ng_his_vrtkmad.doktor_id, ng_his_vrtkmad.soy, ng_his_vrtkmad.ad, ng_his_vrtkmad.baba,
-                 ng_his_vrtkmad.perbılgı, dbms_lob.getlength(NG_HIS_PRSRSMM.RESIM) "RESIM"
-                 FROM ng_his_vrtkmad, NG_HIS_PRSRSMM 
-                 WHERE ng_his_vrtkmad.doktor_ıd=ng_hıs_prsrsmm.vrac_ıd 
-                 AND ng_his_vrtkmad.doktor_id IS NOT null 
-                 GROUP BY ng_his_vrtkmad.doktor_id, ng_his_vrtkmad.soy, ng_his_vrtkmad.ad, ng_his_vrtkmad.baba, 
-                 ng_his_vrtkmad.perbılgı, dbms_lob.getlength(ng_hıs_prsrsmm.resım), ng_his_vrtkmad.profs
-                 ORDER BY ng_his_vrtkmad.soy,ng_his_vrtkmad.ad"""
+ALL_DOCTORS = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya ,ng_his_rpsl.imya,ng_his_rpsl.ocest, ng_his_rpsl.perbilgi,
+                NG_HIS_PRSRSMM.RESIM 
+                FROM ng_his_rpsl, NG_HIS_PRSRSMM 
+                WHERE ng_his_rpsl.kullan=ng_hıs_prsrsmm.vrac_ıd(+)
+                ORDER BY ng_his_rpsl.famılya ,ng_his_rpsl.imya"""
 
 
 # | DOKTOR_ID | SOY    | AD   | BABA   | PERBILGI          | RESIM | UZMANLIK    | EGITIM      | DENEYIM     | SERTIFIKA   |
-# | DR582     | Yildiz | Ayse | null   | Kulak Burun Boğaz | Blob  | <long text> | <long text> | <long text> | <long text> |
-
-DOCTOR_BY_ID = """SELECT ng_his_vrtkmad.doktor_id, ng_his_vrtkmad.soy, ng_his_vrtkmad.ad, ng_his_vrtkmad.baba,
-                  ng_his_vrtkmad.perbılgı, dbms_lob.getlength(NG_HIS_PRSRSMM.RESIM) "RESIM", 
-                  ng_hıs_prsrsmm.uzmanlık, ng_hıs_prsrsmm.egıtım, ng_hıs_prsrsmm.deneyım, ng_hıs_prsrsmm.sertıfıka, ng_his_vrtkmad.profs
-                  FROM ng_his_vrtkmad, NG_HIS_PRSRSMM 
-                  WHERE ng_his_vrtkmad.doktor_ıd=ng_hıs_prsrsmm.vrac_ıd 
-                  AND ng_his_vrtkmad.doktor_id IS NOT null 
-                  GROUP BY  ng_his_vrtkmad.doktor_id, ng_his_vrtkmad.soy, ng_his_vrtkmad.ad, ng_his_vrtkmad.baba, 
-                  ng_his_vrtkmad.profs, ng_his_vrtkmad.perbılgı, dbms_lob.getlength(ng_hıs_prsrsmm.resım), 
-                  ng_hıs_prsrsmm.uzmanlık, ng_hıs_prsrsmm.egıtım, ng_hıs_prsrsmm.deneyım, ng_hıs_prsrsmm.sertıfıka
-                  ORDER BY ng_his_vrtkmad.soy, ng_his_vrtkmad.ad"""
+# | DR582     | Yildiz | Ayse | null   | Kulak Burun Boğaz | Blob  | <long text> | <long text> | <long text> | <long text> 
+DOCTOR_BY_ID = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya ,ng_his_rpsl.imya,ng_his_rpsl.ocest, ng_his_rpsl.perbilgi,
+                    ng_hıs_prsrsmm.uzmanlık, ng_hıs_prsrsmm.egıtım, ng_hıs_prsrsmm.deneyım, ng_hıs_prsrsmm.sertıfıka,
+                    NG_HIS_PRSRSMM.RESIM 
+                    FROM ng_his_rpsl, NG_HIS_PRSRSMM 
+                    WHERE ng_his_rpsl.kullan=ng_hıs_prsrsmm.vrac_ıd(+) and ng_his_rpsl.kullan='DR582'
+                    ORDER BY ng_his_rpsl.famılya ,ng_his_rpsl.imya"""
 
 
 # | DOKTOR_ID | SOY    | AD   | BABA   | PERBILGI          | RESIM | PROFS |
 # | DR582     | Yildiz | Ayse | null   | Kulak Burun Boğaz | Blob  | UZ001 |
 
-DOCTORS_BY_POLYCLINIC_ID = """SELECT ng_his_vrtkmad.doktor_id, ng_his_vrtkmad.soy, ng_his_vrtkmad.ad, ng_his_vrtkmad.baba,
-                              ng_hıs_prsrsmm.perbılgı, dbms_lob.getlength(NG_HIS_PRSRSMM.RESIM) "RESIM", ng_his_vrtkmad.profs
-                              FROM ng_his_vrtkmad, NG_HIS_PRSRSMM 
-                              WHERE ng_his_vrtkmad.doktor_ıd=ng_hıs_prsrsmm.vrac_ıd
-                              AND ng_his_vrtkmad.profs='{polyclinic_id}' 
-                              AND ng_his_vrtkmad.doktor_id IS NOT null 
-                              GROUP BY ng_his_vrtkmad.doktor_id, ng_his_vrtkmad.soy, 
-                              ng_his_vrtkmad.ad, ng_his_vrtkmad.baba, ng_hıs_prsrsmm.perbılgı,
-                              dbms_lob.getlength(ng_hıs_prsrsmm.resım), ng_his_vrtkmad.profs
-                              ORDER BY ng_his_vrtkmad.soy, ng_his_vrtkmad.ad"""
+DOCTORS_BY_POLYCLINIC_ID = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya ,ng_his_rpsl.imya,ng_his_rpsl.ocest, ng_his_rpsl.perbilgi,
+                            ng_hıs_prsrsmm.uzmanlık, ng_hıs_prsrsmm.egıtım, ng_hıs_prsrsmm.deneyım, ng_hıs_prsrsmm.sertıfıka,
+                            NG_HIS_PRSRSMM.RESIM,
+                            ng_his_glzr.kabinet,ng_his_glzr.isim,ng_his_glzr.profs
+                            FROM ng_his_rpsl, NG_HIS_PRSRSMM ,ng_his_glzr, ng_his_yrgrv
+                            WHERE ng_his_rpsl.kullan=ng_hıs_prsrsmm.vrac_ıd(+)  
+                            and ng_his_yrgrv.kabınet = ng_his_glzr.kabınet
+                            and ng_his_rpsl.kullan=ng_his_yrgrv.kullan
+                            and ng_his_glzr.profs='UZ001'
+                            ORDER BY ng_his_rpsl.famılya ,ng_his_rpsl.imya"""
 
 
 # | DOKTOR_ID | AD   | SOYAD |

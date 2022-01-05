@@ -5,3 +5,4 @@ from .polyclinic import POLYCLINIC_BLUEPRINT
 from .profession import PROFESSION_BLUEPRINT
 from .available_appointment_date import AVAILABLE_APPOINTMENT_DATE_BLUEPRINT
 from .available_appointment_time import AVAILABLE_APPOINTMENT_TIME_BLUEPRINT
+from .image_test import IMAGE_TEST_BLUEPRINT

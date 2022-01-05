@@ -1,6 +1,6 @@
 import datetime
 
-from ..utils.database import Connection
+from .database import Connection
 from utils.queries import (AVAILABLE_APPOINTMENT_TIMES,
                            AVAILABLE_APPOINTMENT_TIME_REQUIREMENTS)
 
