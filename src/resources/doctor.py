@@ -20,20 +20,23 @@ class AllDoctors(Resource):
         page = 1
         per_page = 10
 
-        query_params = request.args
-        errors = pagination_schema.validate(query_params)
+        try:
+            query_params = request.args
+            errors = pagination_schema.validate(query_params)
 
-        if errors:
-            abort(400, str(errors))
+            if errors:
+                abort(400, str(errors))
 
-        if query_params.__contains__('page'):
-            page = int(query_params['page'])
+            if query_params.__contains__('page'):
+                page = int(query_params['page'])
 
-        if query_params.__contains__('per_page'):
-            per_page = int(query_params['per_page'])
+            if query_params.__contains__('per_page'):
+                per_page = int(query_params['per_page'])
 
-        doctors = DoctorService.get_all_doctors(page, per_page)
-        doctors_dict = doctors_schema.dump(doctors)
+            doctors = DoctorService.get_all_doctors(page, per_page)
+            doctors_dict = doctors_schema.dump(doctors)
+        except Exception as error:
+            return {'message': f'Something went wrong. ({error})'.format(error=error)}
 
         return {'doctors': doctors_dict}, 200
 

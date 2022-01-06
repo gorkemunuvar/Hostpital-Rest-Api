@@ -35,30 +35,14 @@ class DoctorService():
         doctor = Doctor()
 
         for row in cursor:
-            print(row[0])
-            print(row[1])
-            print(row[2])
-            print(row[3])
-            print(row[4])
-            print(row[5])
-            print(row[6])
-            print(row[7])
-            print(row[8])
 
-            """ image = row[5]
-
-            return image, 200
-
-            print('Image Type')
-            print(type(image))
-            print(image)
 
             doctor = Doctor(id=row[0], surname=row[1], name=row[2], father=row[3],
                             description=row[4], profession=row[6], education=row[7],
                             experience=row[8], achievements=row[9])
 
             break
- """
+
         return doctor
 
     @staticmethod
