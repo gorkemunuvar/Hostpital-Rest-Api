@@ -1,7 +1,4 @@
 import json
-import base64
-
-
 from flask import request, abort, send_file, make_response, jsonify
 from flask_restful import Resource
 
@@ -36,6 +33,7 @@ class AllDoctors(Resource):
             doctors = DoctorService.get_all_doctors(page, per_page)
             doctors_dict = doctors_schema.dump(doctors)
         except Exception as error:
+            
             return {'message': f'Something went wrong. ({error})'.format(error=error)}
 
         return {'doctors': doctors_dict}, 200

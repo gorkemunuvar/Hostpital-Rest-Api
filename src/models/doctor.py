@@ -4,7 +4,8 @@ class Doctor():
                  surname: str = None, father: str = None,
                  description: str = None, image_path: str = None,
                  profession: str = None, education: str = None,
-                 experience: str = None, achievements: str = None,) -> None:
+                 experience: str = None, achievements: str = None,
+                 image_base64: str = None) -> None:
         self.id = id
         self.polyclinic_id = polyclinic_id
         self.profession_id = profession_id
@@ -17,3 +18,4 @@ class Doctor():
         self.education = education
         self.experience = experience
         self.achievements = achievements
+        self.image_base64 = image_base64

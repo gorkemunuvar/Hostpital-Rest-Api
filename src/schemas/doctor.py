@@ -15,3 +15,4 @@ class DoctorSchema(BaseSchema):
     education = fields.Str()
     experience = fields.Str()
     achievements = fields.Str()
+    image_base64 = fields.Str()
