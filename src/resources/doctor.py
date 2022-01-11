@@ -32,8 +32,7 @@ class AllDoctors(Resource):
 
             doctors = DoctorService.get_all_doctors(page, per_page)
             doctors_dict = doctors_schema.dump(doctors)
-        except Exception as error:
-            
+        except Exception as error:            
             return {'message': f'Something went wrong. ({error})'.format(error=error)}
 
         return {'doctors': doctors_dict}, 200
@@ -89,13 +88,18 @@ class DoctorById(Resource):
 class DoctorsByPolyclinicId(Resource):
     @classmethod
     def get(cls, id):
-        doctors = DoctorService.get_doctors_by_polyclinic_id(id)
+        doctors_dict = {}
 
-        if doctors:
-            doctors_dict = doctors_schema.dump(doctors)
-            return {'doctors': doctors_dict}, 200
+        try:
+            doctors = DoctorService.get_doctors_by_polyclinic_id(id)
+                        
+            if doctors:
+                doctors_dict = doctors_schema.dump(doctors)
+        except Exception as error:
+            return {'message': f'Something went wrong. ({error})'.format(error=error)}
 
-        return {'message': 'Doctors not found!'}, 404
+        return {'doctors': doctors_dict}, 200
+
 
 
 class DoctorsByProfessionId(Resource):

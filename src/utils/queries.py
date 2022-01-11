@@ -1,5 +1,6 @@
 # Table comments are the returning tables after the queries.
 
+# TODO: Update table types. Queries have been changed.
 # TODO: sorgularıda büyük küçük harfleri değiştirdim. hepsini tekrar test et.
 # TODO: Implement -> SEARCH_DOCTOR = """"""
 # TODO: Implement -> SEARCH_POLYCLINICS = """"""
@@ -47,16 +48,16 @@ DOCTOR_BY_ID = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya ,ng_his_rpsl.i
 # | DOKTOR_ID | SOY    | AD   | BABA   | PERBILGI          | RESIM | PROFS |
 # | DR582     | Yildiz | Ayse | null   | Kulak Burun Boğaz | Blob  | UZ001 |
 
-DOCTORS_BY_POLYCLINIC_ID = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya ,ng_his_rpsl.imya,ng_his_rpsl.ocest, ng_his_rpsl.perbilgi,
-                            ng_hıs_prsrsmm.uzmanlık, ng_hıs_prsrsmm.egıtım, ng_hıs_prsrsmm.deneyım, ng_hıs_prsrsmm.sertıfıka,
-                            NG_HIS_PRSRSMM.RESIM,
-                            ng_his_glzr.kabinet,ng_his_glzr.isim,ng_his_glzr.profs
-                            FROM ng_his_rpsl, NG_HIS_PRSRSMM ,ng_his_glzr, ng_his_yrgrv
-                            WHERE ng_his_rpsl.kullan=ng_hıs_prsrsmm.vrac_ıd(+)  
-                            and ng_his_yrgrv.kabınet = ng_his_glzr.kabınet
-                            and ng_his_rpsl.kullan=ng_his_yrgrv.kullan
-                            and ng_his_glzr.profs='UZ001'
-                            ORDER BY ng_his_rpsl.famılya ,ng_his_rpsl.imya"""
+DOCTORS_BY_POLYCLINIC_ID = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya, ng_his_rpsl.imya, 
+                              ng_his_rpsl.ocest, ng_his_rpsl.perbilgi, ng_hıs_prsrsmm.uzmanlık, 
+                              ng_hıs_prsrsmm.egıtım, ng_hıs_prsrsmm.deneyım, ng_hıs_prsrsmm.sertıfıka,
+                              ng_hıs_prsrsmm.resIm, ng_his_glzr.kabinet, ng_his_glzr.isim, ng_his_glzr.profs
+                              FROM ng_his_rpsl, ng_hıs_prsrsmm, ng_his_glzr, ng_his_yrgrv
+                              WHERE ng_his_rpsl.kullan=ng_hıs_prsrsmm.vrac_ıd(+)  
+                              AND ng_his_yrgrv.kabınet=ng_his_glzr.kabınet
+                              AND ng_his_rpsl.kullan=ng_his_yrgrv.kullan
+                              AND ng_his_glzr.profs='{polyclinic_id}'
+                              ORDER BY ng_his_rpsl.famılya, ng_his_rpsl.imya"""
 
 
 # | DOKTOR_ID | AD   | SOYAD |
