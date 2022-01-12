@@ -29,7 +29,9 @@ PROFESSIONS_BY_POLYCLINIC_ID = "SELECT kabinet, isim, sinifi FROM ng_his_glzr WH
 # | DR582     | Yildiz | Ayse | null | Kulak Burun Boğaz | Blob  |
 
 ALL_DOCTORS = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya, ng_his_rpsl.imya, 
-                 ng_his_rpsl.ocest, ng_his_rpsl.perbilgi, ng_his_prsrsmm.resim 
+                 ng_his_rpsl.ocest, ng_his_rpsl.perbilgi, ng_his_prsrsmm.resim, 
+                 ng_hıs_prsrsmm.uzmanlık, ng_hıs_prsrsmm.egıtım, ng_hıs_prsrsmm.deneyım,
+                 ng_hıs_prsrsmm.sertıfıka
                  FROM ng_his_rpsl, ng_his_prsrsmm
                  WHERE ng_his_rpsl.kullan=ng_hıs_prsrsmm.vrac_ıd(+)
                  ORDER BY ng_his_rpsl.famılya, ng_his_rpsl.imya"""

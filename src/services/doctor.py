@@ -26,7 +26,9 @@ class DoctorService():
 
             doctor = Doctor(id=row[0], surname=row[1],
                             name=row[2], father=row[3],
-                            description=row[4], image_base64=doctor_image_base64)
+                            description=row[4], image_base64=doctor_image_base64,
+                            profession=row[6], education=row[7],
+                            experience=row[8], achievements=row[9])
 
             doctors.append(doctor)
 
