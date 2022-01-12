@@ -61,7 +61,10 @@ class DoctorService():
                 doctor_image_base64 = ImageHandler.convert_lob_to_base64_str(lob_image)
 
             doctor = Doctor(id=row[0], surname=row[1], name=row[2],
-                            father=row[3], description=row[4], image_base64=doctor_image_base64)
+                            father=row[3], description=row[4], profession=row[5],
+                            education=row[6], experience=row[7], achievements=row[8],
+                            image_base64=doctor_image_base64)
+
             doctors.append(doctor)
 
         return doctors

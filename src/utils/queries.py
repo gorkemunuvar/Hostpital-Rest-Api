@@ -53,7 +53,7 @@ DOCTOR_BY_ID = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya ,ng_his_rpsl.i
 DOCTORS_BY_POLYCLINIC_ID = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya, ng_his_rpsl.imya, 
                               ng_his_rpsl.ocest, ng_his_rpsl.perbilgi, ng_hıs_prsrsmm.uzmanlık, 
                               ng_hıs_prsrsmm.egıtım, ng_hıs_prsrsmm.deneyım, ng_hıs_prsrsmm.sertıfıka,
-                              ng_hıs_prsrsmm.resIm, ng_his_glzr.kabinet, ng_his_glzr.isim, ng_his_glzr.profs
+                              ng_hıs_prsrsmm.resım, ng_his_glzr.kabinet, ng_his_glzr.isim, ng_his_glzr.profs
                               FROM ng_his_rpsl, ng_hıs_prsrsmm, ng_his_glzr, ng_his_yrgrv
                               WHERE ng_his_rpsl.kullan=ng_hıs_prsrsmm.vrac_ıd(+)  
                               AND ng_his_yrgrv.kabınet=ng_his_glzr.kabınet
