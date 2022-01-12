@@ -3,7 +3,6 @@
 # TODO: Update table types. Queries have been changed.
 # TODO: sorgularıda büyük küçük harfleri değiştirdim. hepsini tekrar test et.
 # TODO: Implement -> SEARCH_DOCTOR = """"""
-# TODO: Implement -> SEARCH_POLYCLINICS = """"""
 # TODO: Delete unused columns from queries before release
 
 
@@ -18,6 +17,10 @@ HOSPITALS = "SELECT dbkod, dbad FROM ng_his_lnkdbs t"
 
 POLYCLINICS = "SELECT profs, isim, aciklama FROM ng_his_kabuzman WHERE kiosk='X' ORDER BY isim"
 
+SEARCH_POLYCLINICS = """SELECT profs, isim, aciklama FROM ng_his_kabuzman 
+                        WHERE kiosk='X' AND LOWER(isim) 
+                        LIKE LOWER('%{search_string}%')
+                        ORDER BY isim"""
 
 # | KABINET | ISIM        | SINIFI |
 # | 69062   | 208 DAHLIYE | P      |
