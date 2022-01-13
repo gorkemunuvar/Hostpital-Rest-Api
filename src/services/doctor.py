@@ -1,15 +1,11 @@
 from .database import Connection
 from models.doctor import Doctor
-from schemas.doctor import DoctorSchema
 from utils.image_handler import ImageHandler
-from utils.queries import (ALL_DOCTORS, DOCTOR_BY_ID, 
+from utils.queries import (ALL_DOCTORS, DOCTOR_BY_ID,
                            DOCTORS_BY_POLYCLINIC_ID, DOCTORS_BY_PROFESSION_ID,
                            SEARCH_DOCTORS)
 
 connection = Connection.create()
-
-doctor_schema = DoctorSchema()
-doctors_schema = DoctorSchema(many=True)
 
 
 class DoctorService():
@@ -23,7 +19,8 @@ class DoctorService():
             lob_image = row[5]
 
             if lob_image:
-                doctor_image_base64 = ImageHandler.convert_lob_to_base64_str(lob_image)
+                doctor_image_base64 = ImageHandler.convert_lob_to_base64_str(
+                    lob_image)
 
             doctor = Doctor(id=row[0], surname=row[1],
                             name=row[2], father=row[3],
@@ -59,7 +56,8 @@ class DoctorService():
             lob_image = row[9]
 
             if lob_image:
-                doctor_image_base64 = ImageHandler.convert_lob_to_base64_str(lob_image)
+                doctor_image_base64 = ImageHandler.convert_lob_to_base64_str(
+                    lob_image)
 
             doctor = Doctor(id=row[0], surname=row[1], name=row[2],
                             father=row[3], description=row[4], profession=row[5],
@@ -88,14 +86,14 @@ class DoctorService():
             connection, SEARCH_DOCTORS.format(search_string=search_string)
         )
 
-
         doctors = []
         for row in cursor:
             doctor_image_base64 = ''
             lob_image = row[5]
 
             if lob_image:
-                doctor_image_base64 = ImageHandler.convert_lob_to_base64_str(lob_image)
+                doctor_image_base64 = ImageHandler.convert_lob_to_base64_str(
+                    lob_image)
 
             doctor = Doctor(id=row[0], surname=row[1],
                             name=row[2], father=row[3],

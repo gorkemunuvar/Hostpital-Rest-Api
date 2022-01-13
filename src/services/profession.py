@@ -1,12 +1,8 @@
 from .database import Connection
 from models.profession import Profession
-from schemas.profession import ProfessionSchema
 from utils.queries import PROFESSIONS_BY_POLYCLINIC_ID
 
 connection = Connection.create()
-
-professions_schema = ProfessionSchema(many=True)
-
 
 class ProfessionService():
     @staticmethod

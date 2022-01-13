@@ -1,9 +1,4 @@
 from models.news import News
-from schemas.news import NewsSchema
-from schemas.news import NewsSchema
-
-all_news_schema = NewsSchema(many=True)
-
 
 class NewsService():
     @staticmethod

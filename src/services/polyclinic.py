@@ -1,13 +1,8 @@
 from .database import Connection
 from models.polyclinic import Polyclinic
-from schemas.polyclinic import PolyclinicSchema
 from utils.queries import POLYCLINICS, SEARCH_POLYCLINICS
 
 connection = Connection.create()
-
-polyclinic_schema = PolyclinicSchema()
-polyclinics_schema = PolyclinicSchema(many=True)
-
 
 class PolyclinicService():
     @staticmethod

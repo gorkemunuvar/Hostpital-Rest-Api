@@ -129,6 +129,30 @@ AVAILABLE_APPOINTMENT_TIME_REQUIREMENTS = """SELECT ng_his_vractakvim.datar, 'п
                                              AND ng_his_vractakvim.servis_id IN (SELECT kabinet FROM ng_his_glzr 
                                              WHERE sinifi <>'S')"""
 
+ACTIVE_APPOINTMENTS = """SELECT ng_his_pasrandevu.datar, ng_his_pasrandevu.randevu_saati, 
+                         ng_his_pasrandevu.kabinet_id, ng_his_glzr.isim, ng_his_pasrandevu.doktor_id, 
+                         ng_his_rpsl.imya dortoradi, ng_his_rpsl.familya doktorsoyadi, ng_his_rshtl.adi hastaadi,
+                         ng_his_rshtl.soyadi hastasoyadi, ng_his_rshtl.baba_adi hastababaadi, ng_his_rshtl.droj hastadogumtarihi
+                         FROM ng_his_pasrandevu, ng_his_rshtl, ng_his_glzr, ng_his_rpsl
+                         WHERE ng_his_pasrandevu.hasta_id=ng_his_rshtl.patsno
+                         AND ng_his_pasrandevu.kabinet_id=ng_his_glzr.kabinet
+                         AND ng_his_rpsl.kullan=ng_his_pasrandevu.doktor_id
+                         AND ng_his_pasrandevu.iptal is null
+                         AND ng_his_pasrandevu.hasta_id='152010896'
+                         AND ng_his_pasrandevu.datar >= to_date(sysdate, 'dd/mm/yyyy')"""
+
+PAST_APPOINTMENTS = """SELECT ng_his_pasrandevu.datar, ng_his_pasrandevu.randevu_saati, 
+                       ng_his_pasrandevu.kabinet_id, ng_his_glzr.isim, ng_his_pasrandevu.doktor_id, 
+                       ng_his_rpsl.imya dortoradi, ng_his_rpsl.familya doktorsoyadi, ng_his_rshtl.adi hastaadi,
+                       ng_his_rshtl.soyadi hastasoyadi, ng_his_rshtl.baba_adi hastababaadi, ng_his_rshtl.droj hastadogumtarihi
+                       FROM ng_his_pasrandevu, ng_his_rshtl, ng_his_glzr, ng_his_rpsl
+                       WHERE ng_his_pasrandevu.hasta_id=ng_his_rshtl.patsno
+                       AND ng_his_pasrandevu.kabinet_id=ng_his_glzr.kabinet
+                       AND ng_his_rpsl.kullan=ng_his_pasrandevu.doktor_id
+                       AND ng_his_pasrandevu.iptal is null
+                       AND ng_his_pasrandevu.hasta_id='152010896'
+                       AND ng_his_pasrandevu.datar < to_date(sysdate, 'dd/mm/yyyy')"""
+
 
 # -- AVAILABLE_APPOINTMENT_TIMES String Format --
 # beginning_time = 07:00
