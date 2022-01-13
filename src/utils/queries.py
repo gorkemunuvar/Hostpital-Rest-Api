@@ -140,6 +140,7 @@ ACTIVE_APPOINTMENTS = """SELECT ng_his_pasrandevu.datar, ng_his_pasrandevu.rande
                          AND ng_his_pasrandevu.iptal is null
                          AND ng_his_pasrandevu.hasta_id='152010896'
                          AND ng_his_pasrandevu.datar >= to_date(sysdate, 'dd/mm/yyyy')"""
+                         AND ng_his_pasrandevu.datar >= TO_DATE(sysdate, 'dd/mm/yy')"""
 
 PAST_APPOINTMENTS = """SELECT ng_his_pasrandevu.datar, ng_his_pasrandevu.randevu_saati, 
                        ng_his_pasrandevu.kabinet_id, ng_his_glzr.isim, ng_his_pasrandevu.doktor_id, 
@@ -151,7 +152,7 @@ PAST_APPOINTMENTS = """SELECT ng_his_pasrandevu.datar, ng_his_pasrandevu.randevu
                        AND ng_his_rpsl.kullan=ng_his_pasrandevu.doktor_id
                        AND ng_his_pasrandevu.iptal is null
                        AND ng_his_pasrandevu.hasta_id='152010896'
-                       AND ng_his_pasrandevu.datar < to_date(sysdate, 'dd/mm/yyyy')"""
+                       AND ng_his_pasrandevu.datar < TO_DATE(sysdate, 'dd/mm/yy')"""
 
 
 # -- AVAILABLE_APPOINTMENT_TIMES String Format --
