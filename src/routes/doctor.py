@@ -13,7 +13,7 @@ Api(DOCTOR_BLUEPRINT).add_resource(
     DoctorById, '/doctors/<string:id>')
 
 Api(DOCTOR_BLUEPRINT).add_resource(
-    SearchDoctor, '/doctors/search/<string:search_text>')
+    SearchDoctor, '/doctors/search/<string:search_string>')
 
 Api(DOCTOR_BLUEPRINT).add_resource(
     DoctorsByPolyclinicId, '/polyclinics/<string:id>/doctors')

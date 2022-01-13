@@ -1,8 +1,8 @@
 # Table comments are the returning tables after the queries.
 
+# TODO: lang -> """SELECT profs, SUTUN_DEGERAL('KZ',isim ) isim, aciklama FROM ng_his_kabuzman WHERE kiosk='X' ORDER BY isim"""
 # TODO: Update table types. Queries have been changed.
 # TODO: sorgularıda büyük küçük harfleri değiştirdim. hepsini tekrar test et.
-# TODO: Implement -> SEARCH_DOCTOR = """"""
 # TODO: Delete unused columns from queries before release
 
 
@@ -17,10 +17,12 @@ HOSPITALS = "SELECT dbkod, dbad FROM ng_his_lnkdbs t"
 
 POLYCLINICS = "SELECT profs, isim, aciklama FROM ng_his_kabuzman WHERE kiosk='X' ORDER BY isim"
 
+
 SEARCH_POLYCLINICS = """SELECT profs, isim, aciklama FROM ng_his_kabuzman 
                         WHERE kiosk='X' AND LOWER(isim) 
                         LIKE LOWER('%{search_string}%')
                         ORDER BY isim"""
+
 
 # | KABINET | ISIM        | SINIFI |
 # | 69062   | 208 DAHLIYE | P      |
@@ -38,6 +40,18 @@ ALL_DOCTORS = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya, ng_his_rpsl.im
                  FROM ng_his_rpsl, ng_his_prsrsmm
                  WHERE ng_his_rpsl.kullan=ng_hıs_prsrsmm.vrac_ıd(+)
                  ORDER BY ng_his_rpsl.famılya, ng_his_rpsl.imya"""
+
+SEARCH_DOCTORS = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya, ng_his_rpsl.imya, 
+                    ng_his_rpsl.ocest, ng_his_rpsl.perbilgi, ng_his_prsrsmm.resim, 
+                    ng_hıs_prsrsmm.uzmanlık, ng_hıs_prsrsmm.egıtım, ng_hıs_prsrsmm.deneyım,
+                    ng_hıs_prsrsmm.sertıfıka
+                    FROM ng_his_rpsl, ng_his_prsrsmm
+                    WHERE ng_his_rpsl.kullan=ng_hıs_prsrsmm.vrac_ıd(+)
+                    AND
+                    (LOWER(ng_his_rpsl.famılya) LIKE LOWER('%{search_string}%')
+                    OR LOWER(ng_his_rpsl.imya)  LIKE LOWER('%{search_string}%')
+                    OR LOWER(ng_his_rpsl.ocest) LIKE LOWER('%{search_string}%'))
+                    ORDER BY ng_his_rpsl.famılya, ng_his_rpsl.imya"""
 
 
 # | DOKTOR_ID | SOY    | AD   | BABA   | PERBILGI          | RESIM | UZMANLIK    | EGITIM      | DENEYIM     | SERTIFIKA   |
