@@ -15,7 +15,7 @@ class ActiveAppointments(Resource):
         except Exception as error:
             return {'message': f'Something went wrong. ({error})'.format(error=error)}
 
-        return {'active_appointments': appointments_dict}, 200
+        return {'appointments': appointments_dict}, 200
 
 
 class PastAppointments(Resource):
@@ -27,4 +27,4 @@ class PastAppointments(Resource):
         except Exception as error:
             return {'message': f'Something went wrong. ({error})'.format(error=error)}
 
-        return {'past_appointments': appointments_dict}, 200
+        return {'appointments': appointments_dict}, 200
