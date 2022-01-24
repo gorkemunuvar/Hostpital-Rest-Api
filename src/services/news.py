@@ -1,11 +1,32 @@
+from turtle import title
 from models.news import News
+from .database import Connection
+from utils.queries import NEWS
+from utils.image_handler import ImageHandler
+from utils.string_handler import StringHandler
+
+connection = Connection.create()
+
 
 class NewsService():
     @staticmethod
-    def get_news(page: int, per_page: int) -> list[News]:
-        start = page * per_page - per_page
-        end = page * per_page
+    def get_news() -> list[News]:
+        cursor = Connection.execute(connection, NEWS)
 
-        #news = all_news_schema.load(test_news_data[start:end])
+        news_list = []
+        for row in cursor:
+            doctor_image_base64 = ''
+            lob_image = row[4]
 
-        return None
+            if lob_image:
+                doctor_image_base64 = ImageHandler.convert_lob_to_base64_str(
+                    lob_image)
+
+            date = StringHandler.select_first_element_of(str(row[1]))
+            news = News(id=row[0], date=date,
+                        title=row[2], description=row[3],
+                        image_base64=doctor_image_base64)
+
+            news_list.append(news)
+
+        return news_list

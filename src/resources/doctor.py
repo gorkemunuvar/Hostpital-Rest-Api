@@ -16,6 +16,7 @@ class AllDoctors(Resource):
     def get(cls):
         page = 1
         per_page = 10
+        doctors_dict = {}
 
         try:
             query_params = request.args

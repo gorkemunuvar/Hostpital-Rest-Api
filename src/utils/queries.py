@@ -2,9 +2,7 @@
 
 # TODO: lang -> """SELECT profs, SUTUN_DEGERAL('KZ',isim ) isim, aciklama FROM ng_his_kabuzman WHERE kiosk='X' ORDER BY isim"""
 # TODO: Update table types. Queries have been changed.
-# TODO: sorgularıda büyük küçük harfleri değiştirdim. hepsini tekrar test et.
 # TODO: Delete unused columns from queries before release
-
 
 # | DBKOD | DBAD             |
 # | K001  | AYGERIM ANA SUBE |
@@ -152,6 +150,8 @@ PAST_APPOINTMENTS = """SELECT ng_his_pasrandevu.datar, ng_his_pasrandevu.randevu
                        AND ng_his_pasrandevu.iptal is null
                        AND ng_his_pasrandevu.hasta_id='152010896'
                        AND ng_his_pasrandevu.datar < TO_DATE(sysdate, 'dd/mm/yy')"""
+
+NEWS = """SELECT id, tarih, ru_baslik, ru_haber, ru_resim FROM ng_haberler"""
 
 
 # -- AVAILABLE_APPOINTMENT_TIMES String Format --

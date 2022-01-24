@@ -17,19 +17,23 @@ class News(Resource):
         page = 1
         per_page = 5
 
-        query_params = request.args
-        errors = pagination_schema.validate(query_params)
+        news_dict = {}
+        try:
+            query_params = request.args
+            errors = pagination_schema.validate(query_params)
 
-        if errors:
-            abort(400, str(errors))
+            if errors:
+                abort(400, str(errors))
 
-        if query_params.__contains__('page'):
-            page = int(query_params['page'])
+            if query_params.__contains__('page'):
+                page = int(query_params['page'])
 
-        if query_params.__contains__('per_page'):
-            per_page = int(query_params['per_page'])
+            if query_params.__contains__('per_page'):
+                per_page = int(query_params['per_page'])
 
-        news = NewsService.get_news(page=page, per_page=per_page)
-        news_dict = all_news_schema.dump(news)
-        
+            news_list = NewsService.get_news()
+            news_dict = all_news_schema.dump(news_list)
+        except Exception as error:
+            return {'message': f'Something went wrong. ({error})'.format(error=error)}
+
         return {'news': news_dict}, 200
