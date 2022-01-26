@@ -1,4 +1,3 @@
-from turtle import title
 from models.news import News
 from .database import Connection
 from utils.queries import NEWS
