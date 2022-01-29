@@ -153,6 +153,16 @@ PAST_APPOINTMENTS = """SELECT ng_his_pasrandevu.datar, ng_his_pasrandevu.randevu
 
 NEWS = """SELECT id, tarih, ru_baslik, ru_haber, ru_resim FROM ng_haberler"""
 
+CHECK_PATIENT = """SELECT patsno, adi, soyadi, baba_adi FROM ng_his_rshtl
+                   WHERE LOWER(adi) LIKE LOWER('%h%') 
+                   AND LOWER(soyadi) LIKE LOWER('%h%')
+                   AND DROJ=TO_DATE('17/08/1997', 'DD/MM/YYYY')"""
+
+CREATE_PATIENT_ID = """PASTNOAL"""
+
+CREATE_PATIENT = """INSERT INTO ng_his_rshtl(patsno, adi, soyadi, baba_adi, droj, firmano, cep1) 
+                    VALUES ('{patient_id}', 'Hüseyin', 'Yılmaz', 'Nazmi', '21/12/1998', '0000', '0525 555 55 55')"""
+
 
 # -- AVAILABLE_APPOINTMENT_TIMES String Format --
 # beginning_time = 07:00
