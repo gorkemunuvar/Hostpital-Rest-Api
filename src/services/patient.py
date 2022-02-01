@@ -11,7 +11,9 @@ class PatientService():
     def is_patient_exist() -> bool:
         cursor = Connection.execute(connection, CHECK_PATIENT)
         row = cursor.fetchone()
-        cursor.close()
+        
+        if not cursor:
+            cursor.close()
 
         if row:
             return True
@@ -23,7 +25,9 @@ class PatientService():
         cursor = connection.cursor()
 
         patient_id = cursor.callfunc(CREATE_PATIENT_ID, str)
-        cursor.close()
+        
+        if not cursor:
+            cursor.close()
 
         return patient_id
 
@@ -34,4 +38,8 @@ class PatientService():
 
         cursor = Connection.execute(
             connection, CREATE_PATIENT.format(patient_id=patient_id))
-        cursor.close()
+
+        connection.commit()
+
+        if not cursor:        
+            cursor.close()

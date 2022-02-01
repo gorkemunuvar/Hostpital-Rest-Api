@@ -7,3 +7,4 @@ from .image_test import IMAGE_TEST_BLUEPRINT
 from .news import NEWS_BLUEPRINT
 from .polyclinic import POLYCLINIC_BLUEPRINT
 from .profession import PROFESSION_BLUEPRINT
+from .patient_test import PATIENT_TEST_BLUEPRINT

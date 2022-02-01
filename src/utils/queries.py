@@ -161,7 +161,7 @@ CHECK_PATIENT = """SELECT patsno, adi, soyadi, baba_adi FROM ng_his_rshtl
 CREATE_PATIENT_ID = """PASTNOAL"""
 
 CREATE_PATIENT = """INSERT INTO ng_his_rshtl(patsno, adi, soyadi, baba_adi, droj, firmano, cep1) 
-                    VALUES ('{patient_id}', 'Hüseyin', 'Yılmaz', 'Nazmi', '21/12/1998', '0000', '0525 555 55 55')"""
+                    VALUES ('{patient_id}', 'Songül', 'Şimşek', 'Nazmi', TO_DATE('09/08/1999', 'DD/MM/YYYY'), '0000', '0525 555 55 55')"""
 
 
 # -- AVAILABLE_APPOINTMENT_TIMES String Format --

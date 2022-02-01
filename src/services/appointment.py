@@ -1,11 +1,9 @@
-import imp
 from .database import Connection
 from models.appointment import Appointment
 from utils.queries import ACTIVE_APPOINTMENTS, PAST_APPOINTMENTS
 from utils.string_handler import StringHandler
 
 connection = Connection.create()
-
 
 class AppointmentService():
     @classmethod
