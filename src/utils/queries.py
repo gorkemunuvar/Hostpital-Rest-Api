@@ -163,6 +163,12 @@ CREATE_PATIENT_ID = """PASTNOAL"""
 CREATE_PATIENT = """INSERT INTO ng_his_rshtl(patsno, adi, soyadi, baba_adi, droj, firmano, cep1) 
                     VALUES ('{patient_id}', 'Songül', 'Şimşek', 'Nazmi', TO_DATE('09/08/1999', 'DD/MM/YYYY'), '0000', '0525 555 55 55')"""
 
+GET_PATIENT = """SELECT patsno, adi, soyadi, baba_adi, droj, firmano, cep1
+                 FROM ng_his_rshtl WHERE patsno='152,010825'
+                 AND adi='Görkem' AND soyadi='ASLAN'
+                 AND cep1='0531 553 553 553' AND droj=TO_DATE('17/07/1885', 'DD/MM/YYYY')"""
+
+
 
 # -- AVAILABLE_APPOINTMENT_TIMES String Format --
 # beginning_time = 07:00
