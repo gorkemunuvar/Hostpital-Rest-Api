@@ -31,4 +31,5 @@ class Patient(Resource):
                             'id': patient_id
                         }}, 201
         except Exception as error:
+            print(error)
             return {'message': f'Something went wrong. ({error})'.format(error=error)}, 500

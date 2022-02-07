@@ -11,7 +11,11 @@ hospitals_schema = HospitalSchema(many=True)
 class Hospitals(Resource):
     @classmethod
     def get(self):
-        hospitals = HospitalService.get_hospitals()
-        hospitals_dict = hospitals_schema.dump(hospitals)
+        try:    
+            hospitals = HospitalService.get_hospitals()
+            hospitals_dict = hospitals_schema.dump(hospitals)
 
-        return {'hospitals': hospitals_dict}, 200
+            return {'hospitals': hospitals_dict}, 200
+        except Exception as error:
+            print(error)
+            return {'message': f'Something went wrong. ({error})'.format(error=error)}, 500
