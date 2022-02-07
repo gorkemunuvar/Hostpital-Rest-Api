@@ -1,5 +1,4 @@
 from typing import Union
-from unicodedata import name
 from models.patient import Patient
 from .database import Connection
 from utils.queries import CHECK_PATIENT, CREATE_PATIENT_ID, CREATE_PATIENT, GET_PATIENT
@@ -10,8 +9,10 @@ connection = Connection.create()
 
 class PatientService():
     @staticmethod
-    def is_patient_exist() -> bool:
-        cursor = Connection.execute(connection, CHECK_PATIENT)
+    def is_patient_exist(name: str, surname: str) -> bool:
+        query = CHECK_PATIENT.format(name=name, surname=surname)
+
+        cursor = Connection.execute(connection, query)
         row = cursor.fetchone()
 
         if cursor:
@@ -34,29 +35,36 @@ class PatientService():
         return patient_id
 
     @staticmethod
-    def create_patient(patient_id: str) -> None:
+    def create_patient(patient_id: str, name: str, surname: str,
+                       birthday: str, phone_number: str) -> None:
         connection = Connection.create()
         cursor = connection.cursor()
 
-        cursor = Connection.execute(
-            connection, CREATE_PATIENT.format(patient_id=patient_id))
+        query = CREATE_PATIENT.format(patient_id=patient_id, name=name,
+                                      surname=surname, birthday=birthday,
+                                      phone_number=phone_number)
 
+        cursor = Connection.execute(connection, query)
         connection.commit()
 
         if cursor:
             cursor.close()
 
     @staticmethod
-    def get_patient() -> Union[Patient, None]:
+    def get_patient(name: str, surname: str, birthday: str,
+                    phone_number: str) -> Union[Patient, None]:
         connection = Connection.create()
         cursor = connection.cursor()
 
-        cursor = Connection.execute(connection, GET_PATIENT)
+        query = GET_PATIENT.format(name=name, surname=surname,
+                                   birthday=birthday, phone_number=phone_number)
+
+        cursor = Connection.execute(connection, query)
         row = cursor.fetchone()
 
         if row:
             patient = Patient(id=row[0], name=row[1], surname=row[2],
-                              father=row[3], birthday=row[4], phone_number=row[5])
+                              birthday=row[4], phone_number=row[5])
             return patient
 
         if cursor:

@@ -34,7 +34,7 @@ class AllDoctors(Resource):
             doctors = DoctorService.get_all_doctors(page, per_page)
             doctors_dict = doctors_schema.dump(doctors)
         except Exception as error:
-            return {'message': f'Something went wrong. ({error})'.format(error=error)}
+            return {'message': f'Something went wrong. ({error})'.format(error=error)}, 500
 
         return {'doctors': doctors_dict}, 200
 
@@ -97,7 +97,7 @@ class DoctorsByPolyclinicId(Resource):
             if doctors:
                 doctors_dict = doctors_schema.dump(doctors)
         except Exception as error:
-            return {'message': f'Something went wrong. ({error})'.format(error=error)}
+            return {'message': f'Something went wrong. ({error})'.format(error=error)}, 500
 
         return {'doctors': doctors_dict}, 200
 
@@ -123,6 +123,6 @@ class SearchDoctor(Resource):
             doctors = DoctorService.search_doctors(search_string)
             doctors_dict = doctors_schema.dump(doctors)
         except Exception as error:
-            return {'message': f'Something went wrong. ({error})'.format(error=error)}
+            return {'message': f'Something went wrong. ({error})'.format(error=error)}, 500
 
         return {'search_result': doctors_dict}, 200

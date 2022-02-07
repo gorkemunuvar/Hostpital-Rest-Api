@@ -34,6 +34,6 @@ class News(Resource):
             news_list = NewsService.get_news()
             news_dict = all_news_schema.dump(news_list)
         except Exception as error:
-            return {'message': f'Something went wrong. ({error})'.format(error=error)}
+            return {'message': f'Something went wrong. ({error})'.format(error=error)}, 500
 
         return {'news': news_dict}, 200

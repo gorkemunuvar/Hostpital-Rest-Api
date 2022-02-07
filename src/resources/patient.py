@@ -1,13 +1,20 @@
+from flask import request
 from flask_restful import Resource
+from marshmallow import ValidationError
 
 from services.patient import PatientService
+from schemas.patient import PatientSchema
+
+
+patient_schema = PatientSchema()
 
 
 class Patient(Resource):
     @classmethod
-    def get(cls):
+    def post(cls):
         try:
-            patient = PatientService.get_patient()
+            patient_dict = request.get_json()
+            patient = PatientService.get_patient(**patient_dict)
 
             if patient:
                 return {'message': 'Patient ID has been already created.',
@@ -16,7 +23,8 @@ class Patient(Resource):
                         }}, 200
             else:
                 patient_id = PatientService.create_patient_id()
-                PatientService.create_patient(str(patient_id))
+                PatientService.create_patient(patient_id=patient_id,
+                                              **patient_dict)
 
                 return {'message': 'Patient ID created.',
                         'patient': {

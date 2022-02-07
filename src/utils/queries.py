@@ -154,19 +154,19 @@ PAST_APPOINTMENTS = """SELECT ng_his_pasrandevu.datar, ng_his_pasrandevu.randevu
 NEWS = """SELECT id, tarih, ru_baslik, ru_haber, ru_resim FROM ng_haberler"""
 
 CHECK_PATIENT = """SELECT patsno, adi, soyadi, baba_adi FROM ng_his_rshtl
-                   WHERE LOWER(adi) LIKE LOWER('%h%') 
-                   AND LOWER(soyadi) LIKE LOWER('%h%')
+                   WHERE LOWER(adi) LIKE LOWER('%{name}%') 
+                   AND LOWER(soyadi) LIKE LOWER('%{surname}%')
                    AND DROJ=TO_DATE('17/08/1997', 'DD/MM/YYYY')"""
 
 CREATE_PATIENT_ID = """PASTNOAL"""
 
-CREATE_PATIENT = """INSERT INTO ng_his_rshtl(patsno, adi, soyadi, baba_adi, droj, firmano, cep1) 
-                    VALUES ('{patient_id}', 'Songül', 'Şimşek', 'Nazmi', TO_DATE('09/08/1999', 'DD/MM/YYYY'), '0000', '0525 555 55 55')"""
+CREATE_PATIENT = """INSERT INTO ng_his_rshtl(patsno, adi, soyadi, droj, firmano, cep1) 
+                    VALUES ('{patient_id}', '{name}', '{surname}', 
+                    TO_DATE('{birthday}', 'DD/MM/YYYY'), '0000', '{phone_number}')"""
 
 GET_PATIENT = """SELECT patsno, adi, soyadi, baba_adi, droj, firmano, cep1
-                 FROM ng_his_rshtl WHERE patsno='152,010825'
-                 AND adi='Görkem' AND soyadi='ASLAN'
-                 AND cep1='0531 553 553 553' AND droj=TO_DATE('17/07/1885', 'DD/MM/YYYY')"""
+                 FROM ng_his_rshtl WHERE adi='{name}' AND soyadi='{surname}'
+                 AND cep1='{phone_number}' AND droj=TO_DATE('{birthday}', 'DD/MM/YYYY')"""
 
 
 
