@@ -4,8 +4,6 @@ from .database import Connection
 from utils.queries import (AVAILABLE_APPOINTMENT_TIMES,
                            AVAILABLE_APPOINTMENT_TIME_REQUIREMENTS)
 
-connection = Connection.create()
-
 
 class AvailableAppoinmentTimeService():
     @staticmethod
@@ -24,6 +22,8 @@ class AvailableAppoinmentTimeService():
             profession_id=query_requirements['profession_id'],
             time_interval=query_requirements['time_interval']
         )
+        
+        connection = Connection.create()
         cursor = Connection.execute(connection, query)
 
         available_times = []
@@ -41,6 +41,7 @@ def get_query_requirements(doctor_id: str, selected_date: str) -> dict:
     query_for_requirements = AVAILABLE_APPOINTMENT_TIME_REQUIREMENTS.format(
         doctor_id=doctor_id)
 
+    connection = Connection.create()
     cursor = Connection.execute(connection, query_for_requirements)
 
     query_requirements = {}

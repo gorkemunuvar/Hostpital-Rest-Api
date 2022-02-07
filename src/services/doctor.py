@@ -5,12 +5,11 @@ from utils.queries import (ALL_DOCTORS, DOCTOR_BY_ID,
                            DOCTORS_BY_POLYCLINIC_ID, DOCTORS_BY_PROFESSION_ID,
                            SEARCH_DOCTORS)
 
-connection = Connection.create()
-
 
 class DoctorService():
     @staticmethod
     def get_all_doctors(page: int, per_page: int) -> list[Doctor]:
+        connection = Connection.create()
         cursor = Connection.execute(connection, ALL_DOCTORS)
 
         doctors = []
@@ -37,6 +36,7 @@ class DoctorService():
 
     @staticmethod
     def get_doctor_by_id(doctor_id: str) -> Doctor:
+        connection = Connection.create()
         cursor = Connection.execute(connection, DOCTOR_BY_ID)
 
         doctor = Doctor()
@@ -53,6 +53,7 @@ class DoctorService():
 
     @staticmethod
     def get_doctors_by_polyclinic_id(id: str):
+        connection = Connection.create()
         query = DOCTORS_BY_POLYCLINIC_ID.format(polyclinic_id=id)
         cursor = Connection.execute(connection, query)
 
@@ -72,13 +73,14 @@ class DoctorService():
                                 image_base64=doctor_image_base64)
 
                 doctors.append(doctor)
-            
+
             cursor.close()
 
         return doctors
 
     @staticmethod
     def get_doctors_by_profession_id(id: str):
+        connection = Connection.create()
         query = DOCTORS_BY_PROFESSION_ID.format(profession_id=id)
         cursor = Connection.execute(connection, query)
 
@@ -94,6 +96,7 @@ class DoctorService():
 
     @staticmethod
     def search_doctors(search_string: str) -> list[Doctor]:
+        connection = Connection.create()
         cursor = Connection.execute(
             connection, SEARCH_DOCTORS.format(search_string=search_string)
         )

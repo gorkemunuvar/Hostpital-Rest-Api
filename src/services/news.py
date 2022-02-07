@@ -4,12 +4,11 @@ from utils.queries import NEWS
 from utils.image_handler import ImageHandler
 from utils.string_handler import StringHandler
 
-connection = Connection.create()
-
 
 class NewsService():
     @staticmethod
     def get_news() -> list[News]:
+        connection = Connection.create()
         cursor = Connection.execute(connection, NEWS)
 
         news_list = []

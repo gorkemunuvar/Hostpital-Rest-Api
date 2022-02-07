@@ -2,11 +2,11 @@ from .database import Connection
 from models.polyclinic import Polyclinic
 from utils.queries import POLYCLINICS, SEARCH_POLYCLINICS
 
-connection = Connection.create()
 
 class PolyclinicService():
     @staticmethod
     def get_polyclinics() -> list[Polyclinic]:
+        connection = Connection.create()
         cursor = Connection.execute(connection, POLYCLINICS)
 
         polyclinics = []
@@ -26,6 +26,7 @@ class PolyclinicService():
 
     @staticmethod
     def search_polyclinics(search_string: str) -> list[Polyclinic]:
+        connection = Connection.create()
         cursor = Connection.execute(
             connection, SEARCH_POLYCLINICS.format(search_string=search_string)
         )

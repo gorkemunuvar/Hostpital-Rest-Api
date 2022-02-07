@@ -2,14 +2,13 @@ from .database import Connection
 from models.hospital import Hospital
 from utils.queries import HOSPITALS
 
-connection = Connection.create()
-
 
 class HospitalService():
     @staticmethod
     def get_hospitals() -> list[Hospital]:
+        connection = Connection.create()
         cursor = Connection.execute(connection, HOSPITALS)
-        
+
         hospitals = []
         if cursor:
             for row in cursor:

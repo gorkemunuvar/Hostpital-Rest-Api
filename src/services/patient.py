@@ -4,12 +4,10 @@ from .database import Connection
 from utils.queries import CHECK_PATIENT, CREATE_PATIENT_ID, CREATE_PATIENT, GET_PATIENT
 from utils.string_handler import StringHandler
 
-connection = Connection.create()
-
-
 class PatientService():
     @staticmethod
     def is_patient_exist(name: str, surname: str) -> bool:
+        connection = Connection.create()
         query = CHECK_PATIENT.format(name=name, surname=surname)
 
         cursor = Connection.execute(connection, query)
