@@ -11,8 +11,11 @@ class HospitalService():
         cursor = Connection.execute(connection, HOSPITALS)
         
         hospitals = []
-        for row in cursor:
-            hospital = Hospital(id=row[0], name=row[1])
-            hospitals.append(hospital)
+        if cursor:
+            for row in cursor:
+                hospital = Hospital(id=row[0], name=row[1])
+                hospitals.append(hospital)
+
+            cursor.close()
 
         return hospitals

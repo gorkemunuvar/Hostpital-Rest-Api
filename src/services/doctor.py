@@ -14,21 +14,24 @@ class DoctorService():
         cursor = Connection.execute(connection, ALL_DOCTORS)
 
         doctors = []
-        for row in cursor:
-            doctor_image_base64 = ''
-            lob_image = row[5]
+        if cursor:
+            for row in cursor:
+                doctor_image_base64 = ''
+                lob_image = row[5]
 
-            if lob_image:
-                doctor_image_base64 = ImageHandler.convert_lob_to_base64_str(
-                    lob_image)
+                if lob_image:
+                    doctor_image_base64 = ImageHandler.convert_lob_to_base64_str(
+                        lob_image)
 
-            doctor = Doctor(id=row[0], surname=row[1],
-                            name=row[2], father=row[3],
-                            description=row[4], image_base64=doctor_image_base64,
-                            profession=row[6], education=row[7],
-                            experience=row[8], achievements=row[9])
+                doctor = Doctor(id=row[0], surname=row[1],
+                                name=row[2], father=row[3],
+                                description=row[4], image_base64=doctor_image_base64,
+                                profession=row[6], education=row[7],
+                                experience=row[8], achievements=row[9])
 
-            doctors.append(doctor)
+                doctors.append(doctor)
+
+            cursor.close()
 
         return doctors
 
@@ -37,12 +40,15 @@ class DoctorService():
         cursor = Connection.execute(connection, DOCTOR_BY_ID)
 
         doctor = Doctor()
-        for row in cursor:
-            doctor = Doctor(id=row[0], surname=row[1], name=row[2], father=row[3],
-                            description=row[4], profession=row[6], education=row[7],
-                            experience=row[8], achievements=row[9])
+        if cursor:
+            for row in cursor:
+                doctor = Doctor(id=row[0], surname=row[1], name=row[2], father=row[3],
+                                description=row[4], profession=row[6], education=row[7],
+                                experience=row[8], achievements=row[9])
+                break
 
-            break
+            cursor.close()
+
         return doctor
 
     @staticmethod
@@ -51,20 +57,23 @@ class DoctorService():
         cursor = Connection.execute(connection, query)
 
         doctors = []
-        for row in cursor:
-            doctor_image_base64 = ''
-            lob_image = row[9]
+        if cursor:
+            for row in cursor:
+                doctor_image_base64 = ''
+                lob_image = row[9]
 
-            if lob_image:
-                doctor_image_base64 = ImageHandler.convert_lob_to_base64_str(
-                    lob_image)
+                if lob_image:
+                    doctor_image_base64 = ImageHandler.convert_lob_to_base64_str(
+                        lob_image)
 
-            doctor = Doctor(id=row[0], surname=row[1], name=row[2],
-                            father=row[3], description=row[4], profession=row[5],
-                            education=row[6], experience=row[7], achievements=row[8],
-                            image_base64=doctor_image_base64)
+                doctor = Doctor(id=row[0], surname=row[1], name=row[2],
+                                father=row[3], description=row[4], profession=row[5],
+                                education=row[6], experience=row[7], achievements=row[8],
+                                image_base64=doctor_image_base64)
 
-            doctors.append(doctor)
+                doctors.append(doctor)
+            
+            cursor.close()
 
         return doctors
 
@@ -74,9 +83,12 @@ class DoctorService():
         cursor = Connection.execute(connection, query)
 
         doctors = []
-        for row in cursor:
-            doctor = Doctor(id=row[0], surname=row[1], name=row[2])
-            doctors.append(doctor)
+        if cursor:
+            for row in cursor:
+                doctor = Doctor(id=row[0], surname=row[1], name=row[2])
+                doctors.append(doctor)
+
+            cursor.close()
 
         return doctors
 
@@ -87,20 +99,23 @@ class DoctorService():
         )
 
         doctors = []
-        for row in cursor:
-            doctor_image_base64 = ''
-            lob_image = row[5]
+        if cursor:
+            for row in cursor:
+                doctor_image_base64 = ''
+                lob_image = row[5]
 
-            if lob_image:
-                doctor_image_base64 = ImageHandler.convert_lob_to_base64_str(
-                    lob_image)
+                if lob_image:
+                    doctor_image_base64 = ImageHandler.convert_lob_to_base64_str(
+                        lob_image)
 
-            doctor = Doctor(id=row[0], surname=row[1],
-                            name=row[2], father=row[3],
-                            description=row[4], image_base64=doctor_image_base64,
-                            profession=row[6], education=row[7],
-                            experience=row[8], achievements=row[9])
+                doctor = Doctor(id=row[0], surname=row[1],
+                                name=row[2], father=row[3],
+                                description=row[4], image_base64=doctor_image_base64,
+                                profession=row[6], education=row[7],
+                                experience=row[8], achievements=row[9])
 
-            doctors.append(doctor)
+                doctors.append(doctor)
+
+            cursor.close()
 
         return doctors

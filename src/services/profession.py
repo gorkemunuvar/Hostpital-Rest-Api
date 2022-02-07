@@ -11,8 +11,11 @@ class ProfessionService():
         cursor = Connection.execute(connection, query)
 
         professions = []
-        for row in cursor:
-            profession = Profession(id=row[0], name=row[1])
-            professions.append(profession)
+        if cursor:
+            for row in cursor:
+                profession = Profession(id=row[0], name=row[1])
+                professions.append(profession)
+
+            cursor.close()
 
         return professions

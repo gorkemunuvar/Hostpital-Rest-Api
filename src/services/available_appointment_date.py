@@ -11,9 +11,13 @@ class AvailableAppoinmentDateService():
         cursor = Connection.execute(connection, query)
 
         dates = []
-        for row in cursor:
-            # 2021-11-14 00:00:00
-            date = str(row[0]).split()[0]
-            dates.append(date)
+        if cursor:
+            for row in cursor:
+                # 2021-11-14 00:00:00
+                date = str(row[0]).split()[0]
+                dates.append(date)
 
+            cursor.close()
+
+    
         return dates

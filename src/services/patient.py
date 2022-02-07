@@ -13,9 +13,9 @@ class PatientService():
         query = CHECK_PATIENT.format(name=name, surname=surname)
 
         cursor = Connection.execute(connection, query)
-        row = cursor.fetchone()
-
+        
         if cursor:
+            row = cursor.fetchone()
             cursor.close()
 
         if row:
@@ -27,9 +27,8 @@ class PatientService():
         connection = Connection.create()
         cursor = connection.cursor()
 
-        patient_id = cursor.callfunc(CREATE_PATIENT_ID, str)
-
         if cursor:
+            patient_id = cursor.callfunc(CREATE_PATIENT_ID, str)
             cursor.close()
 
         return patient_id
@@ -45,9 +44,9 @@ class PatientService():
                                       phone_number=phone_number)
 
         cursor = Connection.execute(connection, query)
-        connection.commit()
 
         if cursor:
+            connection.commit()
             cursor.close()
 
     @staticmethod
@@ -60,14 +59,15 @@ class PatientService():
                                    birthday=birthday, phone_number=phone_number)
 
         cursor = Connection.execute(connection, query)
-        row = cursor.fetchone()
-
-        if row:
-            patient = Patient(id=row[0], name=row[1], surname=row[2],
-                              birthday=row[4], phone_number=row[5])
-            return patient
 
         if cursor:
+            row = cursor.fetchone()
+
+            if row:
+                patient = Patient(id=row[0], name=row[1], surname=row[2],
+                                birthday=row[4], phone_number=row[5])
+                return patient
+
             cursor.close()
 
         return None

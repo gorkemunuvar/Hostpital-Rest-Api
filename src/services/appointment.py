@@ -19,15 +19,18 @@ class AppointmentService():
         cursor = Connection.execute(connection, query)
 
         appointments = []
-        for row in cursor:
-            formatted_date = StringHandler.select_first_element_of(str(row[0]))
+        if cursor:
+            for row in cursor:
+                formatted_date = StringHandler.select_first_element_of(str(row[0]))
 
-            appointment = Appointment(date=formatted_date, time=row[1],
-                                      profession_id=row[2], profession_name=row[3],
-                                      doctor_id=row[4], doctor_name=row[5],
-                                      doctor_surname=row[6], patient_name=row[7],
-                                      patient_surname=row[8], patient_father=row[9],
-                                      patient_birthday=row[10])
-            appointments.append(appointment)
+                appointment = Appointment(date=formatted_date, time=row[1],
+                                        profession_id=row[2], profession_name=row[3],
+                                        doctor_id=row[4], doctor_name=row[5],
+                                        doctor_surname=row[6], patient_name=row[7],
+                                        patient_surname=row[8], patient_father=row[9],
+                                        patient_birthday=row[10])
+                appointments.append(appointment)
+                
+            cursor.close()
 
         return appointments

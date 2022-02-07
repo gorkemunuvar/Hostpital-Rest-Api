@@ -10,14 +10,17 @@ class PolyclinicService():
         cursor = Connection.execute(connection, POLYCLINICS)
 
         polyclinics = []
-        for row in cursor:
-            description = row[2]
-            if not description:
-                description = '-'
+        if cursor:
+            for row in cursor:
+                description = row[2]
+                if not description:
+                    description = '-'
 
-            polyclinic = Polyclinic(id=row[0], title=row[1],
-                                    description=description)
-            polyclinics.append(polyclinic)
+                polyclinic = Polyclinic(id=row[0], title=row[1],
+                                        description=description)
+                polyclinics.append(polyclinic)
+
+            cursor.close()
 
         return polyclinics
 
@@ -28,13 +31,16 @@ class PolyclinicService():
         )
 
         polyclinics = []
-        for row in cursor:
-            description = row[2]
-            if not description:
-                description = '-'
+        if cursor:
+            for row in cursor:
+                description = row[2]
+                if not description:
+                    description = '-'
 
-            polyclinic = Polyclinic(id=row[0], title=row[1],
-                                    description=description)
-            polyclinics.append(polyclinic)
+                polyclinic = Polyclinic(id=row[0], title=row[1],
+                                        description=description)
+                polyclinics.append(polyclinic)
+
+            cursor.close()
 
         return polyclinics

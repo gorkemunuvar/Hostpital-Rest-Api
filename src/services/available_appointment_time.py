@@ -27,8 +27,11 @@ class AvailableAppoinmentTimeService():
         cursor = Connection.execute(connection, query)
 
         available_times = []
-        for row in cursor:
-            available_times.append(str(row[1]))
+        if cursor:
+            for row in cursor:
+                available_times.append(str(row[1]))
+
+            cursor.close()
 
         return available_times
 
@@ -41,28 +44,31 @@ def get_query_requirements(doctor_id: str, selected_date: str) -> dict:
     cursor = Connection.execute(connection, query_for_requirements)
 
     query_requirements = {}
-    for row in cursor:
-        # 2021-12-29 21:04:08 (db date format)
-        date = str(row[0]).split()[0]
+    if cursor:
+        for row in cursor:
+            # 2021-12-29 21:04:08 (db date format)
+            date = str(row[0]).split()[0]
 
-        # returns 2021-12-29
-        formatted_date = format_date(selected_date)
+            # returns 2021-12-29
+            formatted_date = format_date(selected_date)
 
-        if formatted_date == date:
-            beginning_time = str(row[2])
-            ending_time = str(row[3])
-            profession_id = row[4]
-            time_interval = row[7]
+            if formatted_date == date:
+                beginning_time = str(row[2])
+                ending_time = str(row[3])
+                profession_id = row[4]
+                time_interval = row[7]
 
-            query_requirements = {
-                'appointment_date': date,
-                'beginning_time': beginning_time,
-                'ending_time': ending_time,
-                'profession_id': profession_id,
-                'time_interval': time_interval
-            }
+                query_requirements = {
+                    'appointment_date': date,
+                    'beginning_time': beginning_time,
+                    'ending_time': ending_time,
+                    'profession_id': profession_id,
+                    'time_interval': time_interval
+                }
 
-            break
+                break
+        
+        cursor.close()
 
     return query_requirements
 
