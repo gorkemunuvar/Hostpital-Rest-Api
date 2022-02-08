@@ -17,7 +17,7 @@ class Connection(oracle.Connection):
                 mode=oracle.SYSDBA
             )
 
-            print('INFO: CONNECTION CREATED AGAIN')
+            print('INFO: CONNECTION CREATED')
 
         return cls.__connection
 

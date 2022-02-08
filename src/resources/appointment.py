@@ -12,11 +12,12 @@ class ActiveAppointments(Resource):
         try:
             appointments = AppointmentService.get_active_appointments()
             appointments_dict = appointments_schema.dump(appointments)
+        
+            return {'appointments': appointments_dict}, 200
         except Exception as error:
             print(error)
-            return {'message': f'Something went wrong. ({error})'.format(error=error)}
+            return {'message': f'Something went wrong. ({error})'.format(error=error)}, 500
 
-        return {'appointments': appointments_dict}, 200
 
 
 class PastAppointments(Resource):
@@ -25,8 +26,8 @@ class PastAppointments(Resource):
         try:
             appointments = AppointmentService.get_past_appointments()
             appointments_dict = appointments_schema.dump(appointments)
+        
+            return {'appointments': appointments_dict}, 200
         except Exception as error:
             print(error)
             return {'message': f'Something went wrong. ({error})'.format(error=error)}, 500
-
-        return {'appointments': appointments_dict}, 200

@@ -153,10 +153,14 @@ PAST_APPOINTMENTS = """SELECT ng_his_pasrandevu.datar, ng_his_pasrandevu.randevu
 
 NEWS = """SELECT id, tarih, ru_baslik, ru_haber, ru_resim FROM ng_haberler"""
 
+# farklı diller için farklı sorgular olacak
+# kısa kelimeler için ayrı bir sütun oluşturmadan fonksiyon çalıştırılabilir.
+# NEWS_KZ = """SELECT id, tarih, SUTUN_DEGERAL('RU', baslik ), kz_haber, kz_resim FROM ng_haberler"""
+
 CHECK_PATIENT = """SELECT patsno, adi, soyadi, baba_adi FROM ng_his_rshtl
                    WHERE LOWER(adi) LIKE LOWER('%{name}%') 
                    AND LOWER(soyadi) LIKE LOWER('%{surname}%')
-                   AND DROJ=TO_DATE('17/08/1997', 'DD/MM/YYYY')"""
+                   AND DROJ=TO_DATE('{birthday}', 'DD/MM/YYYY')"""
 
 CREATE_PATIENT_ID = """PASTNOAL"""
 

@@ -17,7 +17,6 @@ class News(Resource):
         page = 1
         per_page = 5
 
-        news_dict = {}
         try:
             query_params = request.args
             errors = pagination_schema.validate(query_params)
@@ -33,8 +32,9 @@ class News(Resource):
 
             news_list = NewsService.get_news()
             news_dict = all_news_schema.dump(news_list)
+
+            return {'news': news_dict}, 200
         except Exception as error:
             print(error)
             return {'message': f'Something went wrong. ({error})'.format(error=error)}, 500
 
-        return {'news': news_dict}, 200

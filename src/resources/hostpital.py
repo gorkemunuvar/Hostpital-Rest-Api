@@ -11,7 +11,7 @@ hospitals_schema = HospitalSchema(many=True)
 class Hospitals(Resource):
     @classmethod
     def get(self):
-        try:    
+        try:
             hospitals = HospitalService.get_hospitals()
             hospitals_dict = hospitals_schema.dump(hospitals)
 

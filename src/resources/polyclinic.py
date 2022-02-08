@@ -13,23 +13,23 @@ class Polyclinics(Resource):
         try:
             polyclinics = PolyclinicService.get_polyclinics()
             polyclinics_dict = polyclinics_schmea.dump(polyclinics)
+    
+            return {'polyclinics': polyclinics_dict}, 200
         except Exception as error:
             print(error)
             return {'message': f'Something went wrong. ({error})'.format(error=error)}, 500
 
-        return {'polyclinics': polyclinics_dict}, 200
 
 
 class SearchPolyclinics(Resource):
     @classmethod
     def get(cls, search_string):
-        polyclinics_dict = {}
-
         try:
             polyclinics = PolyclinicService.search_polyclinics(search_string)
             polyclinics_dict = polyclinics_schmea.dump(polyclinics)
+    
+            return {'search_result': polyclinics_dict}, 200
         except Exception as error:
             print(error)
             return {'message': f'Something went wrong. ({error})'.format(error=error)}, 500
         
-        return {'search_result': polyclinics_dict}, 200

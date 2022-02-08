@@ -6,9 +6,9 @@ from utils.string_handler import StringHandler
 
 class PatientService():
     @staticmethod
-    def is_patient_exist(name: str, surname: str) -> bool:
+    def is_patient_exist(name: str, surname: str, birthday: str) -> bool:
         connection = Connection.create()
-        query = CHECK_PATIENT.format(name=name, surname=surname)
+        query = CHECK_PATIENT.format(name=name, surname=surname, birthday=birthday)
 
         cursor = Connection.execute(connection, query)
         

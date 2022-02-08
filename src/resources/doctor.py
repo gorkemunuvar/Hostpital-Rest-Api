@@ -119,13 +119,12 @@ class DoctorsByProfessionId(Resource):
 class SearchDoctor(Resource):
     @classmethod
     def get(cls, search_string):
-        doctors_dict = {}
-
         try:
             doctors = DoctorService.search_doctors(search_string)
             doctors_dict = doctors_schema.dump(doctors)
+
+            return {'search_result': doctors_dict}, 200
         except Exception as error:
             print(error)
             return {'message': f'Something went wrong. ({error})'.format(error=error)}, 500
 
-        return {'search_result': doctors_dict}, 200

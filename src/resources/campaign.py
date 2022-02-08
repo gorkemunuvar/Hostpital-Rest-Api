@@ -12,9 +12,13 @@ schema = CampaignsQuerySchema()
 class Campaigns(Resource):
     @classmethod
     def get(self):
-        errors = schema.validate(request.args)
-        
-        if errors:
-            abort(400, str(errors))
+        try:
+            errors = schema.validate(request.args)
+            
+            if errors:
+                abort(400, str(errors))
 
-        return {'campaigns': request.args}
+            return {'campaigns': request.args}
+        except Exception as error:
+            print(error)
+            return {'message': f'Something went wrong. ({error})'.format(error=error)}, 500
