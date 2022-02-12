@@ -134,7 +134,7 @@ ACTIVE_APPOINTMENTS = """SELECT ng_his_pasrandevu.datar, ng_his_pasrandevu.rande
                          FROM ng_his_pasrandevu, ng_his_rshtl, ng_his_glzr, ng_his_rpsl
                          WHERE ng_his_pasrandevu.hasta_id=ng_his_rshtl.patsno
                          AND ng_his_pasrandevu.kabinet_id=ng_his_glzr.kabinet
-                         AND ng_his_rpsl.kullan=ng_his_pasrandevu.doktor_id
+                         AND ng_his_rpsl.kullan(+)=ng_his_pasrandevu.doktor_id
                          AND ng_his_pasrandevu.iptal is null
                          AND ng_his_pasrandevu.hasta_id='152010896'
                          AND ng_his_pasrandevu.datar >= TO_DATE(sysdate, 'dd/mm/yy')"""
@@ -146,7 +146,7 @@ PAST_APPOINTMENTS = """SELECT ng_his_pasrandevu.datar, ng_his_pasrandevu.randevu
                        FROM ng_his_pasrandevu, ng_his_rshtl, ng_his_glzr, ng_his_rpsl
                        WHERE ng_his_pasrandevu.hasta_id=ng_his_rshtl.patsno
                        AND ng_his_pasrandevu.kabinet_id=ng_his_glzr.kabinet
-                       AND ng_his_rpsl.kullan=ng_his_pasrandevu.doktor_id
+                       AND ng_his_rpsl.kullan(+)=ng_his_pasrandevu.doktor_id
                        AND ng_his_pasrandevu.iptal is null
                        AND ng_his_pasrandevu.hasta_id='152010896'
                        AND ng_his_pasrandevu.datar < TO_DATE(sysdate, 'dd/mm/yy')"""
