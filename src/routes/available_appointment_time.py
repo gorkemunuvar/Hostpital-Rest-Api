@@ -1,10 +1,15 @@
 from flask import Blueprint
 from flask_restful import Api
 
-from resources.available_appointment_time import AvailableAppoinmentTime
+from resources.available_appointment_time import (AvailableAppoinmentTimeByDoctorId,
+                                                  AvailableAppoinmentTimeByProfession)
 
 AVAILABLE_APPOINTMENT_TIME_BLUEPRINT = Blueprint(
-    'available_appointment_time', __name__)
+    'available_time', __name__)
 
 Api(AVAILABLE_APPOINTMENT_TIME_BLUEPRINT).add_resource(
-    AvailableAppoinmentTime, '/doctors/<string:id>/available_dates/<string:date>/available_appointment_times')
+    AvailableAppoinmentTimeByDoctorId, '/doctors/<string:id>/available_dates/<string:date>/available_times')
+
+
+Api(AVAILABLE_APPOINTMENT_TIME_BLUEPRINT).add_resource(
+    AvailableAppoinmentTimeByProfession, '/available_dates/<string:date>/available_times')

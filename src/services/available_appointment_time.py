@@ -2,15 +2,19 @@ import datetime
 
 from .database import Connection
 from utils.queries import (AVAILABLE_APPOINTMENT_TIMES,
-                           AVAILABLE_APPOINTMENT_TIME_REQUIREMENTS)
+                           AVAILABLE_APPOINTMENT_TIME_REQUIREMENTS_BY_DOCTOR_ID,
+                           AVAILABLE_APPOINTMENT_TIME_REQUIREMENTS_BY_PROFESSION)
 
 
 class AvailableAppoinmentTimeService():
     @staticmethod
-    def get_avaiable_appoinment_times_by_doctor_id_and_date(id: str, selected_date: str) -> list[str]:
+    def get_avaiable_appoinment_times(selected_date: str, id: str = None) -> list[str]:
         """selected_date format <yyyy/mm/dd>"""
 
-        query_requirements = get_query_requirements(id, selected_date)
+        if id:
+            query_requirements = get_query_requirements(selected_date, id)
+        else:
+            query_requirements = get_query_requirements(selected_date)
 
         if not query_requirements:
             return []
@@ -22,7 +26,7 @@ class AvailableAppoinmentTimeService():
             profession_id=query_requirements['profession_id'],
             time_interval=query_requirements['time_interval']
         )
-        
+
         connection = Connection.create()
         cursor = Connection.execute(connection, query)
 
@@ -36,10 +40,15 @@ class AvailableAppoinmentTimeService():
         return available_times
 
 
-def get_query_requirements(doctor_id: str, selected_date: str) -> dict:
+def get_query_requirements(selected_date: str, doctor_id: str = None) -> dict:
     """selected_date format <yyyy/mm/dd>"""
-    query_for_requirements = AVAILABLE_APPOINTMENT_TIME_REQUIREMENTS.format(
-        doctor_id=doctor_id)
+
+    query_for_requirements = ''
+    if doctor_id:
+        query_for_requirements = AVAILABLE_APPOINTMENT_TIME_REQUIREMENTS_BY_DOCTOR_ID.format(
+            doctor_id=doctor_id)
+    else:
+        query_for_requirements = AVAILABLE_APPOINTMENT_TIME_REQUIREMENTS_BY_PROFESSION
 
     connection = Connection.create()
     cursor = Connection.execute(connection, query_for_requirements)
@@ -68,7 +77,7 @@ def get_query_requirements(doctor_id: str, selected_date: str) -> dict:
                 }
 
                 break
-        
+
         cursor.close()
 
     return query_requirements

@@ -13,9 +13,10 @@ class ProfessionService():
         professions = []
         if cursor:
             for row in cursor:
-                profession = Profession(id=row[0], name=row[1])
+                profession = Profession(id=row[0], name=row[1], type=row[2])
                 professions.append(profession)
 
             cursor.close()
+
 
         return professions

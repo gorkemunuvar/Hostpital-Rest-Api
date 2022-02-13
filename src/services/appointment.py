@@ -4,7 +4,6 @@ from utils.queries import ACTIVE_APPOINTMENTS, PAST_APPOINTMENTS
 from utils.string_handler import StringHandler
 
 class AppointmentService():
-
     @classmethod
     def get_active_appointments(cls) -> list[Appointment]:
         return cls.__get_appointments(ACTIVE_APPOINTMENTS)

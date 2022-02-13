@@ -1,12 +1,24 @@
 from .database import Connection
-from utils.queries import AVAILABLE_APPOINTMENT_DATES
+from utils.queries import (AVAILABLE_APPOINTMENT_DATES_BY_DOCTOR_ID,
+                           AVAILABLE_APPOINTMENT_DATES_BY_PROFESSION)
 
 
 class AvailableAppoinmentDateService():
-    @staticmethod
-    def get_avaiable_appoinment_dates_by_doctor_id(id: str) -> list[str]:
+    @classmethod
+    def get_avaiable_appoinment_dates_by_doctor_id(cls, id: str) -> list[str]:
+        query = AVAILABLE_APPOINTMENT_DATES_BY_DOCTOR_ID.format(doctor_id=id)
+        dates = cls.__get_avaiable_appoinment_dates(query)
+        return dates
+
+    @classmethod
+    def get_available_appointment_dates_by_profession(cls) -> list[str]:
+        query = AVAILABLE_APPOINTMENT_DATES_BY_PROFESSION
+        dates = cls.__get_avaiable_appoinment_dates(query)
+        return dates
+
+    @classmethod
+    def __get_avaiable_appoinment_dates(cls, query: str) -> list[str]:
         connection = Connection.create()
-        query = AVAILABLE_APPOINTMENT_DATES.format(doctor_id=id)
         cursor = Connection.execute(connection, query)
 
         dates = []
@@ -18,5 +30,4 @@ class AvailableAppoinmentDateService():
 
             cursor.close()
 
-    
         return dates

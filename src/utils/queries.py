@@ -88,14 +88,22 @@ DOCTORS_BY_PROFESSION_ID = """SELECT doktor_id, soy, ad FROM ng_his_vrtkmad
 # | DATAR      | D     | BASSAAT | BITSAAT | SERVIS_ID   | ISIM        |
 # | 29/12/2021 | прием | 11:00   | 17:00   | 64010       | 111 dahliye |
 
-AVAILABLE_APPOINTMENT_DATES = """SELECT ng_his_vractakvim.datar, 'прием' d, ng_his_vractakvim.bassaat,
-                                 ng_his_vractakvim.bitsaat, ng_his_vractakvim.servis_id, ng_his_glzr.isim
-                                 FROM ng_his_glzr, ng_his_vractakvim 
-                                 WHERE ng_his_vractakvim.doktor_id='{doctor_id}' 
-                                 AND ng_his_vractakvim.servis_id=ng_his_glzr.kabinet 
-                                 AND ng_his_vractakvim.datar >= to_date(sysdate,'dd/mm/yyyy') 
-                                 AND ng_his_vractakvim.servis_id 
-                                 IN (SELECT kabinet FROM ng_his_glzr WHERE sinifi <>'S')"""
+AVAILABLE_APPOINTMENT_DATES_BY_DOCTOR_ID = """SELECT ng_his_vractakvim.datar, 'прием' d, ng_his_vractakvim.bassaat,
+                                              ng_his_vractakvim.bitsaat, ng_his_vractakvim.servis_id, ng_his_glzr.isim
+                                              FROM ng_his_glzr, ng_his_vractakvim 
+                                              WHERE ng_his_vractakvim.doktor_id='{doctor_id}' 
+                                              AND ng_his_vractakvim.servis_id=ng_his_glzr.kabinet 
+                                              AND ng_his_vractakvim.datar >= to_date(sysdate,'dd/mm/yyyy') 
+                                              AND ng_his_vractakvim.servis_id 
+                                              IN (SELECT kabinet FROM ng_his_glzr WHERE sinifi <>'S')"""
+
+AVAILABLE_APPOINTMENT_DATES_BY_PROFESSION = """SELECT ng_his_vractakvim.datar, 'прием' d, ng_his_vractakvim.bassaat,
+                                               ng_his_vractakvim.bitsaat, ng_his_vractakvim.servis_id, ng_his_glzr.isim
+                                               FROM ng_his_glzr, ng_his_vractakvim 
+                                               WHERE ng_his_vractakvim.servis_id=ng_his_glzr.kabinet 
+                                               AND ng_his_vractakvim.datar >= to_date(sysdate,'dd/mm/yyyy') 
+                                               AND ng_his_vractakvim.servis_id 
+                                               IN (SELECT kabinet FROM ng_his_glzr WHERE sinifi <>'S')"""
 
 
 # | SIRA_NO | XDAKKIKA |
@@ -116,16 +124,29 @@ AVAILABLE_APPOINTMENT_TIMES = """SELECT  SIRA_NO, XDAKKIKA
 # | DATAR      | D     | BASSAAT | BITSAAT | SERVIS_ID   | ISIM        | PROFS | ARALIK |
 # | 29/12/2021 | прием | 11:00   | 17:00   | 64010       | 111 dahliye | UZ001 | DEGER1 |
 
-AVAILABLE_APPOINTMENT_TIME_REQUIREMENTS = """SELECT ng_his_vractakvim.datar, 'прием' d, ng_his_vractakvim.bassaat, 
-                                             ng_his_vractakvim.bitsaat, ng_his_vractakvim.servis_id, 
-                                             ng_his_glzr.isim, ng_his_glzr.profs, ng_his_kabuzman.aralik 
-                                             FROM ng_his_glzr,ng_his_vractakvim ,ng_his_kabuzman 
-                                             WHERE ng_his_kabuzman.profs=ng_his_glzr.profs  
-                                             AND ng_his_vractakvim.doktor_id='{doctor_id}' 
-                                             AND ng_his_vractakvim.servis_id=ng_his_glzr.kabinet 
-                                             AND ng_his_vractakvim.datar >= to_date(sysdate,'dd/mm/yyyy') 
-                                             AND ng_his_vractakvim.servis_id IN (SELECT kabinet FROM ng_his_glzr 
-                                             WHERE sinifi <>'S')"""
+AVAILABLE_APPOINTMENT_TIME_REQUIREMENTS_BY_DOCTOR_ID = """SELECT ng_his_vractakvim.datar, 'прием' d, ng_his_vractakvim.bassaat, 
+                                                          ng_his_vractakvim.bitsaat, ng_his_vractakvim.servis_id, 
+                                                          ng_his_glzr.isim, ng_his_glzr.profs, ng_his_kabuzman.aralik 
+                                                          FROM ng_his_glzr,ng_his_vractakvim ,ng_his_kabuzman 
+                                                          WHERE ng_his_kabuzman.profs=ng_his_glzr.profs  
+                                                          AND ng_his_vractakvim.doktor_id='{doctor_id}' 
+                                                          AND ng_his_vractakvim.servis_id=ng_his_glzr.kabinet 
+                                                          AND ng_his_vractakvim.datar >= to_date(sysdate,'dd/mm/yyyy') 
+                                                          AND ng_his_vractakvim.servis_id IN (SELECT kabinet FROM ng_his_glzr 
+                                                          WHERE sinifi <>'S')"""
+
+
+AVAILABLE_APPOINTMENT_TIME_REQUIREMENTS_BY_PROFESSION = """SELECT ng_his_vractakvim.datar, 'прием' d, ng_his_vractakvim.bassaat, 
+                                                           ng_his_vractakvim.bitsaat, ng_his_vractakvim.servis_id, 
+                                                           ng_his_glzr.isim, ng_his_glzr.profs, ng_his_kabuzman.aralik 
+                                                           FROM ng_his_glzr,ng_his_vractakvim ,ng_his_kabuzman 
+                                                           WHERE ng_his_kabuzman.profs=ng_his_glzr.profs  
+                                                           AND ng_his_vractakvim.servis_id=ng_his_glzr.kabinet 
+                                                           AND ng_his_vractakvim.datar >= to_date(sysdate,'dd/mm/yyyy') 
+                                                           AND ng_his_vractakvim.servis_id IN (SELECT kabinet FROM ng_his_glzr 
+                                                           WHERE sinifi <>'S')"""
+
+
 
 ACTIVE_APPOINTMENTS = """SELECT ng_his_pasrandevu.datar, ng_his_pasrandevu.randevu_saati, 
                          ng_his_pasrandevu.kabinet_id, ng_his_glzr.isim, ng_his_pasrandevu.doktor_id, 
