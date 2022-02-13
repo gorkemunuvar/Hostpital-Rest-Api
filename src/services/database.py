@@ -1,4 +1,6 @@
 from __future__ import annotations
+from typing import Union
+
 import cx_Oracle as oracle
 
 
@@ -22,7 +24,7 @@ class Connection(oracle.Connection):
         return cls.__connection
 
     @staticmethod
-    def execute(connection: Connection, query: str) -> oracle.Cursor:
+    def execute(connection: Connection, query: str) -> Union[oracle.Cursor, None]:
         cursor = connection.cursor()
 
         return cursor.execute(query)

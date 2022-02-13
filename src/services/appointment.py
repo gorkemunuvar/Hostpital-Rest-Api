@@ -1,9 +1,19 @@
 from .database import Connection
 from models.appointment import Appointment
-from utils.queries import ACTIVE_APPOINTMENTS, PAST_APPOINTMENTS
+from utils.queries import ACTIVE_APPOINTMENTS, PAST_APPOINTMENTS, CREATE_APPOINTMENT
 from utils.string_handler import StringHandler
 
+
 class AppointmentService():
+    @classmethod
+    def create_appointment(cls) -> None:
+        connection = Connection.create()
+        cursor = Connection.execute(connection, CREATE_APPOINTMENT)
+        connection.commit()
+        
+        if cursor:
+            cursor.close()
+
     @classmethod
     def get_active_appointments(cls) -> list[Appointment]:
         return cls.__get_appointments(ACTIVE_APPOINTMENTS)

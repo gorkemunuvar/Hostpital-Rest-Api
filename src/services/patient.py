@@ -42,9 +42,9 @@ class PatientService():
                                       phone_number=phone_number)
 
         cursor = Connection.execute(connection, query)
+        connection.commit()
 
-        if cursor:
-            connection.commit()
+        if cursor:    
             cursor.close()
 
     @staticmethod

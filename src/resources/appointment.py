@@ -5,6 +5,16 @@ from services.appointment import AppointmentService
 
 appointments_schema = AppointmentSchema(many=True)
 
+class CreateAppointment(Resource):
+    @classmethod
+    def post(cls):
+        try:
+            AppointmentService.create_appointment()
+            return {'message': 'Appointment created succesfully.'}, 201
+        except Exception as error:
+            print(error)
+            return {'message': f'Something went wrong. ({error})'.format(error=error)}, 500
+
 
 class ActiveAppointments(Resource):
     @classmethod
