@@ -146,12 +146,22 @@ AVAILABLE_APPOINTMENT_TIME_REQUIREMENTS_BY_PROFESSION = """SELECT ng_his_vractak
                                                            AND ng_his_vractakvim.servis_id IN (SELECT kabinet FROM ng_his_glzr
                                                            WHERE sinifi <>'S')"""
 
+IS_APPOINTMENT_TAKEN = """SELECT hasta_id FROM ng_his_pasrandevu 
+                          WHERE randevu_saati='{time}' AND datar=TO_DATE('{date}', 'DD/MM/YYYY') 
+                          AND kabinet_id='{profession_id}' AND (doktor_id='{doctor_id}' OR doktor_id IS null) AND IPTAL IS NULL"""
+"""<doctor_id> can be passed null if there is no doctor."""
+
+CREATE_APPOINTMENT_ID = """SELECT NG_HIS_RNDSRN.NEXTVAL FROM DUAL"""
+
+
 CREATE_APPOINTMENT = """INSERT INTO ng_his_pasrandevu(randevu_id, randevu_saati, hasta_id,
                         kabinet_id, doktor_id, datar, patsiyet, personel_log, aciklama, loglar)
-                        VALUES (34406144, '20:15', '152010896',
-                        '69064', NULL, TO_DATE('16/06/2026', 'DD/MM/YYYY'), INITCAP('Kütük')||' '||SUBSTR('Cansu', 1, 1)||'.',
-                        'NGMED'||' '||TO_CHAR(SYSDATE, 'DD/MM/YYYY HH24:MI:SS'), 'BOYUN MR',
-                        '69063'||NULL||TO_DATE('16/06/2026', 'DD/MM/YYYY')||'07:00')"""
+                        VALUES ({appointment_id}, '{time}', '{patient_id}',
+                        '{profession_id}', {doctor_id}, TO_DATE('{date}', 'DD/MM/YYYY'), 
+                        INITCAP('{patient_surname}')||' '||SUBSTR('{patient_name}', 1, 1)||'.',
+                        'NGMED'||' '||TO_CHAR(SYSDATE, 'DD/MM/YYYY HH24:MI:SS'), '{note}',
+                        '{profession_id}'||NULL||TO_DATE('{date}', 'DD/MM/YYYY')||'{time}')"""
+"""<doctor_id> and <note> can be passed null if there is no data."""
 
 
 ACTIVE_APPOINTMENTS = """SELECT ng_his_pasrandevu.datar, ng_his_pasrandevu.randevu_saati,

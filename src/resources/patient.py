@@ -5,10 +5,6 @@ from marshmallow import ValidationError
 from services.patient import PatientService
 from schemas.patient import PatientSchema
 
-
-patient_schema = PatientSchema()
-
-
 class Patient(Resource):
     @classmethod
     def post(cls):

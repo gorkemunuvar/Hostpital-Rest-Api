@@ -1,7 +1,10 @@
+from typing import Union
 from .database import Connection
 from models.appointment import Appointment
-from utils.queries import ACTIVE_APPOINTMENTS, PAST_APPOINTMENTS, CREATE_APPOINTMENT
 from utils.string_handler import StringHandler
+from utils.queries import (ACTIVE_APPOINTMENTS, PAST_APPOINTMENTS,
+                           IS_APPOINTMENT_TAKEN, CREATE_APPOINTMENT_ID,
+                           CREATE_APPOINTMENT)
 
 
 class AppointmentService():
@@ -10,9 +13,31 @@ class AppointmentService():
         connection = Connection.create()
         cursor = Connection.execute(connection, CREATE_APPOINTMENT)
         connection.commit()
-        
+
         if cursor:
             cursor.close()
+
+    @classmethod
+    def is_appointment_taken(cls) -> bool:
+        connection = Connection.create()
+        cursor = Connection.execute(connection, IS_APPOINTMENT_TAKEN)
+
+        row = cursor.fetchone()
+
+        if row:
+            return True
+        return False
+
+    @classmethod
+    def create_appointment_id(cls) -> Union[str, None]:
+        connection = Connection.create()
+        cursor = Connection.execute(connection, CREATE_APPOINTMENT_ID)
+
+        row = cursor.fetchone()
+
+        if row:
+            return str(row[0])
+        return None
 
     @classmethod
     def get_active_appointments(cls) -> list[Appointment]:
