@@ -1,27 +1,39 @@
 from typing import Union
+
 from .database import Connection
+from schemas.appointment import AppointmentSchema
 from models.appointment import Appointment
+
 from utils.string_handler import StringHandler
 from utils.queries import (ACTIVE_APPOINTMENTS, PAST_APPOINTMENTS,
                            IS_APPOINTMENT_TAKEN, CREATE_APPOINTMENT_ID,
                            CREATE_APPOINTMENT)
 
+appointment_schema = AppointmentSchema()
+
 
 class AppointmentService():
     @classmethod
-    def create_appointment(cls) -> None:
+    def create_appointment(cls, appointment: Appointment) -> None:
         connection = Connection.create()
-        cursor = Connection.execute(connection, CREATE_APPOINTMENT)
+
+        appointment_dict = appointment_schema.dump(appointment)
+        query = CREATE_APPOINTMENT.format(**appointment_dict)
+
+        cursor = Connection.execute(connection, query)
         connection.commit()
 
         if cursor:
             cursor.close()
 
     @classmethod
-    def is_appointment_taken(cls) -> bool:
+    def is_appointment_taken(cls, appointment: Appointment) -> bool:
         connection = Connection.create()
-        cursor = Connection.execute(connection, IS_APPOINTMENT_TAKEN)
 
+        appointment_dict = appointment_schema.dump(appointment)
+        query = IS_APPOINTMENT_TAKEN.format(**appointment_dict)
+
+        cursor = Connection.execute(connection, query)
         row = cursor.fetchone()
 
         if row:

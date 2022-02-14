@@ -1,9 +1,11 @@
 from flask import request
 from flask_restful import Resource
 
+from models.appointment import Appointment
 from schemas.appointment import AppointmentSchema
 from services.appointment import AppointmentService
 
+appointment_schema = AppointmentSchema()
 appointments_schema = AppointmentSchema(many=True)
 
 
@@ -12,13 +14,22 @@ class CreateAppointment(Resource):
     def post(cls):
         try:
             appointment_dict = request.get_json()
+            appointment = appointment_schema.load(appointment_dict)
 
-            appointment_taken = AppointmentService.is_appointment_taken()
+            appointment_taken = AppointmentService.is_appointment_taken(
+                appointment
+            )
+
             if appointment_taken:
-                return {'message': 'Appointment is already taken.'}, 200
+                return {'message': 'Appointment is already taken.'}, 409
 
-            appointment_id = AppointmentService.create_appointment_id()
-            AppointmentService.create_appointment()
+            appointment_dict['id'] = AppointmentService.create_appointment_id()
+
+            appointment = Appointment(**appointment_dict)
+            print('###444###')
+
+            AppointmentService.create_appointment(appointment)
+            print('###555###')
 
             return {'message': 'Appointment created succesfully.'}, 201
         except Exception as error:

@@ -156,8 +156,8 @@ CREATE_APPOINTMENT_ID = """SELECT NG_HIS_RNDSRN.NEXTVAL FROM DUAL"""
 
 CREATE_APPOINTMENT = """INSERT INTO ng_his_pasrandevu(randevu_id, randevu_saati, hasta_id,
                         kabinet_id, doktor_id, datar, patsiyet, personel_log, aciklama, loglar)
-                        VALUES ({appointment_id}, '{time}', '{patient_id}',
-                        '{profession_id}', {doctor_id}, TO_DATE('{date}', 'DD/MM/YYYY'), 
+                        VALUES ({id}, '{time}', '{patient_id}',
+                        '{profession_id}', '{doctor_id}', TO_DATE('{date}', 'DD/MM/YYYY'), 
                         INITCAP('{patient_surname}')||' '||SUBSTR('{patient_name}', 1, 1)||'.',
                         'NGMED'||' '||TO_CHAR(SYSDATE, 'DD/MM/YYYY HH24:MI:SS'), '{note}',
                         '{profession_id}'||NULL||TO_DATE('{date}', 'DD/MM/YYYY')||'{time}')"""
