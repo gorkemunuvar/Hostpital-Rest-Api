@@ -26,10 +26,8 @@ class CreateAppointment(Resource):
             appointment_dict['id'] = AppointmentService.create_appointment_id()
 
             appointment = Appointment(**appointment_dict)
-            print('###444###')
 
             AppointmentService.create_appointment(appointment)
-            print('###555###')
 
             return {'message': 'Appointment created succesfully.'}, 201
         except Exception as error:
