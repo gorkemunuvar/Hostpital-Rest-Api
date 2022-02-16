@@ -43,7 +43,7 @@ class AllDoctors(Resource):
 class DoctorById(Resource):
     @classmethod
     def get(cls, id):
-        from services.database import Connection
+        from utils.database import Connection
         from utils.queries import DOCTOR_BY_ID
 
         connection = Connection.create()

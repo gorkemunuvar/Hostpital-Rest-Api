@@ -24,7 +24,6 @@ class CreateAppointment(Resource):
                 return {'message': 'Appointment is already taken.'}, 409
 
             appointment_dict['id'] = AppointmentService.create_appointment_id()
-
             appointment = Appointment(**appointment_dict)
 
             AppointmentService.create_appointment(appointment)

@@ -1,6 +1,6 @@
 from typing import Union
 from models.patient import Patient
-from .database import Connection
+from utils.database import Connection
 from utils.queries import CHECK_PATIENT, CREATE_PATIENT_ID, CREATE_PATIENT, GET_PATIENT
 from utils.string_handler import StringHandler
 

@@ -1,6 +1,6 @@
 from typing import Union
 
-from .database import Connection
+from utils.database import Connection
 from schemas.appointment import AppointmentSchema
 from models.appointment import Appointment
 

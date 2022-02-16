@@ -1,4 +1,4 @@
-from .database import Connection
+from utils.database import Connection
 from models.profession import Profession
 from utils.queries import PROFESSIONS_BY_POLYCLINIC_ID
 

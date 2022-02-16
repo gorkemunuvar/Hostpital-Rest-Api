@@ -93,7 +93,7 @@ AVAILABLE_APPOINTMENT_DATES_BY_DOCTOR_ID = """SELECT ng_his_vractakvim.datar, 'Ð
                                               FROM ng_his_glzr, ng_his_vractakvim
                                               WHERE ng_his_vractakvim.doktor_id='{doctor_id}'
                                               AND ng_his_vractakvim.servis_id=ng_his_glzr.kabinet
-                                              AND ng_his_vractakvim.datar >= to_date(sysdate,'dd/mm/yyyy')
+                                              AND ng_his_vractakvim.datar >= TO_DATE(sysdate,'DD/MM/YYYY')
                                               AND ng_his_vractakvim.servis_id
                                               IN (SELECT kabinet FROM ng_his_glzr WHERE sinifi <>'S')"""
 

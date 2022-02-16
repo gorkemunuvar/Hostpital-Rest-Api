@@ -3,8 +3,12 @@ import routes
 from flask import Flask
 from flask.blueprints import Blueprint
 
+from utils.config import DevelopmentConfig
+
+configs = DevelopmentConfig()
+
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'supersecretkey321'
+app.config['SECRET_KEY'] = configs.APP_SECRET_KEY
 
 
 def init_bluprints():

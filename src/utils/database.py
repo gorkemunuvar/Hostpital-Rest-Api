@@ -3,6 +3,10 @@ from typing import Union
 
 import cx_Oracle as oracle
 
+from utils.config import DevelopmentConfig
+
+configs = DevelopmentConfig()
+
 
 class Connection(oracle.Connection):
     __connection = None
@@ -12,11 +16,12 @@ class Connection(oracle.Connection):
         """Returns a singleton cx_Oracle.Connection object."""
 
         if not cls.__connection or not cls.__is_open():
+            dsn = oracle.makedsn(
+                configs.DB_URL, configs.DB_PORT, service_name=configs.DB_SERVICE_NAME,
+            )
+
             cls.__connection = oracle.connect(
-                user="sys",
-                password="123",
-                dsn="localhost/orcl",
-                mode=oracle.SYSDBA
+                user=configs.DB_USERNAME, password=configs.DB_PASSWORD, dsn=dsn, encoding='UTF-8'
             )
 
             print('INFO: CONNECTION CREATED')

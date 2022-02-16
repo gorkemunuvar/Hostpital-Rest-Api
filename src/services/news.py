@@ -1,5 +1,5 @@
 from models.news import News
-from .database import Connection
+from utils.database import Connection
 from utils.queries import NEWS
 from utils.image_handler import ImageHandler
 from utils.string_handler import StringHandler

@@ -8,6 +8,7 @@ flask = "*"
 cx-oracle = "*"
 flask-restful = "*"
 marshmallow = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

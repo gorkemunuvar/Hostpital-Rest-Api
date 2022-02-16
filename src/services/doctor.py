@@ -1,4 +1,4 @@
-from .database import Connection
+from utils.database import Connection
 from models.doctor import Doctor
 from utils.image_handler import ImageHandler
 from utils.queries import (ALL_DOCTORS, DOCTOR_BY_ID,
