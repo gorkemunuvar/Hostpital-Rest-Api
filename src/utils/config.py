@@ -1,4 +1,5 @@
 import os
+import cx_Oracle as oracle
 
 
 class Config(object):
@@ -18,5 +19,12 @@ class ProductionConfig(Config):
     ENV = 'production'
 
 
+class LocalDbConfig(Config):
+    DB_URL = os.environ.get('LOCAL_DB_URL')
+    DB_USERNAME = os.environ.get('LOCAL_DB_USER')
+    DB_PASSWORD = os.environ.get('LOCAL_DB_PASSWORD')
+    DB_MODE = oracle.SYSDBA
+
+
 class DevelopmentConfig(Config):
-    pass
+    local_db = LocalDbConfig()

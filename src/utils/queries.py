@@ -37,7 +37,9 @@ ALL_DOCTORS = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya, ng_his_rpsl.im
                  ng_hıs_prsrsmm.sertıfıka
                  FROM ng_his_rpsl, ng_his_prsrsmm
                  WHERE ng_his_rpsl.kullan=ng_hıs_prsrsmm.vrac_ıd(+)
-                 ORDER BY ng_his_rpsl.famılya, ng_his_rpsl.imya"""
+                 ORDER BY ng_his_rpsl.famılya, ng_his_rpsl.imya
+                 OFFSET 3 ROWS FETCH NEXT 1 ROWS ONLY"""
+
 
 SEARCH_DOCTORS = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya, ng_his_rpsl.imya,
                     ng_his_rpsl.ocest, ng_his_rpsl.perbilgi, ng_his_prsrsmm.resim,
@@ -52,13 +54,14 @@ SEARCH_DOCTORS = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya, ng_his_rpsl
                     ORDER BY ng_his_rpsl.famılya, ng_his_rpsl.imya"""
 
 
+# Şu anda mobilde ihtiyaç yok.
 # | DOKTOR_ID | SOY    | AD   | BABA   | PERBILGI          | RESIM | UZMANLIK    | EGITIM      | DENEYIM     | SERTIFIKA   |
 # | DR582     | Yildiz | Ayse | null   | Kulak Burun Boğaz | Blob  | <long text> | <long text> | <long text> | <long text>
-DOCTOR_BY_ID = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya ,ng_his_rpsl.imya,ng_his_rpsl.ocest, ng_his_rpsl.perbilgi,
+DOCTOR_BY_ID = """  SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya ,ng_his_rpsl.imya,ng_his_rpsl.ocest, ng_his_rpsl.perbilgi,
                     ng_hıs_prsrsmm.uzmanlık, ng_hıs_prsrsmm.egıtım, ng_hıs_prsrsmm.deneyım, ng_hıs_prsrsmm.sertıfıka,
                     NG_HIS_PRSRSMM.RESIM
                     FROM ng_his_rpsl, NG_HIS_PRSRSMM
-                    WHERE ng_his_rpsl.kullan=ng_hıs_prsrsmm.vrac_ıd(+) and ng_his_rpsl.kullan='DR582'
+                    WHERE ng_his_rpsl.kullan=ng_hıs_prsrsmm.vrac_ıd(+) and ng_his_rpsl.kullan='{id}'
                     ORDER BY ng_his_rpsl.famılya ,ng_his_rpsl.imya"""
 
 
@@ -146,6 +149,7 @@ AVAILABLE_APPOINTMENT_TIME_REQUIREMENTS_BY_PROFESSION = """SELECT ng_his_vractak
                                                            AND ng_his_vractakvim.servis_id IN (SELECT kabinet FROM ng_his_glzr
                                                            WHERE sinifi <>'S')"""
 
+
 IS_APPOINTMENT_TAKEN = """SELECT hasta_id FROM ng_his_pasrandevu 
                           WHERE randevu_saati='{time}' AND datar=TO_DATE('{date}', 'DD/MM/YYYY') 
                           AND kabinet_id='{profession_id}' AND (doktor_id='{doctor_id}' OR doktor_id IS null) AND IPTAL IS NULL"""
@@ -173,8 +177,9 @@ ACTIVE_APPOINTMENTS = """SELECT ng_his_pasrandevu.datar, ng_his_pasrandevu.rande
                          AND ng_his_pasrandevu.kabinet_id = ng_his_glzr.kabinet
                          AND ng_his_rpsl.kullan(+) = ng_his_pasrandevu.doktor_id
                          AND ng_his_pasrandevu.iptal is null
-                         AND ng_his_pasrandevu.hasta_id = '152010896'
+                         AND ng_his_pasrandevu.hasta_id = '1600111'
                          AND ng_his_pasrandevu.datar >= TO_DATE(sysdate, 'dd/mm/yy')"""
+
 
 PAST_APPOINTMENTS = """SELECT ng_his_pasrandevu.datar, ng_his_pasrandevu.randevu_saati,
                        ng_his_pasrandevu.kabinet_id, ng_his_glzr.isim, ng_his_pasrandevu.doktor_id, 
@@ -188,6 +193,7 @@ PAST_APPOINTMENTS = """SELECT ng_his_pasrandevu.datar, ng_his_pasrandevu.randevu
                        AND ng_his_pasrandevu.hasta_id='152010896'
                        AND ng_his_pasrandevu.datar < TO_DATE(sysdate, 'dd/mm/yy')"""
 
+
 NEWS = """SELECT id, tarih, ru_baslik, ru_haber, ru_resim FROM ng_haberler"""
 
 # farklı diller için farklı sorgular olacak
@@ -199,15 +205,17 @@ CHECK_PATIENT = """SELECT patsno, adi, soyadi, baba_adi FROM ng_his_rshtl
                    AND LOWER(soyadi) LIKE LOWER('%{surname}%')
                    AND DROJ=TO_DATE('{birthday}', 'DD/MM/YYYY')"""
 
+GET_PATIENT = """SELECT patsno, adi, soyadi, baba_adi, droj, firmano, cep1
+                 FROM ng_his_rshtl WHERE adi='{name}' AND soyadi='{surname}'
+                 AND cep1='{phone_number}' AND droj=TO_DATE('{birthday}', 'DD/MM/YYYY')"""
+
 CREATE_PATIENT_ID = """PASTNOAL"""
 
 CREATE_PATIENT = """INSERT INTO ng_his_rshtl(patsno, adi, soyadi, droj, firmano, cep1) 
                     VALUES ('{patient_id}', '{name}', '{surname}', 
                     TO_DATE('{birthday}', 'DD/MM/YYYY'), '0000', '{phone_number}')"""
 
-GET_PATIENT = """SELECT patsno, adi, soyadi, baba_adi, droj, firmano, cep1
-                 FROM ng_his_rshtl WHERE adi='{name}' AND soyadi='{surname}'
-                 AND cep1='{phone_number}' AND droj=TO_DATE('{birthday}', 'DD/MM/YYYY')"""
+
 
 
 # -- AVAILABLE_APPOINTMENT_TIMES String Format --

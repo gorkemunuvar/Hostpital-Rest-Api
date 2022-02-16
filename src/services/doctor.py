@@ -35,9 +35,11 @@ class DoctorService():
         return doctors
 
     @staticmethod
-    def get_doctor_by_id(doctor_id: str) -> Doctor:
+    def get_doctor_by_id(id: str) -> Doctor:
         connection = Connection.create()
-        cursor = Connection.execute(connection, DOCTOR_BY_ID)
+        
+        query = DOCTOR_BY_ID.format(id=id)
+        cursor = Connection.execute(connection, query)
 
         doctor = Doctor()
         if cursor:

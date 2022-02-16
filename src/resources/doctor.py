@@ -1,6 +1,7 @@
 import json
 from flask import request, abort, send_file, make_response, jsonify
 from flask_restful import Resource
+from models.doctor import Doctor
 
 from services.doctor import DoctorService
 from schemas.doctor import DoctorSchema
@@ -43,48 +44,17 @@ class AllDoctors(Resource):
 class DoctorById(Resource):
     @classmethod
     def get(cls, id):
-        from utils.database import Connection
-        from utils.queries import DOCTOR_BY_ID
+        doctor_dict = {}
+        try:
+            doctor = DoctorService.get_doctor_by_id(id)
 
-        connection = Connection.create()
-        cursor = connection.cursor()
+            if doctor:
+                doctor_dict = doctor_schema.dump(doctor)
+        except Exception as error:
+            print(error)
+            return {'message': f'Something went wrong. ({error})'.format(error=error)}, 500
 
-        cursor = cursor.execute(DOCTOR_BY_ID)
-        row = cursor.fetchone()
-
-        for row in cursor:
-            print(row[0])
-            print(row[1])
-            print(row[2])
-            print(row[3])
-            print(row[4])
-            print(row[5])
-            print(row[6])
-            print(row[7])
-            print(row[8])
-
-        print('types of columns')
-
-        # for column in row:
-        #     print(type(column))
-
-        # for row in cursor:
-        #     image = row[5]
-
-        #     print('type')
-        #     print(type(image))
-
-        #     dumped_image = json.dumps(str(image))
-
-        # return send_file(dumped_image, mimetype='image/png'), 200
-
-        # doctor = DoctorService.get_doctor_by_id(id)
-        # doctor_dict = doctor_schema.dump(doctor)
-
-        # if doctor:
-        #     return {'doctor': doctor_dict}, 200
-
-        # return {'message': 'Doctor not found..'}, 404
+        return {'doctor': doctor_dict}, 200
 
 
 class DoctorsByPolyclinicId(Resource):
