@@ -1,6 +1,6 @@
 from utils.database import Connection
-from utils.queries import (AVAILABLE_APPOINTMENT_DATES_BY_DOCTOR_ID,
-                           AVAILABLE_APPOINTMENT_DATES_BY_PROFESSION)
+from queries.available_date import (AVAILABLE_APPOINTMENT_DATES_BY_DOCTOR_ID,
+                                    AVAILABLE_APPOINTMENT_DATES_BY_PROFESSION)
 
 
 class AvailableAppoinmentDateService():

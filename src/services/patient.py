@@ -1,17 +1,20 @@
 from typing import Union
 from models.patient import Patient
 from utils.database import Connection
-from utils.queries import CHECK_PATIENT, CREATE_PATIENT_ID, CREATE_PATIENT, GET_PATIENT
 from utils.string_handler import StringHandler
+from queries.patient import (CHECK_PATIENT, CREATE_PATIENT_ID,
+                             CREATE_PATIENT, GET_PATIENT)
+
 
 class PatientService():
     @staticmethod
     def is_patient_exist(name: str, surname: str, birthday: str) -> bool:
         connection = Connection.create()
-        query = CHECK_PATIENT.format(name=name, surname=surname, birthday=birthday)
+        query = CHECK_PATIENT.format(
+            name=name, surname=surname, birthday=birthday)
 
         cursor = Connection.execute(connection, query)
-        
+
         if cursor:
             row = cursor.fetchone()
             cursor.close()
@@ -36,7 +39,8 @@ class PatientService():
                        birthday: str, phone_number: str) -> None:
         connection = Connection.create()
         cursor = connection.cursor()
-
+        
+        print('PATIENT BIRTHDAY {}'.format(birthday))
         query = CREATE_PATIENT.format(patient_id=patient_id, name=name,
                                       surname=surname, birthday=birthday,
                                       phone_number=phone_number)
@@ -44,7 +48,7 @@ class PatientService():
         cursor = Connection.execute(connection, query)
         connection.commit()
 
-        if cursor:    
+        if cursor:
             cursor.close()
 
     @staticmethod
@@ -63,7 +67,7 @@ class PatientService():
 
             if row:
                 patient = Patient(id=row[0], name=row[1], surname=row[2],
-                                birthday=row[4], phone_number=row[5])
+                                  birthday=row[4], phone_number=row[5])
                 return patient
 
             cursor.close()

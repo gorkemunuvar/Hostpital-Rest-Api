@@ -1,9 +1,9 @@
 from utils.database import Connection
 from models.doctor import Doctor
 from utils.image_handler import ImageHandler
-from utils.queries import (ALL_DOCTORS, DOCTOR_BY_ID,
-                           DOCTORS_BY_POLYCLINIC_ID, DOCTORS_BY_PROFESSION_ID,
-                           SEARCH_DOCTORS)
+from queries.doctor import (ALL_DOCTORS, DOCTOR_BY_ID,
+                            DOCTORS_BY_POLYCLINIC_ID, DOCTORS_BY_PROFESSION_ID,
+                            SEARCH_DOCTORS)
 
 
 class DoctorService():
@@ -37,7 +37,7 @@ class DoctorService():
     @staticmethod
     def get_doctor_by_id(id: str) -> Doctor:
         connection = Connection.create()
-        
+
         query = DOCTOR_BY_ID.format(id=id)
         cursor = Connection.execute(connection, query)
 

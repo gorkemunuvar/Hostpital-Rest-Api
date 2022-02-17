@@ -1,6 +1,6 @@
 from models.news import News
 from utils.database import Connection
-from utils.queries import NEWS
+from queries.news import NEWS
 from utils.image_handler import ImageHandler
 from utils.string_handler import StringHandler
 

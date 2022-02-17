@@ -1,6 +1,6 @@
 from utils.database import Connection
 from models.polyclinic import Polyclinic
-from utils.queries import POLYCLINICS, SEARCH_POLYCLINICS
+from queries.polyclinic import POLYCLINICS, SEARCH_POLYCLINICS
 
 
 class PolyclinicService():
