@@ -1,27 +1,33 @@
 from typing import Union
 from models.patient import Patient
 from utils.database import Connection
-from utils.string_handler import StringHandler
-from queries.patient import (CHECK_PATIENT, CREATE_PATIENT_ID,
+from queries.patient import (SEARCH_PATIENT, CREATE_PATIENT_ID,
                              CREATE_PATIENT, GET_PATIENT)
 
 
 class PatientService():
     @staticmethod
-    def is_patient_exist(name: str, surname: str, birthday: str) -> bool:
+    def search_patient_id(name: str, surname: str, birthday: str) -> Union[int, None]:
         connection = Connection.create()
-        query = CHECK_PATIENT.format(
-            name=name, surname=surname, birthday=birthday)
+        query = SEARCH_PATIENT.format(
+            name=name, surname=surname, birthday=birthday
+        )
 
-        cursor = Connection.execute(connection, CHECK_PATIENT)
-        
+        cursor = Connection.execute(connection, query)
+
         if cursor:
             row = cursor.fetchone()
+
+            if not row:
+                return None
+
+            patient_id = row[0]
             cursor.close()
 
-        if row:
-            return True
-        return False
+            if patient_id:
+                return patient_id
+
+        return None
 
     @staticmethod
     def create_patient_id() -> str:
@@ -39,8 +45,6 @@ class PatientService():
                        birthday: str, phone_number: str) -> None:
         connection = Connection.create()
         cursor = connection.cursor()
-        
-        print('BIRTHDAY: {}'.format(birthday))
 
         query = CREATE_PATIENT.format(patient_id=patient_id, name=name,
                                       surname=surname, birthday=birthday,
@@ -70,6 +74,6 @@ class PatientService():
                 patient = Patient(id=row[0], name=row[1], surname=row[2],
                                   birthday=row[4], phone_number=row[5])
                 return patient
-            
+
             cursor.close()
         return None

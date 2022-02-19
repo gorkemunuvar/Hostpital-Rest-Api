@@ -3,8 +3,6 @@ from flask_restful import Resource
 from marshmallow import ValidationError
 
 from services.patient import PatientService
-from schemas.patient import PatientSchema
-
 
 class Patient(Resource):
     @classmethod
@@ -12,28 +10,28 @@ class Patient(Resource):
         try:
             patient_dict = request.get_json()
 
-            print('111111111111111')
-            patient = PatientService.get_patient(**patient_dict)
+            patient_id = PatientService.search_patient_id(
+                name=patient_dict['name'],
+                surname=patient_dict['surname'],
+                birthday=patient_dict['birthday']
+            )
 
-            print('222222222222222222')
-            if patient:
+            if patient_id:
+
                 return {'message': 'Patient ID has been already created.',
                         'patient': {
-                            'id':  patient.id
+                            'id':  patient_id
                         }}, 200
             else:
-                patient_id = PatientService.create_patient_id()
+                new_patient_id = PatientService.create_patient_id()
 
-                print('333333333333')
                 PatientService.create_patient(
-                    patient_id=patient_id, **patient_dict
+                    patient_id=new_patient_id, **patient_dict
                 )
-
-                print('44444444444')
 
                 return {'message': 'Patient ID created.',
                         'patient': {
-                            'id': patient_id
+                            'id': new_patient_id
                         }}, 201
         except Exception as error:
             print(error)
