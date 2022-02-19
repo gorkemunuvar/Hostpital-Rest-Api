@@ -13,8 +13,8 @@ class PatientService():
         query = CHECK_PATIENT.format(
             name=name, surname=surname, birthday=birthday)
 
-        cursor = Connection.execute(connection, query)
-
+        cursor = Connection.execute(connection, CHECK_PATIENT)
+        
         if cursor:
             row = cursor.fetchone()
             cursor.close()
@@ -40,7 +40,8 @@ class PatientService():
         connection = Connection.create()
         cursor = connection.cursor()
         
-        print('PATIENT BIRTHDAY {}'.format(birthday))
+        print('BIRTHDAY: {}'.format(birthday))
+
         query = CREATE_PATIENT.format(patient_id=patient_id, name=name,
                                       surname=surname, birthday=birthday,
                                       phone_number=phone_number)
@@ -69,7 +70,6 @@ class PatientService():
                 patient = Patient(id=row[0], name=row[1], surname=row[2],
                                   birthday=row[4], phone_number=row[5])
                 return patient
-
+            
             cursor.close()
-
         return None

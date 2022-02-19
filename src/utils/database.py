@@ -26,7 +26,6 @@ class Connection(oracle.Connection):
     @staticmethod
     def execute(connection: Connection, query: str) -> Union[oracle.Cursor, None]:
         cursor = connection.cursor()
-
         return cursor.execute(query)
 
     @classmethod
