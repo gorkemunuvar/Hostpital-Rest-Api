@@ -52,12 +52,14 @@ class AppointmentService():
         return None
 
     @classmethod
-    def get_active_appointments(cls) -> list[Appointment]:
-        return cls.__get_appointments(ACTIVE_APPOINTMENTS)
+    def get_active_appointments(cls, patient_id: str) -> list[Appointment]:
+        query = ACTIVE_APPOINTMENTS.format(patient_id=patient_id)
+        return cls.__get_appointments(query)
 
     @classmethod
-    def get_past_appointments(cls) -> list[Appointment]:
-        return cls.__get_appointments(PAST_APPOINTMENTS)
+    def get_past_appointments(cls, patient_id: str) -> list[Appointment]:
+        query = PAST_APPOINTMENTS.format(patient_id=patient_id)
+        return cls.__get_appointments(query)
 
     @classmethod
     def __get_appointments(cls, query: str) -> list[Appointment]:

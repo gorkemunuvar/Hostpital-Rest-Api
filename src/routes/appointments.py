@@ -10,7 +10,7 @@ Api(APPOINTMENT_BLUEPRINT).add_resource(
     CreateAppointment, '/appointments')
 
 Api(APPOINTMENT_BLUEPRINT).add_resource(
-    ActiveAppointments, '/appointments/active')
+    ActiveAppointments, '/patients/<string:patient_id>/appointments/active')
 
 Api(APPOINTMENT_BLUEPRINT).add_resource(
-    PastAppointments, '/appointments/past')
+    PastAppointments, '/patients/<string:patient_id>/appointments/past')

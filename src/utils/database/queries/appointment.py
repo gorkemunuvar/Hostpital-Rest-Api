@@ -2,7 +2,9 @@
 
 IS_APPOINTMENT_TAKEN = """SELECT hasta_id FROM ng_his_pasrandevu 
                           WHERE randevu_saati='{time}' AND datar=TO_DATE('{date}', 'DD/MM/YYYY') 
-                          AND kabinet_id='{profession_id}' AND (doktor_id='{doctor_id}' OR doktor_id IS null) AND IPTAL IS NULL"""
+                          AND kabinet_id='{profession_id}' 
+                          AND (doktor_id='{doctor_id}' OR doktor_id IS null) 
+                          AND IPTAL IS NULL"""
 """<doctor_id> can be passed null if there is no doctor."""
 
 CREATE_APPOINTMENT_ID = """SELECT NG_HIS_RNDSRN.NEXTVAL FROM DUAL"""
@@ -27,8 +29,8 @@ ACTIVE_APPOINTMENTS = """SELECT ng_his_pasrandevu.datar, ng_his_pasrandevu.rande
                          AND ng_his_pasrandevu.kabinet_id = ng_his_glzr.kabinet
                          AND ng_his_rpsl.kullan(+) = ng_his_pasrandevu.doktor_id
                          AND ng_his_pasrandevu.iptal is null
-                         AND ng_his_pasrandevu.hasta_id = '1600111'
-                         AND ng_his_pasrandevu.datar >= TO_DATE(sysdate, 'dd/mm/yy')"""
+                         AND ng_his_pasrandevu.hasta_id = '{patient_id}'
+                         AND TO_DATE(ng_his_pasrandevu.datar, 'DD/MM/YYYY') >= TO_DATE(sysdate, 'DD/MM/YYYY')"""
 
 
 PAST_APPOINTMENTS = """SELECT ng_his_pasrandevu.datar, ng_his_pasrandevu.randevu_saati,
@@ -40,5 +42,5 @@ PAST_APPOINTMENTS = """SELECT ng_his_pasrandevu.datar, ng_his_pasrandevu.randevu
                        AND ng_his_pasrandevu.kabinet_id=ng_his_glzr.kabinet
                        AND ng_his_rpsl.kullan(+)=ng_his_pasrandevu.doktor_id
                        AND ng_his_pasrandevu.iptal is null
-                       AND ng_his_pasrandevu.hasta_id='152010896'
-                       AND ng_his_pasrandevu.datar < TO_DATE(sysdate, 'dd/mm/yy')"""
+                       AND ng_his_pasrandevu.hasta_id='{patient_id}'
+                       AND TO_DATE(ng_his_pasrandevu.datar, 'DD/MM/YYYY') < TO_DATE(sysdate, 'DD/MM/YYYY')"""
