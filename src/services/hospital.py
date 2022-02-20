@@ -1,6 +1,6 @@
-from utils.database import Connection
+from utils.database.database import Connection
 from models.hospital import Hospital
-from queries.hospital import HOSPITALS
+from utils.database.queries.hospital import HOSPITALS
 
 
 class HospitalService():

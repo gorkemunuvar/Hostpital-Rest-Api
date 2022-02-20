@@ -1,6 +1,6 @@
 from flask_restful import Resource
 
-from schemas.profession import ProfessionSchema
+from utils.schemas.profession import ProfessionSchema
 from services.profession import ProfessionService
 
 professions_schmea = ProfessionSchema(many=True)

@@ -1,7 +1,7 @@
 from flask import Blueprint
 from flask_restful import Api
 
-from resources.available_appointment_date import (AvailableAppointmentDatesByDoctorId,
+from resources.available_date import (AvailableAppointmentDatesByDoctorId,
                                                   AvailableAppointmentDatesByProfession)
 
 AVAILABLE_APPOINTMENT_DATE_BLUEPRINT = Blueprint(

@@ -2,7 +2,7 @@ from os import name
 from flask_restful import Resource
 
 from models.hospital import Hospital
-from schemas.hospital import HospitalSchema
+from utils.schemas.hospital import HospitalSchema
 from services.hospital import HospitalService
 
 hospitals_schema = HospitalSchema(many=True)

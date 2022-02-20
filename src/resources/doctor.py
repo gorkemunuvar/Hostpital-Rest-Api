@@ -4,8 +4,8 @@ from flask_restful import Resource
 from models.doctor import Doctor
 
 from services.doctor import DoctorService
-from schemas.doctor import DoctorSchema
-from schemas.pagination import PaginationSchema
+from utils.schemas.doctor import DoctorSchema
+from utils.schemas.pagination import PaginationSchema
 
 pagination_schema = PaginationSchema()
 doctor_schema = DoctorSchema()

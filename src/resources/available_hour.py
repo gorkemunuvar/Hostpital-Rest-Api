@@ -1,6 +1,6 @@
 from flask_restful import Resource
 
-from services.available_appointment_time import AvailableAppoinmentTimeService
+from services.available_hour import AvailableAppoinmentTimeService
 
 
 class AvailableAppoinmentTimeByDoctorId(Resource):

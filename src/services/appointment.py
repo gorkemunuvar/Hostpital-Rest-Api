@@ -1,13 +1,13 @@
 from typing import Union
 
-from utils.database import Connection
-from schemas.appointment import AppointmentSchema
+from utils.database.database import Connection
+from utils.schemas.appointment import AppointmentSchema
 from models.appointment import Appointment
 
 from utils.string_handler import StringHandler
-from queries.appointment import (ACTIVE_APPOINTMENTS, PAST_APPOINTMENTS,
-                                 IS_APPOINTMENT_TAKEN, CREATE_APPOINTMENT_ID,
-                                 CREATE_APPOINTMENT)
+from utils.database.queries.appointment import (ACTIVE_APPOINTMENTS, PAST_APPOINTMENTS,
+                                                IS_APPOINTMENT_TAKEN, CREATE_APPOINTMENT_ID,
+                                                CREATE_APPOINTMENT)
 
 appointment_schema = AppointmentSchema()
 

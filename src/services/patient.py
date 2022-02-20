@@ -1,7 +1,7 @@
 from typing import Union
 from models.patient import Patient
-from utils.database import Connection
-from queries.patient import (SEARCH_PATIENT, CREATE_PATIENT_ID,
+from utils.database.database import Connection
+from utils.database.queries.patient import (SEARCH_PATIENT, CREATE_PATIENT_ID,
                              CREATE_PATIENT, GET_PATIENT)
 
 

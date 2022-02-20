@@ -1,7 +1,7 @@
 import datetime
 
-from utils.database import Connection
-from queries.available_time import (AVAILABLE_APPOINTMENT_TIMES,
+from utils.database.database import Connection
+from utils.database.queries.available_time import (AVAILABLE_APPOINTMENT_TIMES,
                                     AVAILABLE_APPOINTMENT_TIME_REQUIREMENTS_BY_DOCTOR_ID,
                                     AVAILABLE_APPOINTMENT_TIME_REQUIREMENTS_BY_PROFESSION)
 

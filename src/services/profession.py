@@ -1,6 +1,6 @@
-from utils.database import Connection
+from utils.database.database import Connection
 from models.profession import Profession
-from queries.profession import PROFESSIONS_BY_POLYCLINIC_ID
+from utils.database.queries.profession import PROFESSIONS_BY_POLYCLINIC_ID
 
 
 class ProfessionService():

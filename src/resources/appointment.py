@@ -2,7 +2,7 @@ from flask import request
 from flask_restful import Resource
 
 from models.appointment import Appointment
-from schemas.appointment import AppointmentSchema
+from utils.schemas.appointment import AppointmentSchema
 from services.appointment import AppointmentService
 
 appointment_schema = AppointmentSchema()
