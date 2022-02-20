@@ -67,3 +67,14 @@ class PastAppointments(Resource):
         except Exception as error:
             print(error)
             return {'message': f'Something went wrong. ({error})'.format(error=error)}, 500
+
+
+class CancelAppointment(Resource):
+    @classmethod
+    def put(cls, appointment_id):
+        try:
+            AppointmentService.cancel_appointment(appointment_id)
+            return {'message': 'Appointment deleted succesfully.'}, 200
+        except Exception as error:
+            print(error)
+            return {'message': f'Something went wrong. ({error})'.format(error=error)}, 500

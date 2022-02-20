@@ -1,7 +1,8 @@
 from flask import Blueprint
 from flask_restful import Api
 
-from resources.appointment import ActiveAppointments, PastAppointments, CreateAppointment
+from resources.appointment import (ActiveAppointments, PastAppointments,
+                                   CreateAppointment, CancelAppointment)
 
 APPOINTMENT_BLUEPRINT = Blueprint('appointment', __name__)
 
@@ -14,3 +15,7 @@ Api(APPOINTMENT_BLUEPRINT).add_resource(
 
 Api(APPOINTMENT_BLUEPRINT).add_resource(
     PastAppointments, '/patients/<string:patient_id>/appointments/past')
+
+
+Api(APPOINTMENT_BLUEPRINT).add_resource(
+    CancelAppointment, '/appointments/<string:appointment_id>')

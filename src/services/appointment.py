@@ -1,3 +1,4 @@
+from sqlite3 import connect
 from typing import Union
 
 from utils.database.database import Connection
@@ -7,7 +8,7 @@ from models.appointment import Appointment
 from utils.string_handler import StringHandler
 from utils.database.queries.appointment import (ACTIVE_APPOINTMENTS, PAST_APPOINTMENTS,
                                                 IS_APPOINTMENT_TAKEN, CREATE_APPOINTMENT_ID,
-                                                CREATE_APPOINTMENT)
+                                                CREATE_APPOINTMENT, CANCEL_APPOINTMENT)
 
 appointment_schema = AppointmentSchema()
 
@@ -72,7 +73,7 @@ class AppointmentService():
                 formatted_date = StringHandler.select_first_element_of(
                     str(row[0]))
 
-                appointment = Appointment(date=formatted_date, time=row[1],
+                appointment = Appointment(id=row[11], date=formatted_date, time=row[1],
                                           profession_id=row[2], profession_name=row[3],
                                           doctor_id=row[4], doctor_name=row[5],
                                           doctor_surname=row[6], patient_name=row[7],
@@ -83,3 +84,14 @@ class AppointmentService():
             cursor.close()
 
         return appointments
+
+    @classmethod
+    def cancel_appointment(cls, appointment_id: str) -> None:
+        connection = Connection.create()
+
+        query = CANCEL_APPOINTMENT.format(appointment_id=appointment_id)
+        cursor = Connection.execute(connection, query)
+        connection.commit()
+
+        if cursor:
+            cursor.close()
