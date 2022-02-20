@@ -30,7 +30,8 @@ ACTIVE_APPOINTMENTS = """SELECT ng_his_pasrandevu.datar, ng_his_pasrandevu.rande
                          AND ng_his_rpsl.kullan(+) = ng_his_pasrandevu.doktor_id
                          AND ng_his_pasrandevu.iptal is null
                          AND ng_his_pasrandevu.hasta_id = '{patient_id}'
-                         AND TO_DATE(ng_his_pasrandevu.datar, 'DD/MM/YYYY') >= TO_DATE(sysdate, 'DD/MM/YYYY')"""
+                         AND TO_DATE(ng_his_pasrandevu.datar, 'DD/MM/YYYY') >= TO_DATE(sysdate, 'DD/MM/YYYY')
+                         ORDER BY ng_his_pasrandevu.datar, ng_his_pasrandevu.randevu_saati ASC"""
 
 
 PAST_APPOINTMENTS = """SELECT ng_his_pasrandevu.datar, ng_his_pasrandevu.randevu_saati,
@@ -43,4 +44,5 @@ PAST_APPOINTMENTS = """SELECT ng_his_pasrandevu.datar, ng_his_pasrandevu.randevu
                        AND ng_his_rpsl.kullan(+)=ng_his_pasrandevu.doktor_id
                        AND ng_his_pasrandevu.iptal is null
                        AND ng_his_pasrandevu.hasta_id='{patient_id}'
-                       AND TO_DATE(ng_his_pasrandevu.datar, 'DD/MM/YYYY') < TO_DATE(sysdate, 'DD/MM/YYYY')"""
+                       AND TO_DATE(ng_his_pasrandevu.datar, 'DD/MM/YYYY') < TO_DATE(sysdate, 'DD/MM/YYYY')
+                       ORDER BY ng_his_pasrandevu.datar, ng_his_pasrandevu.randevu_saati ASC"""
