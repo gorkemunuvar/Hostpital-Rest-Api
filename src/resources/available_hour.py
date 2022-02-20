@@ -1,20 +1,17 @@
 from flask_restful import Resource
 
-from services.available_hour import AvailableAppoinmentTimeService
+from services.available_hour import AvailableHourService
 
 
-class AvailableAppoinmentTimeByDoctorId(Resource):
+class AvailableHoursByDoctorId(Resource):
     @classmethod
     def get(cls, date: str, id: str = None):
         try:
             date = format_date_input(date)
-
-            availableAppoinmentTimes = AvailableAppoinmentTimeService.get_avaiable_appoinment_times(
-                date, id
-            )
-
-            if availableAppoinmentTimes:
-                return {'available_times': availableAppoinmentTimes}, 200
+            available_hours = AvailableHourService.get_avaiable_hours(date, id)
+            
+            if available_hours:
+                return {'available_times': available_hours}, 200
 
             return {'message': 'Available times not found!'}, 404
         except Exception as error:
@@ -22,17 +19,15 @@ class AvailableAppoinmentTimeByDoctorId(Resource):
             return {'message': f'Something went wrong. ({error})'.format(error=error)}, 500
 
 
-class AvailableAppoinmentTimeByProfession(Resource):
+class AvailableHoursByProfession(Resource):
     @classmethod
     def get(cls, date: str):
         try:
             date = format_date_input(date)
-
-            availableTimes = AvailableAppoinmentTimeService.get_avaiable_appoinment_times(
-                date)
-
-            if availableTimes:
-                return {'available_times': availableTimes}, 200
+            available_hours = AvailableHourService.get_avaiable_hours(date)
+            
+            if available_hours:
+                return {'available_times': available_hours}, 200
 
             return {'message': 'Available times not found!'}, 404
         except Exception as error:

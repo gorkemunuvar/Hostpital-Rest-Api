@@ -1,14 +1,14 @@
 import datetime
 
 from utils.database.database import Connection
-from utils.database.queries.available_time import (AVAILABLE_APPOINTMENT_TIMES,
-                                    AVAILABLE_APPOINTMENT_TIME_REQUIREMENTS_BY_DOCTOR_ID,
-                                    AVAILABLE_APPOINTMENT_TIME_REQUIREMENTS_BY_PROFESSION)
+from utils.database.queries.available_hour import (AVAILABLE_HOURS,
+                                                   AVAILABLE_HOUR_REQUIREMENTS_BY_DOCTOR_ID,
+                                                   AVAILABLE_HOUR_REQUIREMENTS_BY_PROFESSION)
 
 
-class AvailableAppoinmentTimeService():
+class AvailableHourService():
     @staticmethod
-    def get_avaiable_appoinment_times(selected_date: str, id: str = None) -> list[str]:
+    def get_avaiable_hours(selected_date: str, id: str = None) -> list[str]:
         """selected_date format <yyyy/mm/dd>"""
 
         if id:
@@ -19,7 +19,7 @@ class AvailableAppoinmentTimeService():
         if not query_requirements:
             return []
 
-        query = AVAILABLE_APPOINTMENT_TIMES.format(
+        query = AVAILABLE_HOURS.format(
             appointment_date=query_requirements['appointment_date'],
             beginning_time=query_requirements['beginning_time'],
             ending_time=query_requirements['ending_time'],
@@ -30,14 +30,14 @@ class AvailableAppoinmentTimeService():
         connection = Connection.create()
         cursor = Connection.execute(connection, query)
 
-        available_times = []
+        available_hours = []
         if cursor:
             for row in cursor:
-                available_times.append(str(row[1]))
+                available_hours.append(str(row[1]))
 
             cursor.close()
 
-        return available_times
+        return available_hours
 
 
 def get_query_requirements(selected_date: str, doctor_id: str = None) -> dict:
@@ -45,10 +45,10 @@ def get_query_requirements(selected_date: str, doctor_id: str = None) -> dict:
 
     query_for_requirements = ''
     if doctor_id:
-        query_for_requirements = AVAILABLE_APPOINTMENT_TIME_REQUIREMENTS_BY_DOCTOR_ID.format(
+        query_for_requirements = AVAILABLE_HOUR_REQUIREMENTS_BY_DOCTOR_ID.format(
             doctor_id=doctor_id)
     else:
-        query_for_requirements = AVAILABLE_APPOINTMENT_TIME_REQUIREMENTS_BY_PROFESSION
+        query_for_requirements = AVAILABLE_HOUR_REQUIREMENTS_BY_PROFESSION
 
     connection = Connection.create()
     cursor = Connection.execute(connection, query_for_requirements)
