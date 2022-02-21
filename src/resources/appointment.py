@@ -34,7 +34,7 @@ class CreateAppointment(Resource):
 
             appointment_dict['id'] = AppointmentService.create_appointment_id()
             appointment = Appointment(**appointment_dict)
-            
+
             AppointmentService.create_appointment(appointment)
             return {'message': 'Appointment created succesfully.'}, 201
         except Exception as error:
@@ -73,8 +73,17 @@ class CancelAppointment(Resource):
     @classmethod
     def put(cls, appointment_id):
         try:
-            AppointmentService.cancel_appointment(appointment_id)
-            return {'message': 'Appointment deleted succesfully.'}, 200
+            is_appointment_exist = AppointmentService.is_appointment_exist(
+                appointment_id
+            )
+
+            if is_appointment_exist:
+                AppointmentService.cancel_appointment(appointment_id)
+                return {'message': 'Appointment deleted succesfully.'}, 200
+
+            return {'message': 'Appointment not found.'}, 404
+
+    
         except Exception as error:
             print(error)
             return {'message': f'Something went wrong. ({error})'.format(error=error)}, 500

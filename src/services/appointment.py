@@ -8,7 +8,8 @@ from models.appointment import Appointment
 from utils.string_handler import StringHandler
 from utils.database.queries.appointment import (ACTIVE_APPOINTMENTS, PAST_APPOINTMENTS,
                                                 IS_APPOINTMENT_TAKEN, CREATE_APPOINTMENT_ID,
-                                                CREATE_APPOINTMENT, CANCEL_APPOINTMENT)
+                                                CREATE_APPOINTMENT, CANCEL_APPOINTMENT,
+                                                IS_APPOINTMENT_EXIST)
 
 appointment_schema = AppointmentSchema()
 
@@ -85,6 +86,7 @@ class AppointmentService():
 
         return appointments
 
+
     @classmethod
     def cancel_appointment(cls, appointment_id: str) -> None:
         connection = Connection.create()
@@ -95,3 +97,17 @@ class AppointmentService():
 
         if cursor:
             cursor.close()
+
+    
+    @classmethod
+    def is_appointment_exist(cls, appointment_id: str) -> bool:
+        connection = Connection.create()
+        query = IS_APPOINTMENT_EXIST.format(appointment_id=appointment_id)
+
+        cursor = Connection.execute(connection, query)
+        row = cursor.fetchone()
+    
+
+        if row:
+            return True
+        return False

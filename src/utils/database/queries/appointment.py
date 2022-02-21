@@ -49,6 +49,8 @@ PAST_APPOINTMENTS = """SELECT ng_his_pasrandevu.datar, ng_his_pasrandevu.randevu
                        AND TO_DATE(ng_his_pasrandevu.datar, 'DD/MM/YYYY') < TO_DATE(sysdate, 'DD/MM/YYYY')
                        ORDER BY ng_his_pasrandevu.datar, ng_his_pasrandevu.randevu_saati ASC"""
 
+IS_APPOINTMENT_EXIST = """SELECT randevu_id FROM ng_his_pasrandevu WHERE randevu_id={appointment_id}"""
+
 CANCEL_APPOINTMENT = """UPDATE NG_HIS_PASRANDEVU SET IPTAL='X',
                         IPTALTUR='D', LOGLAR=NULL,
                         IPTAL_TAR=TO_DATE(SYSDATE,'DD/MM/YYYY'),
