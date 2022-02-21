@@ -1,6 +1,7 @@
 from utils.database.database import Connection
 from models.polyclinic import Polyclinic
 from utils.database.queries.polyclinic import POLYCLINICS, SEARCH_POLYCLINICS
+from utils.image_handler import ImageHandler
 
 
 class PolyclinicService():
@@ -12,12 +13,22 @@ class PolyclinicService():
         polyclinics = []
         if cursor:
             for row in cursor:
+                image_base64 = ''
+                lob_image = row[3]
+
+                print(type(lob_image))
+
+                if lob_image:
+                    image_base64 = ImageHandler.convert_lob_to_base64_str(
+                        lob_image)
+
                 description = row[2]
                 if not description:
                     description = '-'
 
                 polyclinic = Polyclinic(id=row[0], title=row[1],
-                                        description=description)
+                                        description=description,
+                                        image = image_base64)
                 polyclinics.append(polyclinic)
 
             cursor.close()
@@ -34,12 +45,20 @@ class PolyclinicService():
         polyclinics = []
         if cursor:
             for row in cursor:
+                image_base64 = ''
+                lob_image = row[3]
+
+                if lob_image:
+                    image_base64 = ImageHandler.convert_lob_to_base64_str(
+                        lob_image)
+
                 description = row[2]
                 if not description:
                     description = '-'
 
                 polyclinic = Polyclinic(id=row[0], title=row[1],
-                                        description=description)
+                                        description=description,
+                                        image=image_base64)
                 polyclinics.append(polyclinic)
 
             cursor.close()

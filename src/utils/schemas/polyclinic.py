@@ -7,4 +7,4 @@ class PolyclinicSchema(BaseSchema):
     id = fields.Str()
     title = fields.Str()
     description = fields.Str()
-    image_path = fields.Str()
+    image = fields.Str()

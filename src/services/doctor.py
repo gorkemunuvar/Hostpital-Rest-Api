@@ -75,7 +75,7 @@ class DoctorService():
                                 image_base64=doctor_image_base64)
 
                 doctors.append(doctor)
-
+                
             cursor.close()
 
         return doctors
