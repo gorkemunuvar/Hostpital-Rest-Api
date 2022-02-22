@@ -3,9 +3,9 @@ from flask_restful import Resource
 from datetime import datetime
 
 from models.appointment import Appointment
-from utils.schemas.appointment import AppointmentSchema
+from core.utils.schemas.appointment import AppointmentSchema
 from services.appointment import AppointmentService
-from utils.string_handler import StringHandler
+from core.utils.string_handler import StringHandler
 
 appointment_schema = AppointmentSchema()
 appointments_schema = AppointmentSchema(many=True)

@@ -3,7 +3,7 @@ from typing import Union
 
 import cx_Oracle as oracle
 
-from utils.config import DevelopmentConfig
+from core.utils.config import DevelopmentConfig
 
 configs = DevelopmentConfig()
 

@@ -1,7 +1,7 @@
-from utils.database.database import Connection
+from core.utils.database.database import Connection
 from models.polyclinic import Polyclinic
-from utils.database.queries.ru.polyclinic import POLYCLINICS, SEARCH_POLYCLINICS
-from utils.image_handler import ImageHandler
+from core.utils.database.queries.ru.polyclinic import POLYCLINICS, SEARCH_POLYCLINICS
+from core.utils.image_handler import ImageHandler
 
 
 class PolyclinicService():

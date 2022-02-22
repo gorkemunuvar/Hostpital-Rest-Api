@@ -1,6 +1,6 @@
 from flask_restful import Resource
 
-from utils.schemas.polyclinic import PolyclinicSchema
+from core.utils.schemas.polyclinic import PolyclinicSchema
 from services.polyclinic import PolyclinicService
 
 polyclinic_schmea = PolyclinicSchema()

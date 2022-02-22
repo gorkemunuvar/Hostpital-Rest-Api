@@ -1,7 +1,7 @@
 from flask_restful import Resource
 
 from services.available_hour import AvailableHourService
-from utils.string_handler import StringHandler
+from core.utils.string_handler import StringHandler
 
 
 class AvailableHoursByDoctorId(Resource):

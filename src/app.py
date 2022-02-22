@@ -3,7 +3,7 @@ import routes
 from flask import Flask
 from flask.blueprints import Blueprint
 
-from utils.config import DevelopmentConfig
+from core.utils.config import DevelopmentConfig
 
 configs = DevelopmentConfig()
 

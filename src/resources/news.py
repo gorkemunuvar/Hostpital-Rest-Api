@@ -2,8 +2,8 @@ from flask import request, abort
 from flask_restful import Resource
 
 from services.news import NewsService
-from utils.schemas.news import NewsSchema
-from utils.schemas.pagination import PaginationSchema
+from core.utils.schemas.news import NewsSchema
+from core.utils.schemas.pagination import PaginationSchema
 
 
 pagination_schema = PaginationSchema()

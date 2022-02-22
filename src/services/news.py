@@ -1,8 +1,8 @@
 from models.news import News
-from utils.database.database import Connection
-from utils.database.queries.ru.news import NEWS
-from utils.image_handler import ImageHandler
-from utils.string_handler import StringHandler
+from core.utils.database.database import Connection
+from core.utils.database.queries.ru.news import NEWS
+from core.utils.image_handler import ImageHandler
+from core.utils.string_handler import StringHandler
 
 
 class NewsService():

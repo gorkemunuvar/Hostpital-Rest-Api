@@ -1,6 +1,6 @@
-from utils.database.database import Connection
+from core.utils.database.database import Connection
 from models.profession import Profession
-from utils.database.queries.ru.profession import PROFESSIONS_BY_POLYCLINIC_ID
+from core.utils.database.queries.ru.profession import PROFESSIONS_BY_POLYCLINIC_ID
 
 
 class ProfessionService():
