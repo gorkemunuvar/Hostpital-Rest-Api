@@ -2,7 +2,7 @@
 # | DOKTOR_ID | SOY    | AD   | BABA | PERBILGI          | RESIM |
 # | DR582     | Yildiz | Ayse | null | Kulak Burun Boğaz | Blob  |
 
-ALL_DOCTORS = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya, ng_his_rpsl.imya,
+KK_ALL_DOCTORS = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya, ng_his_rpsl.imya,
                  ng_his_rpsl.ocest, ng_his_rpsl.perbilgi, ng_his_prsrsmm.resim,
                  ng_hıs_prsrsmm.uzmanlık, ng_hıs_prsrsmm.egıtım, ng_hıs_prsrsmm.deneyım,
                  ng_hıs_prsrsmm.sertıfıka
@@ -12,7 +12,7 @@ ALL_DOCTORS = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya, ng_his_rpsl.im
                  OFFSET 3 ROWS FETCH NEXT 1 ROWS ONLY"""
 
 
-SEARCH_DOCTORS = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya, ng_his_rpsl.imya,
+KK_SEARCH_DOCTORS = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya, ng_his_rpsl.imya,
                     ng_his_rpsl.ocest, ng_his_rpsl.perbilgi, ng_his_prsrsmm.resim,
                     ng_hıs_prsrsmm.uzmanlık, ng_hıs_prsrsmm.egıtım, ng_hıs_prsrsmm.deneyım,
                     ng_hıs_prsrsmm.sertıfıka
@@ -28,7 +28,7 @@ SEARCH_DOCTORS = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya, ng_his_rpsl
 # Şu anda mobilde ihtiyaç yok.
 # | DOKTOR_ID | SOY    | AD   | BABA   | PERBILGI          | RESIM | UZMANLIK    | EGITIM      | DENEYIM     | SERTIFIKA   |
 # | DR582     | Yildiz | Ayse | null   | Kulak Burun Boğaz | Blob  | <long text> | <long text> | <long text> | <long text>
-DOCTOR_BY_ID = """  SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya ,ng_his_rpsl.imya,ng_his_rpsl.ocest, ng_his_rpsl.perbilgi,
+KK_DOCTOR_BY_ID = """  SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya ,ng_his_rpsl.imya,ng_his_rpsl.ocest, ng_his_rpsl.perbilgi,
                     ng_hıs_prsrsmm.uzmanlık, ng_hıs_prsrsmm.egıtım, ng_hıs_prsrsmm.deneyım, ng_hıs_prsrsmm.sertıfıka,
                     NG_HIS_PRSRSMM.RESIM
                     FROM ng_his_rpsl, NG_HIS_PRSRSMM
@@ -39,7 +39,7 @@ DOCTOR_BY_ID = """  SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya ,ng_his_rpsl
 # | DOKTOR_ID | SOY    | AD   | BABA   | PERBILGI          | RESIM | PROFS |
 # | DR582     | Yildiz | Ayse | null   | Kulak Burun Boğaz | Blob  | UZ001 |
 
-DOCTORS_BY_POLYCLINIC_ID = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya, ng_his_rpsl.imya,
+KK_DOCTORS_BY_POLYCLINIC_ID = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya, ng_his_rpsl.imya,
                               ng_his_rpsl.ocest, ng_his_rpsl.perbilgi, ng_hıs_prsrsmm.uzmanlık,
                               ng_hıs_prsrsmm.egıtım, ng_hıs_prsrsmm.deneyım, ng_hıs_prsrsmm.sertıfıka,
                               ng_hıs_prsrsmm.resım, ng_his_glzr.kabinet, ng_his_glzr.isim, ng_his_glzr.profs
@@ -54,6 +54,6 @@ DOCTORS_BY_POLYCLINIC_ID = """SELECT ng_his_rpsl.kullan, ng_his_rpsl.famılya, n
 # | DOKTOR_ID | AD   | SOYAD |
 # | DR582   | Yildiz | Ayse  |
 
-DOCTORS_BY_PROFESSION_ID = """SELECT doktor_id, soy, ad FROM ng_his_vrtkmad
+KK_DOCTORS_BY_PROFESSION_ID = """SELECT doktor_id, soy, ad FROM ng_his_vrtkmad
                               WHERE servis_id='{profession_id}' AND doktor_id IS NOT null
                               GROUP BY soy, ad, baba, profs, doktor_id ORDER BY soy, ad"""

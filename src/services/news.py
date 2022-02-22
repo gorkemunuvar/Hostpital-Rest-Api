@@ -1,15 +1,19 @@
+from core.enums import Lang
 from models.news import News
 from core.utils.database.database import Connection
 from core.utils.database.queries.ru.news import NEWS
+from core.utils.database.queries.kk.news import KK_NEWS
 from core.utils.image_handler import ImageHandler
 from core.utils.string_handler import StringHandler
 
 
 class NewsService():
     @staticmethod
-    def get_news() -> list[News]:
+    def get_news(lang: Lang = None) -> list[News]:
         connection = Connection.create()
-        cursor = Connection.execute(connection, NEWS)
+        
+        query = KK_NEWS if lang is Lang.KK else NEWS
+        cursor = Connection.execute(connection, query)
 
         news_list = []
         if cursor:

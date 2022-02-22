@@ -13,7 +13,7 @@
 # | 91      | 07:30    |
 # ...
 
-AVAILABLE_HOURS = """SELECT  SIRA_NO, XDAKKIKA
+KK_AVAILABLE_HOURS = """SELECT  SIRA_NO, XDAKKIKA
                      FROM ng_his_ransaat
                      WHERE {time_interval} BETWEEN '{beginning_time}' AND '{ending_time}'
                      AND {time_interval} NOT IN (SELECT randevu_saati FROM ng_his_pasrandevu
@@ -26,7 +26,7 @@ AVAILABLE_HOURS = """SELECT  SIRA_NO, XDAKKIKA
 # | DATAR      | D     | BASSAAT | BITSAAT | SERVIS_ID   | ISIM        | PROFS | ARALIK |
 # | 29/12/2021 | прием | 11:00   | 17:00   | 64010       | 111 dahliye | UZ001 | DEGER1 |
 
-AVAILABLE_HOUR_REQUIREMENTS_BY_DOCTOR_ID = """SELECT ng_his_vractakvim.datar, 'прием' d, ng_his_vractakvim.bassaat,
+KK_AVAILABLE_HOUR_REQUIREMENTS_BY_DOCTOR_ID = """SELECT ng_his_vractakvim.datar, 'прием' d, ng_his_vractakvim.bassaat,
                                               ng_his_vractakvim.bitsaat, ng_his_vractakvim.servis_id,
                                               ng_his_glzr.isim, ng_his_glzr.profs, ng_his_kabuzman.aralik
                                               FROM ng_his_glzr,ng_his_vractakvim ,ng_his_kabuzman
@@ -38,7 +38,7 @@ AVAILABLE_HOUR_REQUIREMENTS_BY_DOCTOR_ID = """SELECT ng_his_vractakvim.datar, '�
                                               WHERE sinifi <>'S')"""
 
 
-AVAILABLE_HOUR_REQUIREMENTS_BY_PROFESSION = """SELECT ng_his_vractakvim.datar, 'прием' d, ng_his_vractakvim.bassaat,
+KK_AVAILABLE_HOUR_REQUIREMENTS_BY_PROFESSION = """SELECT ng_his_vractakvim.datar, 'прием' d, ng_his_vractakvim.bassaat,
                                                ng_his_vractakvim.bitsaat, ng_his_vractakvim.servis_id,
                                                ng_his_glzr.isim, ng_his_glzr.profs, ng_his_kabuzman.aralik
                                                FROM ng_his_glzr,ng_his_vractakvim ,ng_his_kabuzman

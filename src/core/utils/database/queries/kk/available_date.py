@@ -2,7 +2,7 @@
 # | 29/12/2021 | прием | 11:00   | 17:00   | 64010       | 111 dahliye |
 
 
-AVAILABLE_DATES_BY_DOCTOR_ID = """SELECT ng_his_vractakvim.datar, 'прием' d, ng_his_vractakvim.bassaat,
+KK_AVAILABLE_DATES_BY_DOCTOR_ID = """SELECT ng_his_vractakvim.datar, 'прием' d, ng_his_vractakvim.bassaat,
                                   ng_his_vractakvim.bitsaat, ng_his_vractakvim.servis_id, ng_his_glzr.isim
                                   FROM ng_his_glzr, ng_his_vractakvim
                                   WHERE ng_his_vractakvim.doktor_id='{doctor_id}'
@@ -13,7 +13,7 @@ AVAILABLE_DATES_BY_DOCTOR_ID = """SELECT ng_his_vractakvim.datar, 'прием' d
                                   ORDER BY ng_his_vractakvim.datar ASC"""
 
 
-# AVAILABLE_DATES_BY_DOCTOR_ID = """SELECT ng_his_vractakvim.datar, 'прием' d, ng_his_vractakvim.bassaat,
+# KK_AVAILABLE_DATES_BY_DOCTOR_ID = """SELECT ng_his_vractakvim.datar, 'прием' d, ng_his_vractakvim.bassaat,
 #                                   ng_his_vractakvim.bitsaat, ng_his_vractakvim.servis_id, ng_his_glzr.isim
 #                                   FROM ng_his_glzr, ng_his_vractakvim
 #                                   WHERE ng_his_vractakvim.doktor_id='DR595'
@@ -25,7 +25,7 @@ AVAILABLE_DATES_BY_DOCTOR_ID = """SELECT ng_his_vractakvim.datar, 'прием' d
 
 
 
-AVAILABLE_DATES_WITHOUT_DOCTOR = """SELECT ng_his_vractakvim.datar, 'прием' d, ng_his_vractakvim.bassaat,
+KK_AVAILABLE_DATES_WITHOUT_DOCTOR = """SELECT ng_his_vractakvim.datar, 'прием' d, ng_his_vractakvim.bassaat,
                                     ng_his_vractakvim.bitsaat, ng_his_vractakvim.servis_id, ng_his_glzr.isim
                                     FROM ng_his_glzr, ng_his_vractakvim
                                     WHERE ng_his_vractakvim.servis_id=ng_his_glzr.kabinet

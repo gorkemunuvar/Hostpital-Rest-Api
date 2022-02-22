@@ -8,7 +8,8 @@ class AvailableAppointmentDatesByDoctorId(Resource):
     def get(cls, id: str):
         try:
             availableAppoinmentDates = AvailableAppoinmentDateService.get_avaiable_appoinment_dates_by_doctor_id(
-                id)
+                id
+            )
 
             if availableAppoinmentDates:
                 return {'available_dates': availableAppoinmentDates}, 200
@@ -17,6 +18,7 @@ class AvailableAppointmentDatesByDoctorId(Resource):
         except Exception as error:
             print(error)
             return {'message': f'Something went wrong. ({error})'.format(error=error)}, 500
+
 
 class AvailableAppointmentDatesByProfession(Resource):
     @classmethod
