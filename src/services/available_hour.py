@@ -1,7 +1,7 @@
 import datetime
 
 from utils.database.database import Connection
-from utils.database.queries.available_hour import (AVAILABLE_HOURS,
+from utils.database.queries.ru.available_hour import (AVAILABLE_HOURS,
                                                    AVAILABLE_HOUR_REQUIREMENTS_BY_DOCTOR_ID,
                                                    AVAILABLE_HOUR_REQUIREMENTS_BY_PROFESSION)
 

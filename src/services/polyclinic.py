@@ -1,6 +1,6 @@
 from utils.database.database import Connection
 from models.polyclinic import Polyclinic
-from utils.database.queries.polyclinic import POLYCLINICS, SEARCH_POLYCLINICS
+from utils.database.queries.ru.polyclinic import POLYCLINICS, SEARCH_POLYCLINICS
 from utils.image_handler import ImageHandler
 
 
@@ -15,8 +15,6 @@ class PolyclinicService():
             for row in cursor:
                 image_base64 = ''
                 lob_image = row[3]
-
-                print(type(lob_image))
 
                 if lob_image:
                     image_base64 = ImageHandler.convert_lob_to_base64_str(

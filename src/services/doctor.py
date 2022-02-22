@@ -1,7 +1,7 @@
 from utils.database.database import Connection
 from models.doctor import Doctor
 from utils.image_handler import ImageHandler
-from utils.database.queries.doctor import (ALL_DOCTORS, DOCTOR_BY_ID,
+from utils.database.queries.ru.doctor import (ALL_DOCTORS, DOCTOR_BY_ID,
                             DOCTORS_BY_POLYCLINIC_ID, DOCTORS_BY_PROFESSION_ID,
                             SEARCH_DOCTORS)
 

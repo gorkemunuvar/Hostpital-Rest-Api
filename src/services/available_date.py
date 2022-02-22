@@ -1,5 +1,5 @@
 from utils.database.database import Connection
-from utils.database.queries.available_date import (AVAILABLE_DATES_BY_DOCTOR_ID,
+from utils.database.queries.ru.available_date import (AVAILABLE_DATES_BY_DOCTOR_ID,
                                     AVAILABLE_DATES_WITHOUT_DOCTOR)
 
 

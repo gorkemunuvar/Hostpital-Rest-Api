@@ -6,7 +6,7 @@ from utils.schemas.appointment import AppointmentSchema
 from models.appointment import Appointment
 
 from utils.string_handler import StringHandler
-from utils.database.queries.appointment import (ACTIVE_APPOINTMENTS, PAST_APPOINTMENTS,
+from utils.database.queries.ru.appointment import (ACTIVE_APPOINTMENTS, PAST_APPOINTMENTS,
                                                 IS_APPOINTMENT_TAKEN, CREATE_APPOINTMENT_ID,
                                                 CREATE_APPOINTMENT, CANCEL_APPOINTMENT,
                                                 IS_APPOINTMENT_EXIST)
