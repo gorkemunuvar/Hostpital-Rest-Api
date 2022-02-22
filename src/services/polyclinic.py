@@ -28,7 +28,7 @@ class PolyclinicService():
 
                 polyclinic = Polyclinic(id=row[0], title=row[1],
                                         description=description,
-                                        image = image_base64)
+                                        image_base64 = image_base64)
                 polyclinics.append(polyclinic)
 
             cursor.close()
@@ -58,7 +58,7 @@ class PolyclinicService():
 
                 polyclinic = Polyclinic(id=row[0], title=row[1],
                                         description=description,
-                                        image=image_base64)
+                                        image_base64=image_base64)
                 polyclinics.append(polyclinic)
 
             cursor.close()
