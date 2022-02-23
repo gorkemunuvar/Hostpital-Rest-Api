@@ -8,7 +8,7 @@ AVAILABLE_APPOINTMENT_DATE_BLUEPRINT = Blueprint(
     'available_date', __name__)
 
 Api(AVAILABLE_APPOINTMENT_DATE_BLUEPRINT).add_resource(
-    AvailableAppointmentDatesByDoctorId, '/doctors/<string:id>/available_dates')
+    AvailableAppointmentDatesByDoctorId, '/doctors/<string:id>/available-dates')
 
 Api(AVAILABLE_APPOINTMENT_DATE_BLUEPRINT).add_resource(
-    AvailableAppointmentDatesByProfession, '/professions/available_dates')
+    AvailableAppointmentDatesByProfession, '/professions/<string:profession_id>/available-dates')

@@ -7,9 +7,9 @@ from models.appointment import Appointment
 
 from core.utils.string_handler import StringHandler
 from core.utils.database.queries.ru.appointment import (ACTIVE_APPOINTMENTS, PAST_APPOINTMENTS,
-                                                IS_APPOINTMENT_TAKEN, CREATE_APPOINTMENT_ID,
-                                                CREATE_APPOINTMENT, CANCEL_APPOINTMENT,
-                                                IS_APPOINTMENT_EXIST)
+                                                        IS_APPOINTMENT_TAKEN, CREATE_APPOINTMENT_ID,
+                                                        CREATE_APPOINTMENT, CANCEL_APPOINTMENT,
+                                                        IS_APPOINTMENT_EXIST)
 
 appointment_schema = AppointmentSchema()
 

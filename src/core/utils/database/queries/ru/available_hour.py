@@ -17,10 +17,21 @@ AVAILABLE_HOURS = """SELECT  SIRA_NO, XDAKKIKA
                      FROM ng_his_ransaat
                      WHERE {time_interval} BETWEEN '{beginning_time}' AND '{ending_time}'
                      AND {time_interval} NOT IN (SELECT randevu_saati FROM ng_his_pasrandevu
-                     WHERE iptal IS null AND KABINET_id='{profession_id}'
+                     WHERE iptal IS null AND KABINET_id='{profession_id}' 
+                     AND doktor_id='DR726'
                      AND TO_DATE(datar, 'yyyy/mm/dd')=TO_DATE('{appointment_date}','yyyy/mm/dd'))
                      AND substr(xdakkika,5,1)='0'
                      ORDER BY sira_no"""
+
+"""SELECT  SIRA_NO, XDAKKIKA
+ FROM ng_his_ransaat
+ WHERE DEGER5 BETWEEN '13:00' AND '18:00'
+ AND DEGER5 NOT IN (SELECT randevu_saati FROM ng_his_pasrandevu
+ WHERE iptal IS null AND KABINET_id='17001' and doktor_id='DR726'
+AND datar = '18/03/2022')
+ AND substr(xdakkika,5,1)='0'
+ ORDER BY sira_no
+"""
 
 
 # | DATAR      | D     | BASSAAT | BITSAAT | SERVIS_ID   | ISIM        | PROFS | ARALIK |

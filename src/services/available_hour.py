@@ -24,8 +24,16 @@ class AvailableHourService():
             beginning_time=query_requirements['beginning_time'],
             ending_time=query_requirements['ending_time'],
             profession_id=query_requirements['profession_id'],
-            time_interval=query_requirements['time_interval']
+            time_interval=query_requirements['time_interval'],
+            doctor_id=str(id)
         )
+
+
+        print('SAATLERI CEKMEK ICIN SORGU')
+        print('---------------------------')
+        print(query)
+        print('\n\n\n')
+
 
         connection = Connection.create()
         cursor = Connection.execute(connection, query)
@@ -47,6 +55,13 @@ def get_query_requirements(selected_date: str, doctor_id: str = None) -> dict:
     if doctor_id:
         query_for_requirements = AVAILABLE_HOUR_REQUIREMENTS_BY_DOCTOR_ID.format(
             doctor_id=doctor_id)
+
+        print('GEREKLI DEGERLER ICIN SORGU')
+        print('---------------------------')
+        print(query_for_requirements)
+        print('\n\n\n')
+
+
     else:
         query_for_requirements = AVAILABLE_HOUR_REQUIREMENTS_BY_PROFESSION
 

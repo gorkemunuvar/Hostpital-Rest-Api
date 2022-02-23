@@ -11,8 +11,10 @@ class AvailableAppoinmentDateService():
         return dates
 
     @classmethod
-    def get_available_appointment_dates_by_profession(cls) -> list[str]:
-        query = AVAILABLE_DATES_WITHOUT_DOCTOR
+    def get_available_appointment_dates_by_profession(cls, profession_id: str) -> list[str]:
+        query = AVAILABLE_DATES_WITHOUT_DOCTOR.format(profession_id=profession_id)
+        print(query)
+        
         dates = cls.__get_avaiable_appoinment_dates(query)
         return dates
 

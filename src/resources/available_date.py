@@ -22,9 +22,11 @@ class AvailableAppointmentDatesByDoctorId(Resource):
 
 class AvailableAppointmentDatesByProfession(Resource):
     @classmethod
-    def get(cls):
+    def get(cls, profession_id: str):
         try:
-            availableAppoinmentDates = AvailableAppoinmentDateService.get_available_appointment_dates_by_profession()
+            availableAppoinmentDates = AvailableAppoinmentDateService.get_available_appointment_dates_by_profession(
+                profession_id
+            )
 
             if availableAppoinmentDates:
                 return {'available_dates': availableAppoinmentDates}, 200
