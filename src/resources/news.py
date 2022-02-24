@@ -7,6 +7,7 @@ from core.utils.schemas.news import NewsSchema
 
 all_news_schema = NewsSchema(many=True)
 
+
 class News(Resource):
     @classmethod
     def get(self, page: int):
@@ -23,4 +24,17 @@ class News(Resource):
             return {'message': f'Something went wrong. ({error})'.format(error=error)}, 500
 
 
+class NewsHomePage(Resource):
+    @classmethod
+    def get(self):
+        try:
+            query_params = request.args
+            lang = get_lang(query_params)
 
+            news_list = NewsService.get_news_for_home_page(lang)
+            news_dict = all_news_schema.dump(news_list)
+
+            return {'news': news_dict}, 200
+        except Exception as error:
+            print(error)
+            return {'message': f'Something went wrong. ({error})'.format(error=error)}, 500
