@@ -4,7 +4,7 @@ def get_start_and_end(page: int) -> tuple:
     if page < 1:
        page = 1
 
-    start = (page - 1)  * 10 - 1
-    end = page * 10 - 1
+    start = (page - 1)  * 10  + 1
+    end = page * 10
     
     return start, end

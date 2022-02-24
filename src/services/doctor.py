@@ -11,7 +11,8 @@ class DoctorService():
     @staticmethod
     def get_all_doctors(page: int) -> list[Doctor]:
         start, end = get_start_and_end(page)
-        
+        print(f'START: {start} - END: {end}')
+
         connection = Connection.create()
         query = ALL_DOCTORS.format(start=start, end=end)
         cursor = Connection.execute(connection, query)
@@ -35,6 +36,10 @@ class DoctorService():
                 doctors.append(doctor)
 
             cursor.close()
+
+        print(f'DOCTORS LENGTH: {len(doctors)}')
+
+
 
         return doctors
 
