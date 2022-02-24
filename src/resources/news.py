@@ -9,12 +9,12 @@ all_news_schema = NewsSchema(many=True)
 
 class News(Resource):
     @classmethod
-    def get(self):
+    def get(self, page: int):
         try:
             query_params = request.args
             lang = get_lang(query_params)
 
-            news_list = NewsService.get_news(lang=lang)
+            news_list = NewsService.get_news(page, lang=lang)
             news_dict = all_news_schema.dump(news_list)
 
             return {'news': news_dict}, 200

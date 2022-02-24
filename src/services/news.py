@@ -5,14 +5,16 @@ from core.utils.database.queries.ru.news import NEWS
 from core.utils.database.queries.kk.news import KK_NEWS
 from core.utils.image_handler import ImageHandler
 from core.utils.string_handler import StringHandler
-
+from core.utils.pagination_handler import get_start_and_end
 
 class NewsService():
     @staticmethod
-    def get_news(lang: Lang = None) -> list[News]:
-        connection = Connection.create()
-        
+    def get_news(page: int, lang: Lang = None) -> list[News]:
+        start, end = get_start_and_end(page)
         query = KK_NEWS if lang is Lang.KK else NEWS
+        query = query.format(start=start, end=end)
+
+        connection = Connection.create()
         cursor = Connection.execute(connection, query)
 
         news_list = []
