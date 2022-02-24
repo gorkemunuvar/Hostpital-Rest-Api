@@ -1,6 +1,7 @@
 from core.utils.database.database import Connection
 from models.doctor import Doctor
 from core.utils.image_handler import ImageHandler
+from core.utils.pagination_handler import get_start_and_end
 from core.utils.database.queries.ru.doctor import (ALL_DOCTORS, DOCTOR_BY_ID,
                             DOCTORS_BY_POLYCLINIC_ID, DOCTORS_BY_PROFESSION_ID,
                             SEARCH_DOCTORS)
@@ -8,9 +9,12 @@ from core.utils.database.queries.ru.doctor import (ALL_DOCTORS, DOCTOR_BY_ID,
 
 class DoctorService():
     @staticmethod
-    def get_all_doctors(page: int, per_page: int) -> list[Doctor]:
+    def get_all_doctors(page: int) -> list[Doctor]:
+        start, end = get_start_and_end(page)
+        
         connection = Connection.create()
-        cursor = Connection.execute(connection, ALL_DOCTORS)
+        query = ALL_DOCTORS.format(start=start, end=end)
+        cursor = Connection.execute(connection, query)
 
         doctors = []
         if cursor:

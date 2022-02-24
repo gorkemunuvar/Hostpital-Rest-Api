@@ -7,7 +7,7 @@ from resources.doctor import (AllDoctors, DoctorById, DoctorsByPolyclinicId,
 DOCTOR_BLUEPRINT = Blueprint('doctor', __name__)
 
 Api(DOCTOR_BLUEPRINT).add_resource(
-    AllDoctors, '/doctors')
+    AllDoctors, '/doctors/<int:page>')
 
 Api(DOCTOR_BLUEPRINT).add_resource(
     DoctorById, '/doctors/<string:id>')
