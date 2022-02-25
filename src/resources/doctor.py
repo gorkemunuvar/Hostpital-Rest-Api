@@ -1,38 +1,19 @@
-import json
-from flask import request, abort, send_file, make_response, jsonify
 from flask_restful import Resource
 from models.doctor import Doctor
 
 from services.doctor import DoctorService
 from core.utils.schemas.doctor import DoctorSchema
-from core.utils.schemas.pagination import PaginationSchema
 
-pagination_schema = PaginationSchema()
 doctor_schema = DoctorSchema()
 doctors_schema = DoctorSchema(many=True)
 
 
 class AllDoctors(Resource):
     @classmethod
-    def get(cls):
-        page = 1
-        per_page = 10
+    def get(cls, page: int):
         doctors_dict = {}
-
         try:
-            query_params = request.args
-            errors = pagination_schema.validate(query_params)
-
-            if errors:
-                abort(400, str(errors))
-
-            if query_params.__contains__('page'):
-                page = int(query_params['page'])
-
-            if query_params.__contains__('per_page'):
-                per_page = int(query_params['per_page'])
-
-            doctors = DoctorService.get_all_doctors(page, per_page)
+            doctors = DoctorService.get_all_doctors(page)
             doctors_dict = doctors_schema.dump(doctors)
         except Exception as error:
             print(error)
